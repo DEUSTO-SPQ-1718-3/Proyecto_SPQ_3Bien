@@ -14,7 +14,7 @@ public class VentanaInicial extends JFrame {
 
 	public VentanaInicial() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(700, 350, 530, 440);
+		setBounds(400, 200, 530, 440);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -58,14 +58,14 @@ public class VentanaInicial extends JFrame {
 		btnCuotas.setBounds(75, 176, 153, 91);
 		contentPane.add(btnCuotas);
 		
-		JButton btnAlumnos = new JButton("ALUMNOS");
+		JButton btnAlumnos = new JButton("ESTUDIANTES");
 		btnAlumnos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//inicializa ventana ALUMNOS
+				frmEstudiantes ventanaEstudiantes = new frmEstudiantes();
+				ventanaEstudiantes.setVisible(true); 
 				
-				
-			}
+			}	
 		});
 		btnAlumnos.setBounds(294, 176, 153, 91);
 		contentPane.add(btnAlumnos);
@@ -94,3 +94,4 @@ public class VentanaInicial extends JFrame {
 		contentPane.add(btnSalir);
 	}
 }
+
