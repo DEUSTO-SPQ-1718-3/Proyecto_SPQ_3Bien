@@ -11,6 +11,13 @@ public class clsCurso {
 	//private ArrayList<Alumno> listaMatriculados; //datos de los alumnos matriculados para un determinado curso
 	
 	
+	@Override
+	public String toString() {
+		return "Curso con id:" + idC + ", con título '" + nombreC + "', impartido en la clase "
+				+ numClase + " y su horario es de " + horario + ".";
+	}
+
+
 	public clsCurso(int idC, String nombreC, String descripcion, int numClase, String horario) {
 		super();
 		this.idC = idC;

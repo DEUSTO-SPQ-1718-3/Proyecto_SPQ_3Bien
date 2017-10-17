@@ -1,3 +1,5 @@
+package estudiantes;
+
 import java.io.Serializable;
 
 public class Estudiante implements Serializable{
