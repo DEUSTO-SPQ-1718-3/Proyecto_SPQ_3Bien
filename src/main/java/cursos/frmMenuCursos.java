@@ -46,8 +46,8 @@ private static final long serialVersionUID = 7046431761927583577L;
 		
 		ArrayList<clsCurso> listaCursos = new ArrayList<clsCurso>();
 
-			listaCursos.add(new clsCurso(1, "Microeconmía I", "Curso de iniciación a la microeconomía"));
-			listaCursos.add(new clsCurso(2, "Programación I", "Curso de iniciación a la programación"));
+			listaCursos.add(new clsCurso(1, "Microeconmía I", "Curso de iniciación a la microeconomía", 10, "Lun-mie de 16-17"));
+			listaCursos.add(new clsCurso(2, "Programación I", "Curso de iniciación a la programación", 11, "Mar-jue de 10-11"));
 			
 		txtCursosRegistrados.append(listaCursos.toString());		
 		
@@ -87,7 +87,6 @@ private static final long serialVersionUID = 7046431761927583577L;
 	}
 	
 	
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		
 		

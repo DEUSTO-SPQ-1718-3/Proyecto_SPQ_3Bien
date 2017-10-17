@@ -10,18 +10,12 @@ import javax.swing.JLabel;
 public class frmRegistrarCurso extends JFrame implements ActionListener{
 	private JTextField textFieldNombre;
 	private JTextField textFieldDesc;
+	private JTextField textFieldAula;
+	private JTextField textFieldHorario;
 	public frmRegistrarCurso() {
 		getContentPane().setLayout(null);
 		
 		setTitle("MI ACADEMIA");
-		
-		JButton btnAtras = new JButton("Atras");
-		btnAtras.setBounds(465, 11, 59, 23);
-		getContentPane().add(btnAtras);
-		
-		JButton btnDarDeAlta = new JButton("Dar de alta");
-		btnDarDeAlta.setBounds(218, 319, 126, 32);
-		getContentPane().add(btnDarDeAlta);
 		
 		textFieldNombre = new JTextField();
 		textFieldNombre.setBounds(39, 61, 86, 20);
@@ -40,7 +34,35 @@ public class frmRegistrarCurso extends JFrame implements ActionListener{
 		JLabel lblDescripcion = new JLabel("Descripcion");
 		lblDescripcion.setBounds(40, 110, 59, 14);
 		getContentPane().add(lblDescripcion);
+		
+		JLabel lblNDeAula = new JLabel("N\u00BA de Aula");
+		lblNDeAula.setBounds(153, 36, 69, 14);
+		getContentPane().add(lblNDeAula);
+		
+		textFieldAula = new JTextField();
+		textFieldAula.setColumns(10);
+		textFieldAula.setBounds(153, 61, 46, 20);
+		getContentPane().add(textFieldAula);
+		
+		JButton btnAtras = new JButton("Atras");
+		btnAtras.setBounds(375, 0, 59, 23);
+		getContentPane().add(btnAtras);
 		btnAtras.addActionListener(this);
+		
+		JButton btnNuevoCurso = new JButton("Nuevo curso");
+		btnNuevoCurso.setBounds(153, 228, 116, 23);
+		getContentPane().add(btnNuevoCurso);
+		btnNuevoCurso.addActionListener(this);
+		
+		JLabel lblHorario = new JLabel("Horario");
+		lblHorario.setBounds(275, 36, 69, 14);
+		getContentPane().add(lblHorario);
+		
+		textFieldHorario = new JTextField();
+		textFieldHorario.setColumns(10);
+		textFieldHorario.setBounds(275, 61, 101, 32);
+		getContentPane().add(textFieldHorario);
+		
 	}
 	//ficha para rellenar, que sera enviada a la BBDD para almacenar los datos correspondientes
 
@@ -53,14 +75,15 @@ public class frmRegistrarCurso extends JFrame implements ActionListener{
 				objAtras.setVisible(true);
 				this.dispose();
 				break;
-			case "Dar de alta":
-				//clsGestorCursos objGC= new clsGestorCursos();
+			case "Nuevo curso":
 				int idC= 1;//lo suyo seria que se generara auto. con el numero correspondiente de las bbdd
 				String nombreC=textFieldNombre.getText();
 				String desc=textFieldDesc.getText();
+				int numC=Integer.parseInt(textFieldAula.getText());
+				String horario=textFieldHorario.getText();
 				
-				//objGC.RegistrarCurso(idC, nombreC, desc);
-				//objGC=null;
+				clsCurso objCurso = new clsCurso(idC, nombreC, desc, numC, horario);
+				objCurso=null;
 				break;
 	
 		}
