@@ -1,9 +1,17 @@
+package main;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import cursos.frmMenuCursos;
+import cursos.frmRegistrarCurso;
+import estudiantes.frmEstudiantes;
+import profesores.frmProfesores;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -26,6 +34,8 @@ public class VentanaInicial extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				frmProfesores objP=new frmProfesores();
+				objP.setVisible(true);
 				//inicializa ventana PROFESORES
 				
 				
@@ -38,7 +48,9 @@ public class VentanaInicial extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				frmMenuCursos objC=new frmMenuCursos();
+				objC.setVisible(true);
+				//this.dispose();
 				//inicializa ventana CURSOS
 				
 				
@@ -62,6 +74,8 @@ public class VentanaInicial extends JFrame {
 		btnAlumnos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				frmEstudiantes objE=new frmEstudiantes();
+				objE.setVisible(true);
 				//inicializa ventana ALUMNOS
 				
 				
