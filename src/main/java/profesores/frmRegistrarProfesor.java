@@ -112,12 +112,12 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 		switch(arg0.getActionCommand())
 		{
 			case "Atras":
-				frmEstudiantes objAtras=new frmProfesores();
+				frmProfesores objAtras=new frmProfesores();
 				objAtras.setVisible(true);
 				this.dispose();
 				break;
 			case "Dar de alta":
-				//clsGestorCursos objGC= new clsGestorCursos();
+				
 				//int idC= 1;//lo suyo seria que se generara auto. con el numero correspondiente de las bbdd
 				String dni=textFieldNombre.getText();
 				String nombre=textFieldNombre.getText();
@@ -128,7 +128,7 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 				String direccion=textFieldDireccion.getText();
 
 
-				Estudiante nuevoEstudiante = new Estudiante(dni, nombre, apellido, telefono, email, estudios, direccion);
+				Profesor nuevoProf = new Profesor(nombre, apellido, telefono, email, direccion, estudios);
 								
 				break;
 	
