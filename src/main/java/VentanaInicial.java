@@ -51,8 +51,8 @@ public class VentanaInicial extends JFrame {
 		btnCuotas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//inicializa ventana CUOTAS
-				
+				frmCuotas ventanaCuotas = new frmCuotas();
+				ventanaCuotas.setVisible(true);
 			}
 		});
 		btnCuotas.setBounds(75, 176, 153, 91);
