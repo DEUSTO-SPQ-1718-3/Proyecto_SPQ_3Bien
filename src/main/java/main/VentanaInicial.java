@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import cursos.frmMenuCursos;
 import estudiantes.frmEstudiantes;
 
 import javax.swing.JButton;
@@ -44,7 +45,8 @@ public class VentanaInicial extends JFrame {
 				
 				
 				//inicializa ventana CURSOS
-				
+				frmMenuCursos ventanaCursos = new frmMenuCursos();
+				ventanaCursos.setVisible(true); 
 				
 			}
 		});
