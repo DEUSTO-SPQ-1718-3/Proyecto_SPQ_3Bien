@@ -1,4 +1,8 @@
 package estudiantes;
+<<<<<<< HEAD:src/main/java/estudiantes/frmEstudiantes.java
+=======
+
+>>>>>>> origin/HU_Cursos:src/main/java/estudiantes/frmEstudiantes.java
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;

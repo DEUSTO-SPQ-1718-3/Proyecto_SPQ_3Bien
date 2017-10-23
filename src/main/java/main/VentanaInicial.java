@@ -1,4 +1,8 @@
 package main;
+<<<<<<< HEAD:src/main/java/main/VentanaInicial.java
+=======
+
+>>>>>>> origin/HU_Cursos:src/main/java/main/VentanaInicial.java
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -7,7 +11,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import cursos.frmMenuCursos;
+<<<<<<< HEAD:src/main/java/main/VentanaInicial.java
 import estudiantes.frmEstudiantes;
+=======
+import cursos.frmRegistrarCurso;
+import estudiantes.frmEstudiantes;
+import profesores.frmProfesores;
+>>>>>>> origin/HU_Cursos:src/main/java/main/VentanaInicial.java
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -31,6 +41,8 @@ public class VentanaInicial extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				frmProfesores objP=new frmProfesores();
+				objP.setVisible(true);
 				//inicializa ventana PROFESORES
 				
 				
@@ -43,7 +55,9 @@ public class VentanaInicial extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				frmMenuCursos objC=new frmMenuCursos();
+				objC.setVisible(true);
+				//this.dispose();
 				//inicializa ventana CURSOS
 				frmMenuCursos ventanaCursos = new frmMenuCursos();
 				ventanaCursos.setVisible(true); 
@@ -68,8 +82,14 @@ public class VentanaInicial extends JFrame {
 		btnAlumnos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+<<<<<<< HEAD:src/main/java/main/VentanaInicial.java
 				frmEstudiantes ventanaEstudiantes = new frmEstudiantes();
 				ventanaEstudiantes.setVisible(true); 
+=======
+				frmEstudiantes objE=new frmEstudiantes();
+				objE.setVisible(true);
+				//inicializa ventana ALUMNOS
+>>>>>>> origin/HU_Cursos:src/main/java/main/VentanaInicial.java
 				
 			}	
 		});
