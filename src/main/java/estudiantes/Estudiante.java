@@ -164,9 +164,5 @@ public String toString(){
 		return salida.toString();	
 		
 	}
-	
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> remotes/origin/master
