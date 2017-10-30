@@ -1,5 +1,8 @@
 package main;
+<<<<<<< HEAD:src/main/java/main/Main.java
+=======
 
+>>>>>>> origin/HU_Cursos:src/main/java/main/Main.java
 public class Main {
 
 	/**

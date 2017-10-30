@@ -1,13 +1,17 @@
 package main;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Proyecto.Proyecto.frmCuotas;
 import cursos.frmMenuCursos;
+
+import estudiantes.frmEstudiantes;
 import cursos.frmRegistrarCurso;
 import estudiantes.frmEstudiantes;
 import profesores.frmProfesores;
@@ -52,7 +56,8 @@ public class VentanaInicial extends JFrame {
 				objC.setVisible(true);
 				//this.dispose();
 				//inicializa ventana CURSOS
-				
+				frmMenuCursos ventanaCursos = new frmMenuCursos();
+				ventanaCursos.setVisible(true); 
 				
 			}
 		});
@@ -64,22 +69,28 @@ public class VentanaInicial extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				//inicializa ventana CUOTAS
+				Cuotas.frmCuotas ventanaEstudiantes = new Cuotas.frmCuotas();
+				ventanaEstudiantes.setVisible(true);
 				
 			}
 		});
 		btnCuotas.setBounds(75, 176, 153, 91);
 		contentPane.add(btnCuotas);
 		
-		JButton btnAlumnos = new JButton("ALUMNOS");
+		JButton btnAlumnos = new JButton("ESTUDIANTES");
 		btnAlumnos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+
+				frmEstudiantes ventanaEstudiantes = new frmEstudiantes();
+				ventanaEstudiantes.setVisible(true); 
+
 				frmEstudiantes objE=new frmEstudiantes();
 				objE.setVisible(true);
 				//inicializa ventana ALUMNOS
+
 				
-				
-			}
+			}	
 		});
 		btnAlumnos.setBounds(294, 176, 153, 91);
 		contentPane.add(btnAlumnos);
@@ -108,3 +119,4 @@ public class VentanaInicial extends JFrame {
 		contentPane.add(btnSalir);
 	}
 }
+
