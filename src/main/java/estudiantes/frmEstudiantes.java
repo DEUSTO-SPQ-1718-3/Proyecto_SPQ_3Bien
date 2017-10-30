@@ -1,8 +1,5 @@
 package estudiantes;
-<<<<<<< HEAD:src/main/java/estudiantes/frmEstudiantes.java
-=======
 
->>>>>>> origin/HU_Cursos:src/main/java/estudiantes/frmEstudiantes.java
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -57,18 +54,17 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 		
 		ArrayList<Estudiante> listaEstudiantes = new ArrayList<Estudiante>();
 
-<<<<<<< HEAD
+
 			listaEstudiantes.add(new Estudiante("224455D","Xabi", "Perez", "9943434", "xp@gmail.com", "va al colegio x y cslcjsaldjsd","Calle A", "Alex", "123456789"));
 			listaEstudiantes.add(new Estudiante("336688A","Jon", "Gonzalez", "945345", "jg@gmail.com", "va al colegio x y dfgdfgdfg", "Avenida A", "Marta", "098765432"));
 			listaEstudiantes.add(new Estudiante("112233F","Ainhoa", "Garcia", "99544534", "ag@gmail.com", "va al colegio x y sdfagfdfdjsd", "Paseo A", "Maria", "3456789098"));
 			listaEstudiantes.add(new Estudiante("445566G","Amaia", "Fermandez", "945345", "af@gmail.com", "va al colegio x y sdfsdfretrt", "Estrecho A", "Nando", "2356789431"));
-=======
+
 			listaEstudiantes.add(new Estudiante("1111", "Xabi", "Perez", "9943434", "xp@gmail.com", "Zubiri", "Calle Mayor 5, 6ºB", "Ana- Madre", "93456543"));
 			listaEstudiantes.add(new Estudiante("2222", "Xabi", "Perez", "9943434", "xp@gmail.com", "Zubiri", "Calle Mayor 5, 6ºB", "Ana- Madre", "93456543"));
 			listaEstudiantes.add(new Estudiante("3333", "Xabi", "Perez", "9943434", "xp@gmail.com", "Zubiri", "Calle Mayor 5, 6ºB", "Ana- Madre", "93456543"));
 			listaEstudiantes.add(new Estudiante("4444", "Xabi", "Perez", "9943434", "xp@gmail.com", "Zubiri", "Calle Mayor 5, 6ºB", "Ana- Madre", "93456543"));
-			
->>>>>>> fcedad7ca6f86e785316fdaa93f7864feb8cb57d
+
 			
 					
 		txtHabitacionesRegistradas.append(listaEstudiantes.toString()) ;						
