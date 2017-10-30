@@ -54,10 +54,10 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 		
 		ArrayList<Estudiante> listaEstudiantes = new ArrayList<Estudiante>();
 
-			listaEstudiantes.add(new Estudiante("Xabi", "Perez", "9943434", "xp@gmail.com", "va al colegio x y cslcjsaldjsd"));
-			listaEstudiantes.add(new Estudiante("Jon", "Gonzalez", "945345", "jg@gmail.com", "va al colegio x y dfgdfgdfg"));
-			listaEstudiantes.add(new Estudiante("Ainhoa", "Garcia", "99544534", "ag@gmail.com", "va al colegio x y sdfaldfgdfgfdfdjsd"));
-			listaEstudiantes.add(new Estudiante("Amaia", "Fermandez", "945345", "af@gmail.com", "va al colegio x y sdfsdfretrt"));
+			listaEstudiantes.add(new Estudiante("224455D","Xabi", "Perez", "9943434", "xp@gmail.com", "va al colegio x y cslcjsaldjsd","Calle A", "Alex", "123456789"));
+			listaEstudiantes.add(new Estudiante("336688A","Jon", "Gonzalez", "945345", "jg@gmail.com", "va al colegio x y dfgdfgdfg", "Avenida A", "Marta", "098765432"));
+			listaEstudiantes.add(new Estudiante("112233F","Ainhoa", "Garcia", "99544534", "ag@gmail.com", "va al colegio x y sdfagfdfdjsd", "Paseo A", "Maria", "3456789098"));
+			listaEstudiantes.add(new Estudiante("445566G","Amaia", "Fermandez", "945345", "af@gmail.com", "va al colegio x y sdfsdfretrt", "Estrecho A", "Nando", "2356789431"));
 			
 					
 		txtHabitacionesRegistradas.append(listaEstudiantes.toString()) ;						
