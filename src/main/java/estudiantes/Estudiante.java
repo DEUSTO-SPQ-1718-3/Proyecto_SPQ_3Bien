@@ -165,4 +165,8 @@ public String toString(){
 		
 	}
 	
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> remotes/origin/master
