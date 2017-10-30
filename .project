@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>Proyecto_SPQ_3Bien</name>
+=======
+	<name>Academia</name>
+>>>>>>> origin/HU_Cuotas
 	<comment>mi primer proyecto de Maven. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
 	<projects>
 	</projects>
