@@ -14,6 +14,7 @@ public class Cuota implements Serializable{
 	private String fecha;
 	private String estado;
 	
+	
 	public Cuota(){
 		
 		nombre="";
