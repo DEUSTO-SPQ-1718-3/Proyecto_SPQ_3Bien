@@ -10,6 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import main.VentanaInicial;
+
 import javax.swing.JButton;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -22,9 +24,8 @@ private static final long serialVersionUID = 7046431761927583577L;
 		
 		setBounds(400, 400, 430, 230); //Tamaño
 		
-		setTitle("MI ACADEMIA");
-				
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("MI ACADEMIA");	
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(700, 350, 530, 440);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -39,7 +40,7 @@ private static final long serialVersionUID = 7046431761927583577L;
 		txtCursosRegistrados.setEditable(false);
 		scrollPane.setViewportView(txtCursosRegistrados);
 		//txtHabitacionesRegistradas.setFont(new Font("Tahoma", Font.BOLD, 14));
-		txtCursosRegistrados.setText("- CURSOS REGISTRADOS - ");
+		txtCursosRegistrados.setText("- CURSOS REGISTRADOS - \n");
 		txtCursosRegistrados.setColumns(50);
 		txtCursosRegistrados.setEditable(false);
 						
@@ -77,10 +78,16 @@ private static final long serialVersionUID = 7046431761927583577L;
 		contentPane.add(btnSalir);
 		
 		JButton btnInformes = new JButton("INFORMES");
-		btnInformes.setActionCommand("Salir");
+		btnInformes.setActionCommand("Informes");
 		btnInformes.setBounds(420, 268, 100, 25);
 		contentPane.add(btnInformes);
 		btnInformes.addActionListener(this);
+		
+		JButton btnAtras = new JButton("Atras");
+		btnAtras.setActionCommand("Atras");
+		btnAtras.setBounds(443, 7, 71, 23);
+		contentPane.add(btnAtras);
+		btnAtras.addActionListener(this);		
 			
 		this.setResizable(false);		
 			
@@ -93,30 +100,33 @@ private static final long serialVersionUID = 7046431761927583577L;
 		switch(e.getActionCommand()){
 		
 		
-		case "MODIFICAR":
+		case "Modificar":
 			
 			//
 			
 			break;
 			
-		case "ANYADIR":
+		case "Anyadir":
 			frmRegistrarCurso objAlta=new frmRegistrarCurso();
 			objAlta.setVisible(true);
 			this.dispose();			
 			break;
 			
-		case "ELIMINAR":
-			
-			//
-			
+		case "Eliminar":
+			frmBorrarCurso objB=new frmBorrarCurso();
+			objB.setVisible(true);			
 			break;
 			
-		case "INFORMES":
+		case "Informes":
 					
 			//
 					
 			break;
 					
+		case "Atras":
+			VentanaInicial objV= new VentanaInicial();
+			objV.setVisible(true);
+			this.dispose();
 					
 		case "SALIR":
 			System.out.println("Cerrando programa...");

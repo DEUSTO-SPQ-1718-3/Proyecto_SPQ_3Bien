@@ -14,7 +14,7 @@ public class clsCurso {
 	@Override
 	public String toString() {
 		return "Curso con id:" + idC + ", con título '" + nombreC + "', impartido en la clase "
-				+ numClase + " y su horario es de " + horario + ".";
+				+ numClase + " y su horario es de " + horario + ".\n";
 	}
 
 

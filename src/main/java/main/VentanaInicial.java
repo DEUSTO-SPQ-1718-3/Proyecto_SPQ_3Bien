@@ -56,8 +56,6 @@ public class VentanaInicial extends JFrame {
 				objC.setVisible(true);
 				//this.dispose();
 				//inicializa ventana CURSOS
-				frmMenuCursos ventanaCursos = new frmMenuCursos();
-				ventanaCursos.setVisible(true); 
 				
 			}
 		});

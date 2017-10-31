@@ -5,22 +5,26 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
 public class frmRegistrarCurso extends JFrame implements ActionListener{
+	
 	private JTextField textFieldNombre;
 	private JTextField textFieldDesc;
 	private JTextField textFieldAula;
 	private JTextField textFieldHorario;
+	
 	public frmRegistrarCurso() {
-		getContentPane().setLayout(null);
 		
-		setTitle("MI ACADEMIA");
-		
+		setBounds(400, 400, 443, 291);
+		setTitle("MI ACADEMIA - REGISTRAR CURSO");
+		setResizable(false);
 		textFieldNombre = new JTextField();
 		textFieldNombre.setBounds(39, 61, 86, 20);
 		getContentPane().add(textFieldNombre);
 		textFieldNombre.setColumns(10);
+		getContentPane().setLayout(null);
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(40, 36, 46, 14);
@@ -45,7 +49,7 @@ public class frmRegistrarCurso extends JFrame implements ActionListener{
 		getContentPane().add(textFieldAula);
 		
 		JButton btnAtras = new JButton("Atras");
-		btnAtras.setBounds(375, 0, 59, 23);
+		btnAtras.setBounds(358, 11, 69, 23);
 		getContentPane().add(btnAtras);
 		btnAtras.addActionListener(this);
 		
