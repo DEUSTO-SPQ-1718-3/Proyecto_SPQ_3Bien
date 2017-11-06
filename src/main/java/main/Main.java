@@ -1,5 +1,11 @@
 package main;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import Cuotas.MyDataAccess;
+
+
 public class Main {
 
 	/**
@@ -11,5 +17,6 @@ public class Main {
 		frmPrincipal objP = new frmPrincipal ();
 		objP.setVisible(true);
 	
+	    }
+	    
 	}
-}
