@@ -1,9 +1,13 @@
 package Cuotas;
 import java.awt.Dimension;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
+
+import bbdd.MyDataAccess;
+
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.SwingConstants;
@@ -15,8 +19,7 @@ import javax.swing.UIManager;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.util.ArrayList;
-
-
+import java.sql.*;
 public class frmCuotas extends JFrame implements ActionListener{
 
 	/**
@@ -34,9 +37,23 @@ public class frmCuotas extends JFrame implements ActionListener{
 	public frmCuotas() {
 	
 		
-		setBounds(400, 400, 430, 230); //TamaÃ±o
+		setBounds(400, 400, 430, 230); //Tamaño
 		
 		setTitle("MI ACADEMIA");
+		
+		//BD
+		
+		MyDataAccess conexion = new MyDataAccess();
+	    ResultSet resultado;
+	    String nombre;
+	    String apellido;
+	    int horas;
+	    int precio;
+	    String fecha;
+	    String estado;
+	    
+	    resultado = conexion.getQuery("select * from Cuotas");
+	      //
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(700, 350, 530, 440);
@@ -56,10 +73,21 @@ public class frmCuotas extends JFrame implements ActionListener{
 		txtCuotasRegistradas.setColumns(50);
 		txtCuotasRegistradas.setEditable(false);
 
-			listaCuotas.add(new Cuota("Xabi", "Perez", 10, 100,"09/17","PAGADO"));
-			listaCuotas.add(new Cuota("Jon", "Gonzalez", 20, 200,"10/17", "PENDIENTE"));
-			listaCuotas.add(new Cuota("Joana", "Lopez", 30, 300,"09/17", "PAGADO"));
-			listaCuotas.add(new Cuota("Amaia", "Fermandez", 40, 400,"10/17", "PENDIENTE"));				
+	    try {
+		      while(resultado.next()){
+		      nombre = resultado.getString("nombre");
+		      apellido = resultado.getString("apellido");
+		      horas = resultado.getInt("horas");
+		      precio = resultado.getInt("precio");
+		      fecha = resultado.getString("fecha");
+		      estado = resultado.getString("estado");
+		      
+			listaCuotas.add(new Cuota(nombre, apellido, horas, precio,fecha, estado));	
+		      }
+		    }catch (SQLException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		    }			
 			
 			sacarPendientes();
 			
@@ -74,7 +102,7 @@ public class frmCuotas extends JFrame implements ActionListener{
 		btnModificar.setActionCommand("Modificar");
 		contentPane.add(btnModificar);
 		
-		JButton btnAnyadir = new JButton("AÃ‘ADIR");
+		JButton btnAnyadir = new JButton("AÑADIR");
 		btnAnyadir.setBounds(420, 170, 100, 25);
 		btnAnyadir.addActionListener(this);
 		btnAnyadir.setActionCommand("Anyadir");
