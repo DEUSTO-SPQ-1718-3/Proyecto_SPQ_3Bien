@@ -2,6 +2,8 @@ package cursos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -10,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import Cuotas.Cuota;
+import bbdd.MyDataAccess;
 import main.VentanaInicial;
 
 import javax.swing.JButton;
@@ -18,7 +22,9 @@ import javax.swing.Action;
 
 public class frmMenuCursos extends JFrame implements ActionListener{
 private static final long serialVersionUID = 7046431761927583577L;
-	
+private ArrayList<clsCurso> listaCursos = new ArrayList<clsCurso>();
+MyDataAccess conexion = new MyDataAccess();
+
 	public frmMenuCursos() {
 	
 		
@@ -43,13 +49,33 @@ private static final long serialVersionUID = 7046431761927583577L;
 		txtCursosRegistrados.setText("- CURSOS REGISTRADOS - \n");
 		txtCursosRegistrados.setColumns(50);
 		txtCursosRegistrados.setEditable(false);
-						
 		
-		ArrayList<clsCurso> listaCursos = new ArrayList<clsCurso>();
-
-			listaCursos.add(new clsCurso(1, "Microeconmía I", "Curso de iniciación a la microeconomía", 10, "Lun-mie de 16-17"));
-			listaCursos.add(new clsCurso(2, "Programación I", "Curso de iniciación a la programación", 11, "Mar-jue de 10-11"));
-			
+		//RELLENAR LA LISTA CON LOS DATOS DE LA BBDD
+		 ResultSet visualizar;
+		 int idC;
+		 String nombreC;
+		 String descripcion;
+		 int numClase;
+		 String horario;
+		    
+		visualizar = conexion.getQuery("SELECT * from cursos");
+		
+		try {
+		    while(visualizar.next()){
+		    idC= visualizar.getInt("idC");
+		    nombreC = visualizar.getString("nombreC");
+		    descripcion = visualizar.getString("descripcion");
+		    numClase = visualizar.getInt("numClase");
+		    horario = visualizar.getString("horario");
+		      
+			listaCursos.add(new clsCurso(idC, nombreC, descripcion, numClase, horario));	
+		 }
+		 }catch (SQLException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		 }
+		
+		
 		txtCursosRegistrados.append(listaCursos.toString());		
 		
 		JButton btnModificar = new JButton("MODIFICAR");
