@@ -17,6 +17,7 @@ public class frmRegistrarCurso extends JFrame implements ActionListener{
 	
 	public frmRegistrarCurso() {
 		
+
 		setBounds(400, 400, 443, 291);
 		setTitle("MI ACADEMIA - REGISTRAR CURSO");
 		setResizable(false);

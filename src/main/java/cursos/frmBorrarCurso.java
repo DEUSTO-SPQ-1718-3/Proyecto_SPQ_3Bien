@@ -61,9 +61,7 @@ public class frmBorrarCurso extends JFrame implements ActionListener{
 			case "Atras":
 				//frmMenuCursos objMC= new frmMenuCursos();
 				//objMC.setVisible(true);
-				this.dispose();
-				//
-				
+				this.dispose();				
 				break;
 				
 			case "Aceptar":
