@@ -1,5 +1,6 @@
 package Cuotas;
 import java.awt.Dimension;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -15,8 +16,7 @@ import javax.swing.UIManager;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.util.ArrayList;
-
-
+import java.sql.*;
 public class frmCuotas extends JFrame implements ActionListener{
 
 	/**
