@@ -5,10 +5,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
+
+import Cuotas.Cuota;
+import bbdd.MyDataAccess;
+
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -32,6 +38,22 @@ public class frmProfesores extends JFrame implements ActionListener{
 		setBounds(400, 400, 430, 230); //Tamaño
 		
 		setTitle("MI ACADEMIA");
+		
+		ArrayList<Profesor> listaProfesores = new ArrayList<Profesor>(); 
+		
+		//BD
+		
+		MyDataAccess conexion = new MyDataAccess();
+			    ResultSet resultado;
+			    String nombre;
+			    String apellido;
+			    String telefono;
+			    String email;
+			    String direccion;
+			    String estudios;
+			    
+			    resultado = conexion.getQuery("select * from profesores");
+		//
 				
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(700, 350, 530, 440);
@@ -50,15 +72,23 @@ public class frmProfesores extends JFrame implements ActionListener{
 		//txtHabitacionesRegistradas.setFont(new Font("Tahoma", Font.BOLD, 14));
 		txtHabitacionesRegistradas.setText("- PROFESORES EN LA ACADEMIA - ");
 		txtHabitacionesRegistradas.setColumns(50);
-		txtHabitacionesRegistradas.setEditable(false);
-						
+		txtHabitacionesRegistradas.setEditable(false);					
 		
-		ArrayList<Profesor> listaProfesores = new ArrayList<Profesor>();
-
-			listaProfesores.add(new Profesor("Javier", "Cerro", "634312434", "jc@gmail.com", "Kondeko aldapa 4, Tolosa", "Ingenieria Informatica"));
-			listaProfesores.add(new Profesor("Jon", "Insausti", "655788451", "ji@gmail.com", "31 de Agosto 14, Donosti", "ADE"));
-			listaProfesores.add(new Profesor("Joana", "Perez", "666544534", "jp@gmail.com", "Hondarribia Kalea 8, Lasarte", "Economicas"));
-			listaProfesores.add(new Profesor("Edurne", "Etxezabal", "677945345", "ee@gmail.com", "Ibai gain kalea 2, Irun", "Ingenieria Industrial"));
+		 try {
+		      while(resultado.next()){
+		      nombre = resultado.getString("nombre");
+		      apellido = resultado.getString("apellido");
+		      telefono = resultado.getString("telefono");
+		      email = resultado.getString("email");
+		      direccion = resultado.getString("direccion");
+		      estudios = resultado.getString("estudios");
+		      
+			listaProfesores.add(new Profesor(nombre, apellido, telefono, email, direccion, estudios));	
+		      }
+		    }catch (SQLException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		    }			
 			
 					
 		txtHabitacionesRegistradas.append(listaProfesores.toString()) ;						
