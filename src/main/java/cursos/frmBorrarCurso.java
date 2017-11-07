@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import bbdd.MyDataAccess;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -17,7 +20,8 @@ public class frmBorrarCurso extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private JTextField textFieldID;
-
+	MyDataAccess conexion = new MyDataAccess();
+	
 	/**
 	 * Create the frame.
 	 */
@@ -59,14 +63,15 @@ public class frmBorrarCurso extends JFrame implements ActionListener{
 		
 		
 			case "Atras":
-				//frmMenuCursos objMC= new frmMenuCursos();
-				//objMC.setVisible(true);
-				this.dispose();
-				//
 				
+				this.dispose();				
 				break;
 				
 			case "Aceptar":
+				int BorrarID=Integer.parseInt(textFieldID.getText());
+				String borrar= "Delete from cursos where idC='"+BorrarID+"' ";
+				//enviar la sentencia a la bbdd
+				conexion.setQuery(borrar);
 				
 				this.dispose();			
 				break;

@@ -6,6 +6,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import bbdd.MyDataAccess;
+
 import javax.swing.JLabel;
 
 public class frmRegistrarCurso extends JFrame implements ActionListener{
@@ -14,9 +17,11 @@ public class frmRegistrarCurso extends JFrame implements ActionListener{
 	private JTextField textFieldDesc;
 	private JTextField textFieldAula;
 	private JTextField textFieldHorario;
+	MyDataAccess conexion = new MyDataAccess();
 	
 	public frmRegistrarCurso() {
 		
+
 		setBounds(400, 400, 443, 291);
 		setTitle("MI ACADEMIA - REGISTRAR CURSO");
 		setResizable(false);
@@ -80,14 +85,17 @@ public class frmRegistrarCurso extends JFrame implements ActionListener{
 				this.dispose();
 				break;
 			case "Nuevo curso":
-				int idC= 1;//lo suyo seria que se generara auto. con el numero correspondiente de las bbdd
+				int idC;//se genera aleatorio, el usuario no puede meter el numero para que no se repita
+				idC=(int) (Math.random() * 99999) + 1;
 				String nombreC=textFieldNombre.getText();
 				String desc=textFieldDesc.getText();
 				int numC=Integer.parseInt(textFieldAula.getText());
 				String horario=textFieldHorario.getText();
 				
-				clsCurso objCurso = new clsCurso(idC, nombreC, desc, numC, horario);
-				objCurso=null;
+				String registrar= "insert into cursos values("+"'"+ idC +"','"+ nombreC +"','"+ desc +"','"+ numC +"','"+ horario +"')";
+				//se envia el script SQL a la BBDD y se registra el curso
+				conexion.setQuery(registrar);
+				
 				break;
 	
 		}

@@ -37,7 +37,7 @@ public class frmCuotas extends JFrame implements ActionListener{
 	public frmCuotas() {
 	
 		
-		setBounds(400, 400, 430, 230); //TamaÃ±o
+		setBounds(400, 400, 430, 230); //Tamaño
 		
 		setTitle("MI ACADEMIA");
 		
@@ -102,7 +102,7 @@ public class frmCuotas extends JFrame implements ActionListener{
 		btnModificar.setActionCommand("Modificar");
 		contentPane.add(btnModificar);
 		
-		JButton btnAnyadir = new JButton("AÃ‘ADIR");
+		JButton btnAnyadir = new JButton("AÑADIR");
 		btnAnyadir.setBounds(420, 170, 100, 25);
 		btnAnyadir.addActionListener(this);
 		btnAnyadir.setActionCommand("Anyadir");
