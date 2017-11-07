@@ -31,6 +31,18 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 	
 	ArrayList<Estudiante> listaEstudiantes;
 	JTextArea txtEstudiantes;
+	JScrollPane scrollPane;
+	MyDataAccess conexion;
+    ResultSet resultado;
+    String dni;
+    String nombre;
+    String apellido;
+    String telefono;
+    String email;
+    String colegio;
+    String direccion;
+    String nombre_contacto;
+    String telf_contacto;	
 	
 	private static final long serialVersionUID = 7046431761927583577L;
 	
@@ -41,18 +53,8 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 		listaEstudiantes = new ArrayList<Estudiante>();
 				
 		//BD		
-		MyDataAccess conexion = new MyDataAccess();
-	    ResultSet resultado;
-	    String dni;
-	    String nombre;
-	    String apellido;
-	    String telefono;
-	    String email;
-	    String colegio;
-	    String direccion;
-	    String nombre_contacto;
-	    String telf_contacto;	
-		
+		conexion = new MyDataAccess();
+	    	
 	    resultado = conexion.getQuery("select * from Estudiantes");
 		   	    	    
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -63,42 +65,12 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(5, 5, 400, 400);
 		contentPane.add(scrollPane);
 		
-		txtEstudiantes = new JTextArea();
-		txtEstudiantes.setEditable(false);
-		txtEstudiantes.setColumns(50);
-		
-		 try {
-		      while(resultado.next()){
-		   		    	  
-		    	  dni = resultado.getString("dni");
-			      nombre = resultado.getString("nombre");
-			      apellido = resultado.getString("apellido");
-			      telefono = resultado.getString("telefono");
-			      email = resultado.getString("email");
-			      colegio = resultado.getString("colegio");
-			      direccion = resultado.getString("direccion");
-			      nombre_contacto = resultado.getString("nombre_contacto");
-			      telf_contacto = resultado.getString("telf_contacto");
-		     
-			      listaEstudiantes.add(new Estudiante(dni, nombre, apellido, telefono, email,colegio, direccion, nombre_contacto, telf_contacto));	
-		     		      
-		      }
-		      
-		    }catch (SQLException e) {
-		      // TODO Auto-generated catch block
-		      e.printStackTrace();
-		      
-		    }			
+		completarLista();
 			
-		 txtEstudiantes.setText("----ESTUDIANTES MATRICULADOS ----\n ");
-		 txtEstudiantes.append(listaEstudiantes.toString());	
-		 
-		scrollPane.setViewportView(txtEstudiantes);
-		
 									
 		JButton btnModificar = new JButton("MODIFICAR");
 		btnModificar.setBounds(420, 120, 100, 25);
@@ -136,6 +108,43 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 	}
 	
 	
+	private void completarLista() {
+		// TODO Auto-generated method stub
+		txtEstudiantes = new JTextArea();
+		txtEstudiantes.setEditable(false);
+		txtEstudiantes.setColumns(50);
+		
+		try {
+		      while(resultado.next()){
+		   		    	  
+		    	  dni = resultado.getString("dni");
+			      nombre = resultado.getString("nombre");
+			      apellido = resultado.getString("apellido");
+			      telefono = resultado.getString("telefono");
+			      email = resultado.getString("email");
+			      colegio = resultado.getString("colegio");
+			      direccion = resultado.getString("direccion");
+			      nombre_contacto = resultado.getString("nombre_contacto");
+			      telf_contacto = resultado.getString("telf_contacto");
+		     
+			      listaEstudiantes.add(new Estudiante(dni, nombre, apellido, telefono, email,colegio, direccion, nombre_contacto, telf_contacto));	
+		     		      
+		      }
+		      
+		    }catch (SQLException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		      
+		    }			
+			
+		 txtEstudiantes.setText("----ESTUDIANTES MATRICULADOS ----\n ");
+		 txtEstudiantes.append(listaEstudiantes.toString());	
+		 
+		scrollPane.setViewportView(txtEstudiantes);
+				
+	}
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -170,8 +179,9 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 			break;
 			
 		case "Refresh":
-			//txtEstudiantes.repaint();
-			break;
+			this.dispose();
+			frmEstudiantes nuevo = new frmEstudiantes();
+			nuevo.setVisible(true); 
 			
 		}
 	}
