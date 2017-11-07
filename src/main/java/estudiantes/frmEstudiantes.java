@@ -1,23 +1,16 @@
 package estudiantes;
 
-import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
 import bbdd.MyDataAccess;
 
 import javax.swing.JButton;
-import java.awt.Color;
-import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import java.awt.Font;
-import javax.swing.UIManager;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.util.ArrayList;
@@ -71,7 +64,12 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 		
 		completarLista();
 			
-									
+		JButton btnRefesh = new JButton("REFRESH");
+		btnRefesh.setBounds(420, 70, 100, 25);
+		btnRefesh.addActionListener(this);
+		btnRefesh.setActionCommand("Refresh");
+		contentPane.add(btnRefesh);		
+		
 		JButton btnModificar = new JButton("MODIFICAR");
 		btnModificar.setBounds(420, 120, 100, 25);
 		btnModificar.addActionListener(this);
@@ -97,12 +95,6 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 		btnSalir.setActionCommand("Salir");
 		contentPane.add(btnSalir);
 		
-		JButton btnRefesh = new JButton("REFRESH");
-		btnRefesh.setBounds(420, 320, 100, 25);
-		btnRefesh.addActionListener(this);
-		btnRefesh.setActionCommand("Refresh");
-		contentPane.add(btnRefesh);
-			
 		this.setResizable(false);		
 			
 	}
@@ -154,7 +146,8 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 		
 		case "Modificar":
 			
-			//
+			frmModificarEstudiante modif = new frmModificarEstudiante();
+			modif.setVisible(true); 
 			
 			break;
 			
