@@ -5,7 +5,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import bbdd.MyDataAccess;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 	
@@ -19,11 +23,13 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 	private JTextField textFieldNombreC;
 	private JTextField textFieldTelfC;
 	
+	MyDataAccess conexion = new MyDataAccess();
+	
 	
 	public frmRegistrarEstudiante() {
 		getContentPane().setLayout(null);
 		
-		setBounds(700, 350, 530, 440);
+		setBounds(500, 200, 530, 440);
 		this.setResizable(false);
 		
 		setTitle("MI ACADEMIA");
@@ -113,11 +119,12 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.setBounds(350, 100,120, 40);
 		getContentPane().add(btnAtras);
+		btnAtras.addActionListener(this);
 		
 		JButton btnDarDeAlta = new JButton("Dar de alta");
 		btnDarDeAlta.setBounds(350, 200, 120, 40);
 		getContentPane().add(btnDarDeAlta);
-		
+		btnDarDeAlta.addActionListener(this);
 	}
 	//ficha para rellenar, que sera enviada a la BBDD para almacenar los datos correspondientes
 
@@ -130,10 +137,10 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 				objAtras.setVisible(true);
 				this.dispose();
 				break;
+				
 			case "Dar de alta":
-				//clsGestorCursos objGC= new clsGestorCursos();
-				//int idC= 1;//lo suyo seria que se generara auto. con el numero correspondiente de las bbdd
-				String dni=textFieldNombre.getText();
+				
+				String dni=textFieldDni.getText();
 				String nombre=textFieldNombre.getText();
 				String apellido=textFieldApellido.getText();
 				String telefono=textFieldTelefono.getText();
@@ -143,8 +150,15 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 				String nombre_contacto=textFieldNombreC.getText();
 				String telf_contacto=textFieldTelfC.getText();
 				
-				Estudiante nuevoEstudiante = new Estudiante(dni, nombre, apellido, telefono, email, colegio, direccion, nombre_contacto, telf_contacto);
+				String registrar= "insert into estudiantes values("+"'"+ dni +"','"+ nombre +"','"+ apellido +"','"+ telefono +"','"+ email +"','"+ colegio +"','"+ direccion +"','"+ nombre_contacto +"','"+telf_contacto+"')";
+				//se envia el script SQL a la BBDD y se registra el curso
 								
+				conexion.setQuery(registrar);
+				
+				this.dispose();
+				
+				JOptionPane.showMessageDialog(this,"Estudiante con DNI "+dni + " anyadido CORRECTAMENTE");
+				
 				break;
 	
 		}

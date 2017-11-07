@@ -5,6 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
+
+import bbdd.MyDataAccess;
+
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.SwingConstants;
@@ -121,6 +124,12 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 		btnSalir.addActionListener(this);
 		btnSalir.setActionCommand("Salir");
 		contentPane.add(btnSalir);
+		
+		JButton btnRefesh = new JButton("REFRESH");
+		btnRefesh.setBounds(420, 320, 100, 25);
+		btnRefesh.addActionListener(this);
+		btnRefesh.setActionCommand("Refresh");
+		contentPane.add(btnRefesh);
 			
 		this.setResizable(false);		
 			
@@ -149,7 +158,8 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 			
 		case "Eliminar":
 			
-			//
+			frmBorrarEstudiante borrarEst = new frmBorrarEstudiante();
+			borrarEst.setVisible(true); 
 			
 			break;
 			
@@ -157,6 +167,10 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 		case "Salir":
 			System.out.println("Cerrando programa...");
 			System.exit(0);
+			break;
+			
+		case "Refresh":
+			//txtEstudiantes.repaint();
 			break;
 			
 		}
