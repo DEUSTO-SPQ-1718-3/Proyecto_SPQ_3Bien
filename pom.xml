@@ -6,6 +6,11 @@
   <name>Proyecto</name>
   <description>mi primer proyecto de Maven</description>
 
+<properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
 	<dependencies>
 	
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
@@ -28,6 +33,7 @@
 
 	<reporting>
 		<plugins>
+				
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
