@@ -1,9 +1,6 @@
 package main;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import Cuotas.MyDataAccess;
 
 
 public class Main {

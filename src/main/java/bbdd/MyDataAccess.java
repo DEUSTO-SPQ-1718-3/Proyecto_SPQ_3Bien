@@ -1,4 +1,4 @@
-package Cuotas;
+package bbdd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
