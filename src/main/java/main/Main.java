@@ -1,5 +1,8 @@
 package main;
 
+import java.sql.SQLException;
+
+
 public class Main {
 
 	/**
@@ -11,5 +14,6 @@ public class Main {
 		frmPrincipal objP = new frmPrincipal ();
 		objP.setVisible(true);
 	
+	    }
+	    
 	}
-}

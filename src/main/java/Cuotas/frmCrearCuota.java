@@ -123,7 +123,7 @@ public class frmCrearCuota extends JFrame implements ActionListener{
 		textField.setBounds(100, 63, 119, 20);
 		panel.add(textField);
 			
-		this.setResizable(true);		
+		this.setResizable(true);
 			
 	}
 	
