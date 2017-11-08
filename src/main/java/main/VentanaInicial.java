@@ -25,8 +25,8 @@ public class VentanaInicial extends JFrame {
 	private JPanel contentPane;
 
 	public VentanaInicial() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(700, 350, 530, 440);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(500, 200, 530, 440);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -52,9 +52,6 @@ public class VentanaInicial extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				frmMenuCursos objC=new frmMenuCursos();
-				objC.setVisible(true);
-				//this.dispose();
 				//inicializa ventana CURSOS
 				
 			}
@@ -82,12 +79,7 @@ public class VentanaInicial extends JFrame {
 
 				frmEstudiantes ventanaEstudiantes = new frmEstudiantes();
 				ventanaEstudiantes.setVisible(true); 
-
-				frmEstudiantes objE=new frmEstudiantes();
-				objE.setVisible(true);
-				//inicializa ventana ALUMNOS
-
-				
+			
 			}	
 		});
 		btnAlumnos.setBounds(294, 176, 153, 91);

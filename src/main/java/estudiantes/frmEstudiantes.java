@@ -1,18 +1,16 @@
 package estudiantes;
 
-import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
+
+import bbdd.MyDataAccess;
+
 import javax.swing.JButton;
-import java.awt.Color;
-import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import java.awt.Font;
-import javax.swing.UIManager;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.util.ArrayList;
@@ -23,53 +21,55 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 	/**
 	 * 
 	 */
+	
+	ArrayList<Estudiante> listaEstudiantes;
+	JTextArea txtEstudiantes;
+	JScrollPane scrollPane;
+	MyDataAccess conexion;
+    ResultSet resultado;
+    String dni;
+    String nombre;
+    String apellido;
+    String telefono;
+    String email;
+    String colegio;
+    String direccion;
+    String nombre_contacto;
+    String telf_contacto;	
+	
 	private static final long serialVersionUID = 7046431761927583577L;
 	
 	public frmEstudiantes() {
-	
-		
-		setBounds(400, 200, 430, 230); //Tama√±o
-		
+			
 		setTitle("MI ACADEMIA");
+		
+		listaEstudiantes = new ArrayList<Estudiante>();
 				
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(700, 350, 530, 440);
+		//BD		
+		conexion = new MyDataAccess();
+	    	
+	    resultado = conexion.getQuery("select * from Estudiantes");
+		   	    	    
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(500, 200, 530, 440);
+		
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(5, 5, 400, 400);
 		contentPane.add(scrollPane);
 		
-		JTextArea txtHabitacionesRegistradas = new JTextArea();
-		txtHabitacionesRegistradas.setEditable(false);
-		scrollPane.setViewportView(txtHabitacionesRegistradas);
-		//txtHabitacionesRegistradas.setFont(new Font("Tahoma", Font.BOLD, 14));
-		txtHabitacionesRegistradas.setText("----ESTUDIANTES MATRICULADOS ----\n ");
-		txtHabitacionesRegistradas.setColumns(50);
-		txtHabitacionesRegistradas.setEditable(false);
-						
+		completarLista();
+			
+		JButton btnRefesh = new JButton("REFRESH");
+		btnRefesh.setBounds(420, 70, 100, 25);
+		btnRefesh.addActionListener(this);
+		btnRefesh.setActionCommand("Refresh");
+		contentPane.add(btnRefesh);		
 		
-		ArrayList<Estudiante> listaEstudiantes = new ArrayList<Estudiante>();
-
-
-			listaEstudiantes.add(new Estudiante("224455D","Xabi", "Perez", "9943434", "xp@gmail.com", "va al colegio x y cslcjsaldjsd","Calle A", "Alex", "123456789"));
-			listaEstudiantes.add(new Estudiante("336688A","Jon", "Gonzalez", "945345", "jg@gmail.com", "va al colegio x y dfgdfgdfg", "Avenida A", "Marta", "098765432"));
-			listaEstudiantes.add(new Estudiante("112233F","Ainhoa", "Garcia", "99544534", "ag@gmail.com", "va al colegio x y sdfagfdfdjsd", "Paseo A", "Maria", "3456789098"));
-			listaEstudiantes.add(new Estudiante("445566G","Amaia", "Fermandez", "945345", "af@gmail.com", "va al colegio x y sdfsdfretrt", "Estrecho A", "Nando", "2356789431"));
-
-			listaEstudiantes.add(new Estudiante("1111", "Xabi", "Perez", "9943434", "xp@gmail.com", "Zubiri", "Calle Mayor 5, 6∫B", "Ana- Madre", "93456543"));
-			listaEstudiantes.add(new Estudiante("2222", "Xabi", "Perez", "9943434", "xp@gmail.com", "Zubiri", "Calle Mayor 5, 6∫B", "Ana- Madre", "93456543"));
-			listaEstudiantes.add(new Estudiante("3333", "Xabi", "Perez", "9943434", "xp@gmail.com", "Zubiri", "Calle Mayor 5, 6∫B", "Ana- Madre", "93456543"));
-			listaEstudiantes.add(new Estudiante("4444", "Xabi", "Perez", "9943434", "xp@gmail.com", "Zubiri", "Calle Mayor 5, 6∫B", "Ana- Madre", "93456543"));
-
-			
-					
-		txtHabitacionesRegistradas.append(listaEstudiantes.toString()) ;						
-			
-					
 		JButton btnModificar = new JButton("MODIFICAR");
 		btnModificar.setBounds(420, 120, 100, 25);
 		btnModificar.addActionListener(this);
@@ -94,12 +94,49 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 		btnSalir.addActionListener(this);
 		btnSalir.setActionCommand("Salir");
 		contentPane.add(btnSalir);
-			
+		
 		this.setResizable(false);		
 			
 	}
 	
 	
+	void completarLista() {
+		// TODO Auto-generated method stub
+		txtEstudiantes = new JTextArea();
+		txtEstudiantes.setEditable(false);
+		txtEstudiantes.setColumns(50);
+		
+		try {
+		      while(resultado.next()){
+		   		    	  
+		    	  dni = resultado.getString("dni");
+			      nombre = resultado.getString("nombre");
+			      apellido = resultado.getString("apellido");
+			      telefono = resultado.getString("telefono");
+			      email = resultado.getString("email");
+			      colegio = resultado.getString("colegio");
+			      direccion = resultado.getString("direccion");
+			      nombre_contacto = resultado.getString("nombre_contacto");
+			      telf_contacto = resultado.getString("telf_contacto");
+		     
+			      listaEstudiantes.add(new Estudiante(dni, nombre, apellido, telefono, email,colegio, direccion, nombre_contacto, telf_contacto));	
+		     		      
+		      }
+		      
+		    }catch (SQLException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		      
+		    }			
+			
+		 txtEstudiantes.setText("----ESTUDIANTES MATRICULADOS ----\n ");
+		 txtEstudiantes.append(listaEstudiantes.toString());	
+		 
+		scrollPane.setViewportView(txtEstudiantes);
+				
+	}
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -109,7 +146,8 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 		
 		case "Modificar":
 			
-			//
+			frmModificarEstudiante modif = new frmModificarEstudiante();
+			modif.setVisible(true); 
 			
 			break;
 			
@@ -122,7 +160,8 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 			
 		case "Eliminar":
 			
-			//
+			frmBorrarEstudiante borrarEst = new frmBorrarEstudiante();
+			borrarEst.setVisible(true); 
 			
 			break;
 			
@@ -131,6 +170,11 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 			System.out.println("Cerrando programa...");
 			System.exit(0);
 			break;
+			
+		case "Refresh":
+			this.dispose();
+			frmEstudiantes nuevo = new frmEstudiantes();
+			nuevo.setVisible(true); 
 			
 		}
 	}
