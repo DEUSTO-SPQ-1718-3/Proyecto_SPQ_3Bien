@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import bbdd.MyDataAccess;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class frmRegistrarCurso extends JFrame implements ActionListener{
 	
@@ -92,13 +93,23 @@ public class frmRegistrarCurso extends JFrame implements ActionListener{
 				int numC=Integer.parseInt(textFieldAula.getText());
 				String horario=textFieldHorario.getText();
 				
-				String registrar= "insert into cursos values("+"'"+ idC +"','"+ nombreC +"','"+ desc +"','"+ numC +"','"+ horario +"')";
-				//se envia el script SQL a la BBDD y se registra el curso
-				conexion.setQuery(registrar);
+				//llamada al metodo que registra
+				registrarCurso(idC, nombreC, desc, numC, horario);
 				
 				break;
 	
 		}
+		
+	}
+
+	void registrarCurso(int idC, String nombreC, String desc, int numC, String horario) {
+		// TODO Auto-generated method stub
+		
+		String registrar= "insert into cursos values("+"'"+ idC +"','"+ nombreC +"','"+ desc +"','"+ numC +"','"+ horario +"')";
+		//se envia el script SQL a la BBDD y se registra el curso
+		conexion.setQuery(registrar);
+		
+		JOptionPane.showMessageDialog(this,"Curso con ID "+idC + " anyadido CORRECTAMENTE");
 		
 	}
 }

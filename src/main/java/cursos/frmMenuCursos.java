@@ -127,9 +127,9 @@ MyDataAccess conexion = new MyDataAccess();
 		
 		
 		case "Modificar":
-			
-			//
-			
+			frmModificarCurso objMod= new frmModificarCurso();
+			objMod.setVisible(true);
+			this.dispose();			
 			break;
 			
 		case "Anyadir":
@@ -153,7 +153,8 @@ MyDataAccess conexion = new MyDataAccess();
 			VentanaInicial objV= new VentanaInicial();
 			objV.setVisible(true);
 			this.dispose();
-					
+			break;		
+			
 		case "SALIR":
 			System.out.println("Cerrando programa...");
 			System.exit(0);

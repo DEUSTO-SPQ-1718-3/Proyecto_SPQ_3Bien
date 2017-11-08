@@ -53,7 +53,8 @@ public class VentanaInicial extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				//inicializa ventana CURSOS
-				
+				frmMenuCursos objC= new frmMenuCursos();
+				objC.setVisible(true);
 			}
 		});
 		btnNewButton_1.setBounds(294, 47, 153, 91);
