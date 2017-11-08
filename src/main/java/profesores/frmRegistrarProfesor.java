@@ -105,10 +105,12 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.setBounds(350, 100,120, 40);
 		getContentPane().add(btnAtras);
+		btnAtras.addActionListener(this);
 		
 		JButton btnDarDeAlta = new JButton("Dar de alta");
 		btnDarDeAlta.setBounds(350, 200, 120, 40);
 		getContentPane().add(btnDarDeAlta);
+		btnDarDeAlta.addActionListener(this);
 		
 	}
 	//ficha para rellenar los datos del nuevo profesor, que luego seran almacenados en la BD
