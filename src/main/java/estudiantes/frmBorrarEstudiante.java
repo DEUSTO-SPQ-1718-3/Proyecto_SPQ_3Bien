@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.log4j.Logger;
+
 import bbdd.MyDataAccess;
 
 import javax.swing.JLabel;
@@ -17,6 +19,8 @@ import java.awt.event.ActionEvent;
 
 public class frmBorrarEstudiante extends JFrame implements ActionListener{
 
+	final static Logger logger = Logger.getLogger(frmBorrarEstudiante.class);
+	
 	private JPanel contentPane;
 	private JTextField textFieldID;
 	MyDataAccess conexion = new MyDataAccess();
@@ -62,7 +66,7 @@ public class frmBorrarEstudiante extends JFrame implements ActionListener{
 		
 		
 			case "Atras":
-				
+				logger.trace("This is TRACE : Ventana 'frmBorrarEstudiante' se ha destruido");
 				this.dispose();				
 				break;
 				
@@ -81,10 +85,10 @@ public class frmBorrarEstudiante extends JFrame implements ActionListener{
 		String borrar= "Delete from estudiantes where dni='"+borrardni+"' ";
 		
 		conexion.setQuery(borrar);
+		logger.info("This is INFO : Se ha lanzado Query de Delete");
 		
 		this.dispose();
 		JOptionPane.showMessageDialog(this,"Estudiante con DNI "+borrardni + " borrado CORRECTAMENTE");
-		
-		
+				
 	}
 }

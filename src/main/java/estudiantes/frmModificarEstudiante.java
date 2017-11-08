@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.log4j.Logger;
+
 import bbdd.MyDataAccess;
 
 import javax.swing.JLabel;
@@ -18,6 +20,8 @@ import java.awt.event.ActionEvent;
 
 public class frmModificarEstudiante extends JFrame implements ActionListener{
 
+	final static Logger logger = Logger.getLogger(frmBorrarEstudiante.class);
+	
 	private JPanel contentPane;
 	private JTextField textFieldID;
 	MyDataAccess conexion = new MyDataAccess();
@@ -92,6 +96,7 @@ public class frmModificarEstudiante extends JFrame implements ActionListener{
 		String modificar= "Select * from estudiantes where dni='"+modifdni+"' ";
 		//enviar la sentencia a la bbdd
 		ResultSet resultado= conexion.getQuery(modificar);
+		logger.trace("This is TRACE : Se han lanzado la query de Select Estudiante");
 		
 		try {
 			while(resultado.next()){
@@ -107,6 +112,8 @@ public class frmModificarEstudiante extends JFrame implements ActionListener{
 			      telf_contacto = resultado.getString("telf_contacto");
 			      
 			      Estudiante estudiante = new Estudiante(dni, nombre, apellido, telefono, email,colegio, direccion, nombre_contacto, telf_contacto);
+			      
+			      logger.info("This is INFO : Se ha creado un objeto Estudiante con los datos de BD de DNI "+dni);
 			      
 			      frmModificarDatos modificardatos=new frmModificarDatos(estudiante);
 			      modificardatos.setVisible(true);
