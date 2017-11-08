@@ -1,6 +1,7 @@
 package Cuotas;
 import java.awt.Dimension;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -16,6 +17,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.util.ArrayList;
@@ -25,6 +27,14 @@ public class frmCuotas extends JFrame implements ActionListener{
 	/**
 	 * 
 	 */
+	
+    int id;
+    String nombre;
+    String apellido;
+    int horas;
+    int precio;
+    String fecha;
+    String estado;
 	
 	JTextArea txtCuotasRegistradas = new JTextArea();
 	
@@ -37,26 +47,13 @@ public class frmCuotas extends JFrame implements ActionListener{
 	public frmCuotas() {
 	
 		
-		setBounds(400, 400, 430, 230); //Tamaño
+		setBounds(500, 200, 530, 440); //Tamaño
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		setTitle("MI ACADEMIA");
-		
-		//BD
-		
-		MyDataAccess conexion = new MyDataAccess();
-	    ResultSet resultado;
-	    String nombre;
-	    String apellido;
-	    int horas;
-	    int precio;
-	    String fecha;
-	    String estado;
-	    
-	    resultado = conexion.getQuery("select * from Cuotas");
-	      //
-				
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(700, 350, 530, 440);
+		setBounds(500, 200, 530, 440);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -72,24 +69,15 @@ public class frmCuotas extends JFrame implements ActionListener{
 		txtCuotasRegistradas.setText("- CUOTAS - ");
 		txtCuotasRegistradas.setColumns(50);
 		txtCuotasRegistradas.setEditable(false);
-
-	    try {
-		      while(resultado.next()){
-		      nombre = resultado.getString("nombre");
-		      apellido = resultado.getString("apellido");
-		      horas = resultado.getInt("horas");
-		      precio = resultado.getInt("precio");
-		      fecha = resultado.getString("fecha");
-		      estado = resultado.getString("estado");
-		      
-			listaCuotas.add(new Cuota(nombre, apellido, horas, precio,fecha, estado));	
-		      }
-		    }catch (SQLException e) {
-		      // TODO Auto-generated catch block
-		      e.printStackTrace();
-		    }			
-			
-			sacarPendientes();
+		
+		actualizar();
+		sacarPendientes();
+		
+		JButton btnActualizar = new JButton("ACTUALIZAR");
+		btnActualizar.setBounds(420, 20, 100, 25);
+		btnActualizar.addActionListener(this);
+		btnActualizar.setActionCommand("Actualizar");
+		contentPane.add(btnActualizar);
 			
 		btnPendientes.setBounds(420, 70, 100, 25);
 		btnPendientes.addActionListener(this);
@@ -121,7 +109,9 @@ public class frmCuotas extends JFrame implements ActionListener{
 		btnSalir.setActionCommand("Salir");
 		contentPane.add(btnSalir);
 			
-		this.setResizable(false);		
+		this.setResizable(false);
+		
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			
 	}
 	
@@ -173,13 +163,45 @@ public class frmCuotas extends JFrame implements ActionListener{
 			frmCrearCuota ventanaInicial = new frmCrearCuota();
 			ventanaInicial.setVisible(true); 
 			
+			
+			
 			break;
 			
 		case "Eliminar":
 			
-			//
+			frmBorrarCuota ventanaBorrar = new frmBorrarCuota();
+			ventanaBorrar.setVisible(true);
 			
 			break;
+			
+		case "Actualizar":
+			
+			listaCuotas.clear();
+			
+			actualizar();
+			
+			if(btnPendientes.getText().equals("TODOS"))
+				
+			{
+			
+			txtCuotasRegistradas.setText(null);
+				
+			txtCuotasRegistradas.append(listaCuotas.toString());
+			
+			}
+			
+			else
+				
+			{
+				
+			txtCuotasRegistradas.setText(null);
+				
+			sacarPendientes();
+				
+			}
+			
+			
+			 break;
 			
 					
 		case "Salir":
@@ -190,9 +212,40 @@ public class frmCuotas extends JFrame implements ActionListener{
 		}
 	}
 	
-	public void sacarPendientes ()
+	public void actualizar ()
 	
 	{
+		
+		//BD
+		
+				MyDataAccess conexion = new MyDataAccess();
+			    ResultSet resultado;
+			    
+			    resultado = conexion.getQuery("select * from Cuotas");
+			      //
+				
+				try {
+				      while(resultado.next()){
+				      id = resultado.getInt("id");
+				      nombre = resultado.getString("nombre");
+				      apellido = resultado.getString("apellido");
+				      horas = resultado.getInt("horas");
+				      precio = resultado.getInt("precio");
+				      fecha = resultado.getString("fecha");
+				      estado = resultado.getString("estado");
+				      
+					listaCuotas.add(new Cuota(nombre, apellido, horas, precio,fecha, estado, id));	
+				      }
+				    }catch (SQLException e) {
+				      // TODO Auto-generated catch block
+				      e.printStackTrace();
+				    }	
+		
+	}
+	
+	public void sacarPendientes ()
+	
+	{		
 		
 		for (int n =0; n < listaCuotas.size(); n++)
 			

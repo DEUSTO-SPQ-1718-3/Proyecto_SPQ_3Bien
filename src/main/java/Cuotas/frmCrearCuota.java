@@ -8,16 +8,22 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 
+import bbdd.MyDataAccess;
 import main.VentanaInicial;
 
+import javax.naming.event.ObjectChangeListener;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.UIManager;
+import javax.swing.WindowConstants;
+import javax.swing.JRadioButton;
 
 public class frmCrearCuota extends JFrame implements ActionListener{
 
@@ -28,7 +34,6 @@ public class frmCrearCuota extends JFrame implements ActionListener{
 	
 	private JPanel contentPane;
 	private JTextField textField_1;
-	private JTextField textField_2;
 	private JTextField textField_3;
 	private JLabel lblApellidos;
 	private JLabel lblHoras;
@@ -36,15 +41,18 @@ public class frmCrearCuota extends JFrame implements ActionListener{
 	private JLabel lblPrecio;
 	private JTextField textField_5;
 	private JTextField textField;
+	JRadioButton rdbtnPendiente;
+	JRadioButton rdbtnPagada;
+	String pendiente1 = "PENDIENTE";
 	
 	public frmCrearCuota() {
+
 	
 		
-		setBounds(400, 400, 443, 290); //Tamaño
+		setBounds(400, 400, 418, 318); //Tamaño
 		
 		setTitle("MI ACADEMIA");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -53,7 +61,7 @@ public class frmCrearCuota extends JFrame implements ActionListener{
 		
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 430, 252);
+		panel.setBounds(0, 0, 430, 307);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		panel.setForeground(Color.BLACK);
@@ -62,21 +70,12 @@ public class frmCrearCuota extends JFrame implements ActionListener{
 		
 		JLabel lblCompletaLosCampos = new JLabel("CREAR CUOTA");
 		lblCompletaLosCampos.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 11));
-		lblCompletaLosCampos.setBounds(178, 22, 87, 14);
+		lblCompletaLosCampos.setBounds(158, 23, 87, 14);
 		panel.add(lblCompletaLosCampos);
-
-		textField_2 = new JTextField();
-		textField_2.setBounds(100, 139, 271, 20);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
 
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(29, 66, 52, 14);
 		panel.add(lblNombre);
-
-		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(29, 142, 61, 14);
-		panel.add(lblEmail);
 
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
@@ -97,56 +96,103 @@ public class frmCrearCuota extends JFrame implements ActionListener{
 		panel.add(lblApellidos);
 
 		lblHoras = new JLabel("Horas");
-		lblHoras.setBounds(29, 178, 37, 14);
+		lblHoras.setBounds(29, 144, 37, 14);
 		panel.add(lblHoras);
 
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
-		textField_4.setBounds(100, 175, 119, 20);
+		textField_4.setBounds(100, 141, 119, 20);
 		panel.add(textField_4);
 
 		lblPrecio = new JLabel("Precio");
-		lblPrecio.setBounds(229, 178, 46, 14);
+		lblPrecio.setBounds(229, 144, 46, 14);
 		panel.add(lblPrecio);
-
+		
 		textField_5 = new JTextField();
+		textField_5.setEditable(false);
 		textField_5.setColumns(10);
-		textField_5.setBounds(271, 175, 100, 20);
+		textField_5.setBounds(271, 141, 100, 20);
 		panel.add(textField_5);
 
 		JButton btnNewButton = new JButton("ENVIAR");
-		btnNewButton.setBounds(162, 216, 100, 23);
+		btnNewButton.setBounds(158, 249, 100, 23);
 		panel.add(btnNewButton);
+		btnNewButton.addActionListener(this);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
 		textField.setBounds(100, 63, 119, 20);
 		panel.add(textField);
+		
+		JButton btnNewButton_1 = new JButton("Calcular");
+		btnNewButton_1.setBounds(271, 171, 100, 23);
+		panel.add(btnNewButton_1);
+		
+		rdbtnPendiente = new JRadioButton("Pendiente");
+		rdbtnPendiente.setSelected(true);
+		rdbtnPendiente.setBounds(99, 218, 93, 23);
+		panel.add(rdbtnPendiente);
+		
+		rdbtnPagada = new JRadioButton("Pagado");
+		rdbtnPagada.setBounds(229, 218, 87, 23);
+		panel.add(rdbtnPagada);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(100, 218, 216, 23);
+		panel.add(panel_1);
+		btnNewButton_1.addActionListener(this);
+		
+		ButtonGroup group = new ButtonGroup();
+	    group.add(rdbtnPagada);
+	    group.add(rdbtnPendiente);
 			
 		this.setResizable(true);
-			
+		
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+	
+		
 	}
 	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		//BD
+		
+		MyDataAccess conexion = new MyDataAccess();
+	    ResultSet resultado;
+	    
+	    //
+		
 		
 		switch(e.getActionCommand()){
 		
-		
-		case "Registrarse":
-			
-			VentanaInicial ventanaInicial = new VentanaInicial();
-			ventanaInicial.setVisible(true); 
-			
-			break;
-			
+		case "Calcular":
 					
-		case "Salir":
-			System.out.println("Cerrando programa...");
-			System.exit(0);
-			break;
+		textField_5.setText(Integer.toString(Integer.parseInt(textField_4.getText())*30));
+
+		break;
+		
+		case "ENVIAR":
+			
+		String nombre = textField.getText();
+		String apellidos = textField_3.getText();
+		int horas = Integer.parseInt(textField_4.getText());
+		int precio = Integer.parseInt(textField_5.getText());
+		String fecha = textField_1.getText();
+		
+		if (rdbtnPagada.isSelected())
+			
+		{
+			
+			pendiente1 = "PAGADO";
+			
+		}
+		
+		String query = "insert into cuotas values (" + "'" + nombre + "','" + apellidos + "','" + horas + "','" + precio + "','" + fecha + "','"  + pendiente1 + "'," + null + ")";
+		conexion.setQuery(query);
+		
+		break;
 			
 		}
 	}
