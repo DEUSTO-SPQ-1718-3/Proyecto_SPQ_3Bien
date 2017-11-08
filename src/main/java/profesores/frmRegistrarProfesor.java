@@ -2,10 +2,13 @@ package profesores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
+import bbdd.MyDataAccess;
 
 
 
@@ -20,6 +23,8 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 	private JTextField textFieldEstudios;
 	private JTextField textFieldDireccion;
 	
+	MyDataAccess conexion = new MyDataAccess();
+	
 	
 	
 	public frmRegistrarProfesor() {
@@ -28,7 +33,7 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 		setBounds(700, 350, 530, 440);
 		this.setResizable(false);
 		
-		setTitle("MI ACADEMIA");
+		setTitle("MI ACADEMIA: Añadir un profesor");
 		
 		JLabel lblDni = new JLabel("DNI");
 		lblDni.setBounds(40, 20, 60, 25);
@@ -105,7 +110,8 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 		getContentPane().add(btnDarDeAlta);
 		
 	}
-	//ficha para rellenar, que sera enviada a la BBDD para almacenar los datos correspondientes
+	//Se utiliza una ficha para luego almacenar los datos de la ficha en la BD
+
 
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
@@ -119,18 +125,25 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 			case "Dar de alta":
 				
 				//int idC= 1;//lo suyo seria que se generara auto. con el numero correspondiente de las bbdd
-				String dni=textFieldNombre.getText();
+				//String dni=textFieldNombre.getText();
 				String nombre=textFieldNombre.getText();
 				String apellido=textFieldApellido.getText();
 				String telefono=textFieldTelefono.getText();
 				String email=textFieldEmail.getText();
-				String estudios=textFieldEstudios.getText();
 				String direccion=textFieldDireccion.getText();
+				String estudios=textFieldEstudios.getText();
+		
 
 
 				Profesor nuevoProf = new Profesor(nombre, apellido, telefono, email, direccion, estudios);
-								
+				
+				String registrar= "insert into profesores values("+"'"+ nombre +"','"+ apellido +"','"+ telefono +"','"+ email +"','"+ direccion +"','"+ estudios+"')";
+				
+				//se envia el script SQL a la BBDD y queda registrado el nuevo profesor insertado
+				
+				conexion.setQuery(registrar);
 				break;
+				
 	
 		}
 		
