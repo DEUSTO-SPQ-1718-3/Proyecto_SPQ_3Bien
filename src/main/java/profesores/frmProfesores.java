@@ -162,7 +162,9 @@ public class frmProfesores extends JFrame implements ActionListener{
 			
 		case "Eliminar":
 			
-			//
+			frmBorrarProfesor borrarProf = new frmBorrarProfesor();
+			borrarProf.setVisible(true);
+			this.dispose();
 			
 			break;
 			
