@@ -145,8 +145,8 @@ public class frmProfesores extends JFrame implements ActionListener{
 		
 		case "Modificar":
 			
-			//
-			
+			frmModificarProfesor modifProf = new frmModificarProfesor();
+			modifProf.setVisible(true); 
 			break;
 			
 		case "Anyadir":
