@@ -5,17 +5,18 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 import bbdd.MyDataAccess;
 
 
-
+//en esta clase se recogen todos los metodos, atributos y recursos necesarios para registrar o anadir un nuevo profesor a la BD de la Academia
 
 public class frmRegistrarProfesor extends JFrame implements ActionListener{
 	
-	private JTextField textFieldDni;
+	//private JTextField textFieldDni;
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
 	private JTextField textFieldTelefono;
@@ -35,14 +36,14 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 		
 		setTitle("MI ACADEMIA: Añadir un profesor");
 		
-		JLabel lblDni = new JLabel("DNI");
-		lblDni.setBounds(40, 20, 60, 25);
-		getContentPane().add(lblDni);
+		//JLabel lblDni = new JLabel("DNI");
+		//lblDni.setBounds(40, 20, 60, 25);
+		//getContentPane().add(lblDni);
 		
-		textFieldDni = new JTextField();
-		textFieldDni.setBounds(150, 20, 86, 25);
-		getContentPane().add(textFieldDni);
-		textFieldDni.setColumns(10);		
+		//textFieldDni = new JTextField();
+		//textFieldDni.setBounds(150, 20, 86, 25);
+		//getContentPane().add(textFieldDni);
+		//textFieldDni.setColumns(10);		
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(40, 60, 60, 25);
@@ -110,7 +111,7 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 		getContentPane().add(btnDarDeAlta);
 		
 	}
-	//Se utiliza una ficha para luego almacenar los datos de la ficha en la BD
+	//ficha para rellenar los datos del nuevo profesor, que luego seran almacenados en la BD
 
 
 	public void actionPerformed(ActionEvent arg0) {
@@ -122,6 +123,7 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 				objAtras.setVisible(true);
 				this.dispose();
 				break;
+				
 			case "Dar de alta":
 				
 				//int idC= 1;//lo suyo seria que se generara auto. con el numero correspondiente de las bbdd
@@ -135,13 +137,14 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 		
 
 
-				Profesor nuevoProf = new Profesor(nombre, apellido, telefono, email, direccion, estudios);
 				
 				String registrar= "insert into profesores values("+"'"+ nombre +"','"+ apellido +"','"+ telefono +"','"+ email +"','"+ direccion +"','"+ estudios+"')";
 				
 				//se envia el script SQL a la BBDD y queda registrado el nuevo profesor insertado
 				
 				conexion.setQuery(registrar);
+				
+				JOptionPane.showMessageDialog(this,"Nuevo profesor registrado");
 				break;
 				
 	
