@@ -11,7 +11,7 @@ import bbdd.MyDataAccess;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-public class frmRegistrarEstudiante extends JFrame implements ActionListener{
+public class frmModificarDatos extends JFrame implements ActionListener{
 	
 	private JTextField textFieldDni;
 	private JTextField textFieldNombre;
@@ -26,7 +26,7 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 	MyDataAccess conexion = new MyDataAccess();
 	
 	
-	public frmRegistrarEstudiante() {
+	public frmModificarDatos(Estudiante estudiante) {
 		getContentPane().setLayout(null);
 		
 		setBounds(500, 200, 530, 440);
@@ -38,16 +38,17 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 		lblDni.setBounds(40, 20, 60, 25);
 		getContentPane().add(lblDni);
 		
-		textFieldDni = new JTextField();
+		textFieldDni = new JTextField(estudiante.getDni());
 		textFieldDni.setBounds(150, 20, 86, 25);
 		getContentPane().add(textFieldDni);
-		textFieldDni.setColumns(10);		
+		textFieldDni.setColumns(10);	
+		textFieldDni.setEditable(false);
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(40, 60, 60, 25);
 		getContentPane().add(lblNombre);
 		
-		textFieldNombre = new JTextField();
+		textFieldNombre = new JTextField(estudiante.getNombre());
 		textFieldNombre.setBounds(150, 60, 86, 25);
 		getContentPane().add(textFieldNombre);
 		textFieldNombre.setColumns(10);
@@ -56,7 +57,7 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 		lblApellido.setBounds(40, 100, 60, 25);
 		getContentPane().add(lblApellido);
 				
-		textFieldApellido = new JTextField();
+		textFieldApellido = new JTextField(estudiante.getApellido());
 		textFieldApellido.setColumns(10);
 		textFieldApellido.setBounds(150, 100, 160, 25);
 		getContentPane().add(textFieldApellido);	
@@ -65,7 +66,7 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 		lblTelefono.setBounds(40, 140, 60, 25);
 		getContentPane().add(lblTelefono);
 						
-		textFieldTelefono = new JTextField();
+		textFieldTelefono = new JTextField(estudiante.getTelefono());
 		textFieldTelefono.setColumns(10);
 		textFieldTelefono.setBounds(150, 140, 160, 25);
 		getContentPane().add(textFieldTelefono);
@@ -75,7 +76,7 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 		getContentPane().add(lblEmail);
 		
 		
-		textFieldEmail = new JTextField();
+		textFieldEmail = new JTextField(estudiante.getEmail());
 		textFieldEmail.setColumns(10);
 		textFieldEmail.setBounds(150, 200, 160, 25);
 		getContentPane().add(textFieldEmail);
@@ -84,7 +85,7 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 		lblColegio.setBounds(40, 240, 60, 25);
 		getContentPane().add(lblColegio);
 		
-		textFieldColegio = new JTextField();
+		textFieldColegio = new JTextField(estudiante.getColegio());
 		textFieldColegio.setColumns(10);
 		textFieldColegio.setBounds(150, 240, 160, 25);
 		getContentPane().add(textFieldColegio);
@@ -93,7 +94,7 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 		lblDireccion.setBounds(40, 280, 60, 25);
 		getContentPane().add(lblDireccion);
 		
-		textFieldDireccion = new JTextField();
+		textFieldDireccion = new JTextField(estudiante.getDireccion());
 		textFieldDireccion.setColumns(10);
 		textFieldDireccion.setBounds(150, 280, 160, 25);
 		getContentPane().add(textFieldDireccion);
@@ -102,7 +103,7 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 		lblNC.setBounds(40, 320, 100, 25);
 		getContentPane().add(lblNC);
 		
-		textFieldNombreC = new JTextField();
+		textFieldNombreC = new JTextField(estudiante.getNombre_contacto());
 		textFieldNombreC.setColumns(10);
 		textFieldNombreC.setBounds(150, 320, 160, 25);
 		getContentPane().add(textFieldNombreC);
@@ -111,7 +112,7 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 		lblTC.setBounds(40, 360, 100, 25);
 		getContentPane().add(lblTC);
 		
-		textFieldTelfC = new JTextField();
+		textFieldTelfC = new JTextField(estudiante.getTelf_contacto());
 		textFieldTelfC.setColumns(10);
 		textFieldTelfC.setBounds(150, 360, 160, 25);
 		getContentPane().add(textFieldTelfC);	
@@ -121,10 +122,10 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 		getContentPane().add(btnAtras);
 		btnAtras.addActionListener(this);
 		
-		JButton btnDarDeAlta = new JButton("Dar de alta");
-		btnDarDeAlta.setBounds(350, 200, 120, 40);
-		getContentPane().add(btnDarDeAlta);
-		btnDarDeAlta.addActionListener(this);
+		JButton btnModificar = new JButton("MODIFICAR");
+		btnModificar.setBounds(350, 200, 120, 40);
+		getContentPane().add(btnModificar);
+		btnModificar.addActionListener(this);
 	}
 	//ficha para rellenar, que sera enviada a la BBDD para almacenar los datos correspondientes
 
@@ -138,7 +139,7 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 				this.dispose();
 				break;
 				
-			case "Dar de alta":
+			case "MODIFICAR":
 				
 				String dni=textFieldDni.getText();
 				String nombre=textFieldNombre.getText();
@@ -148,28 +149,20 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 				String colegio=textFieldColegio.getText();
 				String direccion=textFieldDireccion.getText();
 				String nombre_contacto=textFieldNombreC.getText();
-				String telf_contacto=textFieldTelfC.getText();				
+				String telf_contacto=textFieldTelfC.getText();
 				
-				registrarEstudiante(dni,nombre,apellido,telefono,email,colegio,direccion,nombre_contacto,telf_contacto);
-							
+				String registrar= "update estudiantes set dni='"+ dni +"',nombre='"+ nombre +"',apellido='"+ apellido +"',telefono='"+ telefono +"',email='"+ email +"',colegio='"+ colegio +"',direccion='"+ direccion +"',nombre_contacto='"+ nombre_contacto +"',telf_contacto='"+telf_contacto+"' where dni='"+dni+"'";
+				//se envia el script SQL a la BBDD y se registra el curso
+								
+				conexion.setQuery(registrar);
+				
+				this.dispose();
+				
+				JOptionPane.showMessageDialog(this,"Estudiante con DNI "+dni + " modificado CORRECTAMENTE");
 				
 				break;
 	
 		}
-		
-	}
-	void registrarEstudiante(String dni, String nombre, String apellido, String telefono, String email, String colegio, String direccion, String nombre_contacto, String telf_contacto) {
-		// TODO Auto-generated method stub
-				
-		String registrar= "insert into estudiantes values("+"'"+ dni +"','"+ nombre +"','"+ apellido +"','"+ telefono +"','"+ email +"','"+ colegio +"','"+ direccion +"','"+ nombre_contacto +"','"+telf_contacto+"')";
-		//se envia el script SQL a la BBDD y se registra el curso
-						
-		conexion.setQuery(registrar);
-		
-		this.dispose();
-		
-		JOptionPane.showMessageDialog(this,"Estudiante con DNI "+dni + " anyadido CORRECTAMENTE");
-			
 		
 	}
 }

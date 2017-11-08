@@ -100,7 +100,7 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 	}
 	
 	
-	private void completarLista() {
+	void completarLista() {
 		// TODO Auto-generated method stub
 		txtEstudiantes = new JTextArea();
 		txtEstudiantes.setEditable(false);

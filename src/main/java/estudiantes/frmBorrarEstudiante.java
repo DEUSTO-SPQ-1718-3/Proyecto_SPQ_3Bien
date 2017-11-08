@@ -67,15 +67,24 @@ public class frmBorrarEstudiante extends JFrame implements ActionListener{
 				break;
 				
 			case "Aceptar":
-				String Borrardni=textFieldID.getText();
-				String borrar= "Delete from estudiantes where dni='"+Borrardni+"' ";
-				//enviar la sentencia a la bbdd
-				conexion.setQuery(borrar);
-				
-				this.dispose();
-				JOptionPane.showMessageDialog(this,"Estudiante con DNI "+Borrardni + " borrado CORRECTAMENTE");
+				String borrardni=textFieldID.getText();
+				borrarEstudiante(borrardni);
+								
 				break;
 		}
+		
+	}
+
+	void borrarEstudiante(String borrardni) {
+		// TODO Auto-generated method stub
+		
+		String borrar= "Delete from estudiantes where dni='"+borrardni+"' ";
+		
+		conexion.setQuery(borrar);
+		
+		this.dispose();
+		JOptionPane.showMessageDialog(this,"Estudiante con DNI "+borrardni + " borrado CORRECTAMENTE");
+		
 		
 	}
 }
