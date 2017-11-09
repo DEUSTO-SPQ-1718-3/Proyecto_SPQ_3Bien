@@ -153,7 +153,8 @@ public class frmCuotas extends JFrame implements ActionListener{
 		
 		case "Modificar":
 			
-			//
+			frmModificarCuota ventanaModificar = new frmModificarCuota();
+			ventanaModificar.setVisible(true);
 			
 			break;
 			
