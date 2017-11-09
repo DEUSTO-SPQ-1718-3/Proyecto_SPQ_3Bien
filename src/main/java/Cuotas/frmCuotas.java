@@ -180,7 +180,7 @@ public class frmCuotas extends JFrame implements ActionListener{
 			
 			actualizar();
 			
-			if(btnPendientes.getText().equals("TODOS"))
+			if(btnPendientes.getText().equals("PENDIENTES"))
 				
 			{
 			
