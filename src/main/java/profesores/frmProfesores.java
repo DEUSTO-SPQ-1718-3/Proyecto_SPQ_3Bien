@@ -1,6 +1,7 @@
 package profesores;
 
 import java.awt.Dimension;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -10,17 +11,28 @@ import Cuotas.Cuota;
 import bbdd.MyDataAccess;
 
 import javax.swing.JButton;
+
 import java.awt.Color;
+
 import javax.swing.SwingConstants;
+
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTextField;
+
 import java.awt.Font;
+
 import javax.swing.UIManager;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
+import main.VentanaInicial;
+import main.frmPrincipal;
+import cursos.frmRegistrarCurso;
+
 import java.util.ArrayList;
 
 
@@ -133,31 +145,35 @@ public class frmProfesores extends JFrame implements ActionListener{
 		
 		case "Modificar":
 			
-			//
-			
+			frmModificarProfesor modifProf = new frmModificarProfesor();
+			modifProf.setVisible(true); 
 			break;
 			
 		case "Anyadir":
 			
 			//
-
+			
 			frmRegistrarProfesor ventanaanyadirProfesor = new frmRegistrarProfesor();
 			ventanaanyadirProfesor.setVisible(true); 
-			
+			this.dispose();	
 			break;
 			
 	
 			
 		case "Eliminar":
 			
-			//
+			frmBorrarProfesor borrarProf = new frmBorrarProfesor();
+			borrarProf.setVisible(true);
+			this.dispose();
 			
 			break;
 			
 					
 		case "Salir":
-			System.out.println("Cerrando programa...");
-			System.exit(0);
+			VentanaInicial menu = new VentanaInicial();
+			menu.setVisible(true);
+			//System.out.println("Cerrando programa...");
+			//System.exit(0);
 			break;
 			
 		}

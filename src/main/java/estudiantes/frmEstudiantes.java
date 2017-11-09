@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.log4j.Logger;
+
 import bbdd.MyDataAccess;
 
 import javax.swing.JButton;
@@ -39,6 +41,9 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 	
 	private static final long serialVersionUID = 7046431761927583577L;
 	
+	final static Logger logger = Logger.getLogger(frmEstudiantes.class);
+	
+	
 	public frmEstudiantes() {
 			
 		setTitle("MI ACADEMIA");
@@ -49,7 +54,10 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 		conexion = new MyDataAccess();
 	    	
 	    resultado = conexion.getQuery("select * from Estudiantes");
-		   	    	    
+	    logger.info("This is INFO : Query SELECT lanzada");
+	    logger.trace("This is TRACE : Query SELECT lanzada");
+	    
+	    
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(500, 200, 530, 440);
 		
@@ -145,6 +153,8 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 		
 		
 		case "Modificar":
+			 logger.debug("This is INFO : Llamando a ventana de MODIFICADOS");
+			 logger.error("This is ALL : Llamada a ventana de MODIFICADOS");
 			
 			frmModificarEstudiante modif = new frmModificarEstudiante();
 			modif.setVisible(true); 

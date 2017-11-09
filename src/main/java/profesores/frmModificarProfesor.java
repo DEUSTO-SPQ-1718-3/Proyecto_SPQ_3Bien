@@ -1,4 +1,4 @@
-package estudiantes;
+package profesores;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,29 +18,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
-public class frmModificarEstudiante extends JFrame implements ActionListener{
+public class frmModificarProfesor extends JFrame implements ActionListener{
 
-	final static Logger logger = Logger.getLogger(frmBorrarEstudiante.class);
+	//final static Logger logger = Logger.getLogger(frmBorrarEstudiante.class);
 	
 	private JPanel contentPane;
-	private JTextField textFieldID;
+	private JTextField textFieldNombre;
 	MyDataAccess conexion = new MyDataAccess();
 	
-	String dni;
-    String nombre;
-    String apellido;
-    String telefono;
-    String email;
-    String colegio;
-    String direccion;
-    String nombre_contacto;
-    String telf_contacto;		
+	String nombre;
+	String apellido;
+	String telefono;
+	String email;
+	String direccion;
+	String estudios;
 	
 	/**
 	 * Create the frame.
 	 */
-	public frmModificarEstudiante() {
-		setTitle("MI ACADEMIA - MODIFICAR ESTUDIANTE");
+	public frmModificarProfesor() {
+		setTitle("MI ACADEMIA - Modificar Profesor");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(500, 200, 530, 440);
 		contentPane = new JPanel();
@@ -48,20 +45,20 @@ public class frmModificarEstudiante extends JFrame implements ActionListener{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblIDCurso = new JLabel("Indica el DNI del ESTUDIANTE que quieres MODIFICAR");
-		lblIDCurso.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblIDCurso.setBounds(10, 26, 400, 38);
-		contentPane.add(lblIDCurso);
+		JLabel lblNombreProf = new JLabel("Indica el nombre del profesor que quieres modificar");
+		lblNombreProf.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNombreProf.setBounds(10, 26, 400, 38);
+		contentPane.add(lblNombreProf);
 		
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.setBounds(270, 106, 80, 23);
 		contentPane.add(btnAtras);
 		btnAtras.addActionListener(this);
 		
-		textFieldID = new JTextField();
-		textFieldID.setBounds(215, 67, 80, 20);
-		contentPane.add(textFieldID);
-		textFieldID.setColumns(10);
+		textFieldNombre = new JTextField();
+		textFieldNombre.setBounds(215, 67, 80, 20);
+		contentPane.add(textFieldNombre);
+		textFieldNombre.setColumns(10);
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(130, 106, 89, 23);
@@ -92,30 +89,29 @@ public class frmModificarEstudiante extends JFrame implements ActionListener{
 	private void recogerInformacion() {
 		// TODO Auto-generated method stub
 		
-		String modifdni=textFieldID.getText();
-		String modificar= "Select * from estudiantes where dni='"+modifdni+"' ";
+		String nombre=textFieldNombre.getText();
+		String modificar= "Select * from profesores where nombre='"+nombre+"' ";
 		//enviar la sentencia a la bbdd
 		ResultSet resultado= conexion.getQuery(modificar);
-		logger.trace("This is TRACE : Se han lanzado la query de Select Estudiante");
+	
+		//logger.trace("This is TRACE : Se han lanzado la query de Select Estudiante");
 		
 		try {
 			while(resultado.next()){
 			    	  
-				  dni = resultado.getString("dni");
+				  
 			      nombre = resultado.getString("nombre");
 			      apellido = resultado.getString("apellido");
 			      telefono = resultado.getString("telefono");
 			      email = resultado.getString("email");
-			      colegio = resultado.getString("colegio");
 			      direccion = resultado.getString("direccion");
-			      nombre_contacto = resultado.getString("nombre_contacto");
-			      telf_contacto = resultado.getString("telf_contacto");
+			      estudios = resultado.getString("estudios");
 			      
-			      Estudiante estudiante = new Estudiante(dni, nombre, apellido, telefono, email,colegio, direccion, nombre_contacto, telf_contacto);
+			      Profesor profesor = new Profesor(nombre, apellido, telefono, email, direccion, estudios);
 			      
-			      logger.info("This is INFO : Se ha creado un objeto Estudiante con los datos de BD de DNI "+dni);
+			      //logger.info("This is INFO : Se ha creado un objeto Estudiante con los datos de BD de DNI "+dni);
 			      
-			      frmModificarDatos modificardatos=new frmModificarDatos(estudiante);
+			      frmModificarDatos modificardatos=new frmModificarDatos(profesor);
 			      modificardatos.setVisible(true);
 			      
 			      this.dispose();
