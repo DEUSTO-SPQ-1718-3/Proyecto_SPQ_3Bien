@@ -13,8 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -74,14 +76,24 @@ public class frmBorrarProfesor extends JFrame implements ActionListener{
 				
 			case "Aceptar":
 				String nombre=textFieldNombre.getText();
-				String borrar= "Delete from profesores where nombre='"+nombre+"' ";
-				//enviar la sentencia para borrar el profesor indicado mediante el nombre de la BD
-				conexion.setQuery(borrar);
+				borrarProfesor(nombre);
 				
-				this.dispose();
-				JOptionPane.showMessageDialog(this,"El/la profesor/a "+nombre + " ha sido borrado/a correctamente");
+				
 				break;
 		}
 		
+	}
+	
+	
+	void borrarProfesor(String nombre) {
+		// TODO Auto-generated method stub
+		
+		String borrar= "Delete from profesores where nombre='"+nombre+"' ";
+		//enviar la sentencia para borrar el profesor indicado mediante el nombre de la BD
+		conexion.setQuery(borrar);
+		
+		this.dispose();
+		JOptionPane.showMessageDialog(this,"El/la profesor/a "+nombre + " ha sido borrado/a correctamente");
+				
 	}
 }

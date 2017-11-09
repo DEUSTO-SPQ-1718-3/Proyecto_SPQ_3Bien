@@ -16,7 +16,7 @@ import bbdd.MyDataAccess;
 
 public class frmRegistrarProfesor extends JFrame implements ActionListener{
 	
-	//private JTextField textFieldDni;
+
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
 	private JTextField textFieldTelefono;
@@ -36,14 +36,6 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 		
 		setTitle("MI ACADEMIA: Añadir un profesor");
 		
-		//JLabel lblDni = new JLabel("DNI");
-		//lblDni.setBounds(40, 20, 60, 25);
-		//getContentPane().add(lblDni);
-		
-		//textFieldDni = new JTextField();
-		//textFieldDni.setBounds(150, 20, 86, 25);
-		//getContentPane().add(textFieldDni);
-		//textFieldDni.setColumns(10);		
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(40, 60, 60, 25);
@@ -138,20 +130,40 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 				String estudios=textFieldEstudios.getText();
 		
 
-
-				
-				String registrar= "insert into profesores values("+"'"+ nombre +"','"+ apellido +"','"+ telefono +"','"+ email +"','"+ direccion +"','"+ estudios+"')";
-				
-				//se envia el script SQL a la BBDD y queda registrado el nuevo profesor insertado
-				
-				conexion.setQuery(registrar);
-				
+				registrarProfesor(nombre,apellido,telefono,email,direccion,estudios);
 				JOptionPane.showMessageDialog(this,"Nuevo profesor registrado");
+				
 				break;
 				
+			}
+
 	
+	}
+		
+		void registrarProfesor (String nombre, String apellido, String telefono, String email, String direccion, String estudios)
+		{
+			// TODO Auto-generated method stub
+					
+			String registrar= "insert into profesores values("+"'"+ nombre +"','"+ apellido +"','"+ telefono +"','"+ email +"','"+ direccion +"','"+ estudios+"')";
+			
+			
+			conexion.setQuery(registrar);
+			
+			//se envia el script SQL a la BBDD y queda registrado el nuevo profesor insertado
+		
+			
+			this.dispose();
+			
+			
+			//logger.fatal("This is FATAL : frmReistrarEstudiante se ha destruido");
+			
+			
+			
+			
+				
+		
 		}
 		
-	}
+	
 }
 
