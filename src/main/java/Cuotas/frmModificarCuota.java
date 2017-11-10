@@ -18,6 +18,7 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -25,7 +26,7 @@ import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.JRadioButton;
 
-public class frmCrearCuota extends JFrame implements ActionListener{
+public class frmModificarCuota extends JFrame implements ActionListener{
 
 	/**
 	 * 
@@ -44,8 +45,17 @@ public class frmCrearCuota extends JFrame implements ActionListener{
 	JRadioButton rdbtnPendiente;
 	JRadioButton rdbtnPagada;
 	String pendiente1 = "PENDIENTE";
+	private JTextField txtIntroduceElId;
+	int id;
+	String nombre;
+	String apellidos;
+	int horas;
+	int precio;
+	String fecha;
+	String estado;
+	int id1;
 	
-	public frmCrearCuota() {
+	public frmModificarCuota() {
 
 	
 		
@@ -68,9 +78,9 @@ public class frmCrearCuota extends JFrame implements ActionListener{
 		panel.setBackground(Color.WHITE);
 		setLocationRelativeTo(null);
 		
-		JLabel lblCompletaLosCampos = new JLabel("CREAR CUOTA");
+		JLabel lblCompletaLosCampos = new JLabel("MODIFICAR CUOTA");
 		lblCompletaLosCampos.setFont(new Font("Lucida Sans Typewriter", Font.PLAIN, 11));
-		lblCompletaLosCampos.setBounds(158, 23, 87, 14);
+		lblCompletaLosCampos.setBounds(61, 21, 141, 14);
 		panel.add(lblCompletaLosCampos);
 
 		JLabel lblNombre = new JLabel("Nombre");
@@ -145,6 +155,70 @@ public class frmCrearCuota extends JFrame implements ActionListener{
 		ButtonGroup group = new ButtonGroup();
 	    group.add(rdbtnPagada);
 	    group.add(rdbtnPendiente);
+	    
+	    txtIntroduceElId = new JTextField();
+	    txtIntroduceElId.setBounds(189, 18, 86, 20);
+	    panel.add(txtIntroduceElId);
+	    txtIntroduceElId.setColumns(10);
+	    
+	    JButton btnNewButton_2 = new JButton("Ir");
+	    btnNewButton_2.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent arg0) {
+	    		
+	    		id = Integer.parseInt(txtIntroduceElId.getText());
+	    		
+	    		MyDataAccess conexion = new MyDataAccess();
+			    ResultSet resultado;
+			    
+			    resultado = conexion.getQuery("select * from Cuotas where id = '" + id + "'");
+			      //
+				
+				try {
+				      while(resultado.next()){
+				      id = resultado.getInt("id");
+				      nombre = resultado.getString("nombre");
+				      apellidos = resultado.getString("apellido");
+				      horas = resultado.getInt("horas");
+				      precio = resultado.getInt("precio");
+				      fecha = resultado.getString("fecha");
+				      estado = resultado.getString("estado");
+				      
+				      textField.setText(nombre);
+				      textField_3.setText(apellidos);
+				      textField_4.setText(Integer.toString(horas));
+				      textField_5.setText(Integer.toString(precio));
+				      textField_1.setText(fecha);
+				      
+				      if (estado.equals("PENDIENTE"))
+				    	  
+				      {
+				    	  
+				    	  rdbtnPendiente.setSelected(true);
+				    	  
+				      }
+				      
+				      else
+				    	  
+				      {
+				    	  
+				    	  
+				    	  rdbtnPagada.setSelected(true);
+				    	  
+				      }
+				      
+				      }
+				    }catch (SQLException e) {
+				      // TODO Auto-generated catch block
+				      e.printStackTrace();
+				    }	
+	    		
+	    		
+	    		
+	    		
+	    	}
+	    });
+	    btnNewButton_2.setBounds(282, 17, 52, 23);
+	    panel.add(btnNewButton_2);
 			
 		this.setResizable(true);
 		
@@ -175,11 +249,12 @@ public class frmCrearCuota extends JFrame implements ActionListener{
 		
 		case "ENVIAR":
 			
-		String nombre = textField.getText();
-		String apellidos = textField_3.getText();
-		int horas = Integer.parseInt(textField_4.getText());
-		int precio = Integer.parseInt(textField_5.getText());
-		String fecha = textField_1.getText();
+		String nombre1 = textField.getText();
+		String apellidos1 = textField_3.getText();
+		int horas1 = Integer.parseInt(textField_4.getText());
+		int precio1 = Integer.parseInt(textField_5.getText());
+		String fecha1 = textField_1.getText();
+		id1 = Integer.parseInt(txtIntroduceElId.getText());
 		
 		if (rdbtnPagada.isSelected())
 			
@@ -189,7 +264,7 @@ public class frmCrearCuota extends JFrame implements ActionListener{
 			
 		}
 		
-		String query = "insert into cuotas values (" + "'" + nombre + "','" + apellidos + "','" + horas + "','" + precio + "','" + fecha + "','"  + pendiente1 + "'," + null + ")";
+		String query = "update Cuotas set nombre = '" + nombre1 + "', apellido = '" + apellidos1 + "', horas = '" + horas1 + "', precio = '" + precio1 + "', fecha = '" + fecha1 + "'  where id = '" + id1 + "'";
 		conexion.setQuery(query);
 		
 		break;
