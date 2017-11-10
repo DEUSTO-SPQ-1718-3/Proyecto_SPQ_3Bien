@@ -20,12 +20,14 @@ public class frmModificarDatos extends JFrame implements ActionListener{
 	private JTextField textFieldEmail;
 	private JTextField textFieldDireccion;
 	private JTextField textFieldEstudios;
+	
+	private String nomReferente;
 
 	
 	MyDataAccess conexion = new MyDataAccess();
 	
 	
-	public frmModificarDatos(Profesor profesor) {
+	public frmModificarDatos(Profesor profesor, String nomModificado) {
 		getContentPane().setLayout(null);
 		
 		setBounds(500, 200, 530, 440);
@@ -100,6 +102,10 @@ public class frmModificarDatos extends JFrame implements ActionListener{
 		btnModificar.setBounds(350, 200, 120, 40);
 		getContentPane().add(btnModificar);
 		btnModificar.addActionListener(this);
+		
+		nomReferente= nomModificado;
+		
+		
 	}
 	//ficha para rellenar, que sera enviada a la BBDD para almacenar los datos correspondientes
 
@@ -115,7 +121,7 @@ public class frmModificarDatos extends JFrame implements ActionListener{
 				
 			case "MODIFICAR":
 				
-		
+				
 				String nombre=textFieldNombre.getText();
 				String apellido=textFieldApellido.getText();
 				String telefono=textFieldTelefono.getText();
@@ -123,8 +129,9 @@ public class frmModificarDatos extends JFrame implements ActionListener{
 				String direccion=textFieldDireccion.getText();
 				String estudios=textFieldEstudios.getText();
 				
-				String registrar= "update profesores set nombre='"+ nombre +"',apellido='"+ apellido +"',telefono='"+ telefono +"',email='"+ email +"',direccion='"+ direccion +"',estudios='"+ estudios +"'";
+				String registrar= "update profesores set nombre='"+ nombre +"',apellido='"+ apellido +"',telefono='"+ telefono +"',email='"+ email +"',direccion='"+ direccion +"',estudios='"+ estudios +"' where nombre = '"+nomReferente+"'";
 				//se envia el script SQL a la BBDD y se registra el curso
+			
 								
 				conexion.setQuery(registrar);
 				
