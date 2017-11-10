@@ -6,12 +6,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+import org.apache.log4j.Logger;
+
 import bbdd.MyDataAccess;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class frmRegistrarEstudiante extends JFrame implements ActionListener{
+	
+	final static Logger logger = Logger.getLogger(frmRegistrarEstudiante.class);
 	
 	private JTextField textFieldDni;
 	private JTextField textFieldNombre;
@@ -120,11 +124,14 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 		btnAtras.setBounds(350, 100,120, 40);
 		getContentPane().add(btnAtras);
 		btnAtras.addActionListener(this);
+		logger.info("This is INFO : Boton 'Atras' creado");
 		
 		JButton btnDarDeAlta = new JButton("Dar de alta");
 		btnDarDeAlta.setBounds(350, 200, 120, 40);
 		getContentPane().add(btnDarDeAlta);
 		btnDarDeAlta.addActionListener(this);
+		logger.info("This is INFO : Boton 'Dar de alta' creado");
+		
 	}
 	//ficha para rellenar, que sera enviada a la BBDD para almacenar los datos correspondientes
 
@@ -150,9 +157,10 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 				String nombre_contacto=textFieldNombreC.getText();
 				String telf_contacto=textFieldTelfC.getText();				
 				
-				registrarEstudiante(dni,nombre,apellido,telefono,email,colegio,direccion,nombre_contacto,telf_contacto);
-							
+				logger.trace("This is TRACE : Se han recogido datos del formulario");
 				
+				registrarEstudiante(dni,nombre,apellido,telefono,email,colegio,direccion,nombre_contacto,telf_contacto);
+										
 				break;
 	
 		}
@@ -167,6 +175,8 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 		conexion.setQuery(registrar);
 		
 		this.dispose();
+		
+		logger.fatal("This is FATAL : frmReistrarEstudiante se ha destruido");
 		
 		JOptionPane.showMessageDialog(this,"Estudiante con DNI "+dni + " anyadido CORRECTAMENTE");
 			

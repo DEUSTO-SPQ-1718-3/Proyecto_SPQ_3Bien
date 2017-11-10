@@ -2,55 +2,53 @@ package profesores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JLabel;
 
 import bbdd.MyDataAccess;
 
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
-//en esta clase se recogen todos los metodos, atributos y recursos necesarios para registrar o anadir un nuevo profesor a la BD de la Academia
-
-public class frmRegistrarProfesor extends JFrame implements ActionListener{
+public class frmModificarDatos extends JFrame implements ActionListener{
 	
-
+	
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
 	private JTextField textFieldTelefono;
 	private JTextField textFieldEmail;
-	private JTextField textFieldEstudios;
 	private JTextField textFieldDireccion;
+	private JTextField textFieldEstudios;
+	
+	private String nomReferente;
+
 	
 	MyDataAccess conexion = new MyDataAccess();
 	
 	
-	
-	public frmRegistrarProfesor() {
+	public frmModificarDatos(Profesor profesor, String nomModificado) {
 		getContentPane().setLayout(null);
 		
-		setBounds(700, 350, 530, 440);
+		setBounds(500, 200, 530, 440);
 		this.setResizable(false);
 		
-		setTitle("MI ACADEMIA: Añadir un profesor");
-		
+		setTitle("MI ACADEMIA");
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(40, 60, 60, 25);
 		getContentPane().add(lblNombre);
 		
-		textFieldNombre = new JTextField();
+		textFieldNombre = new JTextField(profesor.getNombre());
 		textFieldNombre.setBounds(150, 60, 86, 25);
 		getContentPane().add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
-		JLabel lblApellido = new JLabel("Apellidos");
+		JLabel lblApellido = new JLabel("Apellido");
 		lblApellido.setBounds(40, 100, 60, 25);
 		getContentPane().add(lblApellido);
 				
-		textFieldApellido = new JTextField();
+		textFieldApellido = new JTextField(profesor.getApellido());
 		textFieldApellido.setColumns(10);
 		textFieldApellido.setBounds(150, 100, 160, 25);
 		getContentPane().add(textFieldApellido);	
@@ -59,7 +57,7 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 		lblTelefono.setBounds(40, 140, 60, 25);
 		getContentPane().add(lblTelefono);
 						
-		textFieldTelefono = new JTextField();
+		textFieldTelefono = new JTextField(profesor.getTelefono());
 		textFieldTelefono.setColumns(10);
 		textFieldTelefono.setBounds(150, 140, 160, 25);
 		getContentPane().add(textFieldTelefono);
@@ -69,44 +67,47 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 		getContentPane().add(lblEmail);
 		
 		
-		textFieldEmail = new JTextField();
+		textFieldEmail = new JTextField(profesor.getEmail());
 		textFieldEmail.setColumns(10);
 		textFieldEmail.setBounds(150, 200, 160, 25);
 		getContentPane().add(textFieldEmail);
 		
-		JLabel lblEstudios = new JLabel("Estudios");
-		lblEstudios.setBounds(40, 240, 60, 25);
-		getContentPane().add(lblEstudios);
-		
-		textFieldEstudios = new JTextField();
-		textFieldEstudios.setColumns(10);
-		textFieldEstudios.setBounds(150, 240, 160, 25);
-		getContentPane().add(textFieldEstudios);
 		
 		JLabel lblDireccion = new JLabel("Direccion");
 		lblDireccion.setBounds(40, 280, 60, 25);
 		getContentPane().add(lblDireccion);
 		
-		textFieldDireccion = new JTextField();
+		textFieldDireccion = new JTextField(profesor.getDireccion());
 		textFieldDireccion.setColumns(10);
 		textFieldDireccion.setBounds(150, 280, 160, 25);
 		getContentPane().add(textFieldDireccion);
 		
+		JLabel lblEstudios = new JLabel("Estudios");
+		lblEstudios.setBounds(40, 320, 100, 25);
+		getContentPane().add(lblEstudios);
 		
+		textFieldEstudios = new JTextField(profesor.getEstudios());
+		textFieldEstudios.setColumns(10);
+		textFieldEstudios.setBounds(150, 320, 160, 25);
+		getContentPane().add(textFieldEstudios);
+		
+	
 		
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.setBounds(350, 100,120, 40);
 		getContentPane().add(btnAtras);
 		btnAtras.addActionListener(this);
 		
-		JButton btnDarDeAlta = new JButton("Dar de alta");
-		btnDarDeAlta.setBounds(350, 200, 120, 40);
-		getContentPane().add(btnDarDeAlta);
-		btnDarDeAlta.addActionListener(this);
+		JButton btnModificar = new JButton("MODIFICAR");
+		btnModificar.setBounds(350, 200, 120, 40);
+		getContentPane().add(btnModificar);
+		btnModificar.addActionListener(this);
+		
+		nomReferente= nomModificado;
+		
 		
 	}
-	//ficha para rellenar los datos del nuevo profesor, que luego seran almacenados en la BD
-
+	//ficha para rellenar, que sera enviada a la BBDD para almacenar los datos correspondientes
 
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
@@ -118,52 +119,29 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 				this.dispose();
 				break;
 				
-			case "Dar de alta":
+			case "MODIFICAR":
 				
-				//int idC= 1;//lo suyo seria que se generara auto. con el numero correspondiente de las bbdd
-				//String dni=textFieldNombre.getText();
+				
 				String nombre=textFieldNombre.getText();
 				String apellido=textFieldApellido.getText();
 				String telefono=textFieldTelefono.getText();
 				String email=textFieldEmail.getText();
 				String direccion=textFieldDireccion.getText();
 				String estudios=textFieldEstudios.getText();
-		
-
-				registrarProfesor(nombre,apellido,telefono,email,direccion,estudios);
-				JOptionPane.showMessageDialog(this,"Nuevo profesor registrado");
+				
+				String registrar= "update profesores set nombre='"+ nombre +"',apellido='"+ apellido +"',telefono='"+ telefono +"',email='"+ email +"',direccion='"+ direccion +"',estudios='"+ estudios +"' where nombre = '"+nomReferente+"'";
+				//se envia el script SQL a la BBDD y se registra el curso
+			
+								
+				conexion.setQuery(registrar);
+				
+				this.dispose();
+				
+				JOptionPane.showMessageDialog(this,"Profesor  modificado");
 				
 				break;
-				
-			}
-
 	
-	}
-		
-		void registrarProfesor (String nombre, String apellido, String telefono, String email, String direccion, String estudios)
-		{
-			// TODO Auto-generated method stub
-					
-			String registrar= "insert into profesores values("+"'"+ nombre +"','"+ apellido +"','"+ telefono +"','"+ email +"','"+ direccion +"','"+ estudios+"')";
-			
-			
-			conexion.setQuery(registrar);
-			
-			//se envia el script SQL a la BBDD y queda registrado el nuevo profesor insertado
-		
-			
-			this.dispose();
-			
-			
-			//logger.fatal("This is FATAL : frmReistrarEstudiante se ha destruido");
-			
-			
-			
-			
-				
-		
 		}
 		
-	
+	}
 }
-

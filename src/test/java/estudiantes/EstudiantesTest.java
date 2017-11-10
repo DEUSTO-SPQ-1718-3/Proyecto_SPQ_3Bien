@@ -2,19 +2,25 @@ package estudiantes;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+
+import bbdd.MyDataAccess;
+
+import static org.junit.Assert.*;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import junit.framework.JUnit4TestAdapter;
-import cursos.clsCurso;
+
 
 public class EstudiantesTest {
 	
 	private Estudiante estudiante1;
-	private Estudiante estudiante2;
-	private Estudiante estudiante3;
-	private Estudiante estudiante4;
-
+	
+	private frmRegistrarEstudiante ventana1;
+	private frmBorrarEstudiante ventana2;
+	frmEstudiantes ventana3;
+	MyDataAccess conexion;
 	
 	public static junit.framework.Test suite() {
 		 return new JUnit4TestAdapter(EstudiantesTest.class);
@@ -23,32 +29,80 @@ public class EstudiantesTest {
 	
 	@Before public void setUp() {
 		estudiante1= new Estudiante ("0000", "Sara","Martin","678111222","sm@gmail.com","Zurriola Ikastola","C/Mayor 6","Maria (madre)", "666458745");
-				
+		ventana1 = new frmRegistrarEstudiante();
+		ventana2 = new frmBorrarEstudiante();
+		ventana3 = new frmEstudiantes();
+		conexion = new MyDataAccess();
 	}
 	
 	@Test public void testRegistrarEstudiante() {
 		
-		frmRegistrarEstudiante ventana = new frmRegistrarEstudiante();
+				
+		ventana1.registrarEstudiante(estudiante1.getDni(),estudiante1.getNombre(),estudiante1.getApellido(),estudiante1.getTelefono(),estudiante1.getEmail(),estudiante1.getColegio(),estudiante1.getDireccion(),estudiante1.getNombre_contacto(),estudiante1.getTelf_contacto());
+					
+		ResultSet comprobar;
+		String dni="";
+		String nombre="";
+		String colegio="";
 		
-		ventana.registrarEstudiante(estudiante1.getDni(),estudiante1.getNombre(),estudiante1.getApellido(),estudiante1.getTelefono(),estudiante1.getEmail(),estudiante1.getColegio(),estudiante1.getDireccion(),estudiante1.getNombre_contacto(),estudiante1.getTelf_contacto());
-						
+		comprobar = conexion.getQuery("SELECT * from estudiantes where dni='0000'");
+				
+		try {
+			while(comprobar.next()) {
+				//comprobar.next();//paso porque el primero es el ID
+				dni=comprobar.getString("dni");
+				nombre=comprobar.getString("nombre");
+				colegio = comprobar.getString("colegio");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertEquals(dni, "0000");
+		assertEquals(nombre, "Sara");
+		assertEquals(colegio, "Zurriola Ikastola");
+				
+		//limpiar de BBDD el registro generado
+		conexion.setQuery("Delete from proyecto.estudiantes where dni='0000'");
+
+					
 	}
 	
 	@Test public void testBorrarEstudiante() {
 		
-		frmBorrarEstudiante ventana = new frmBorrarEstudiante();
+		conexion.setQuery("Delete from estudiantes where dni='0000'");	
 		
-		ventana.borrarEstudiante("0000");
+		ventana1.registrarEstudiante(estudiante1.getDni(),estudiante1.getNombre(),estudiante1.getApellido(),estudiante1.getTelefono(),estudiante1.getEmail(),estudiante1.getColegio(),estudiante1.getDireccion(),estudiante1.getNombre_contacto(),estudiante1.getTelf_contacto());
+		
+		ResultSet comprobar;
+		String dni="";
+		String nombre="";
+		String colegio="";
+		
+		conexion.setQuery("Delete from estudiantes where dni='0000'");
+		
+		comprobar = conexion.getQuery("SELECT * from estudiantes where dni='0000'");
+				
+		try {
+			while(comprobar.next()) {
+				//comprobar.next();//paso porque el primero es el ID
+				dni=comprobar.getString("dni");
+				nombre=comprobar.getString("nombre");
+				colegio = comprobar.getString("colegio");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertEquals(dni, "");
+		assertEquals(nombre, "");
+		assertEquals(colegio, "");
+		
 	}
 	
 	
-	@Test public void testVerEstudiantes() {
-		
-		frmEstudiantes ventana = new frmEstudiantes();
-		ventana.setVisible(true);
-		
-		ventana.completarLista();
-	}
-	
+
 	
 }

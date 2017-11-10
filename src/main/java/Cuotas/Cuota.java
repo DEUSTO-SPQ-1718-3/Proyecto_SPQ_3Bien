@@ -6,7 +6,7 @@ public class Cuota implements Serializable{
 	
 	private static final long serialVersionUID = -5805334843360532846L;
 	
-	
+	private int id;
 	private String nombre;
 	private String apellido;
 	private int horas;
@@ -17,6 +17,7 @@ public class Cuota implements Serializable{
 	
 	public Cuota(){
 		
+		id =0;
 		nombre="";
 		apellido="";
 		horas=0;
@@ -26,8 +27,9 @@ public class Cuota implements Serializable{
 	}
 	
 	
-	public Cuota (String nombre, String apellido, int horas, int precio, String fecha, String estado){
+	public Cuota (String nombre, String apellido, int horas, int precio, String fecha, String estado, int id){
 		
+		this.id=id;
 		this.nombre=nombre;
 		this.apellido=apellido;
 		this.horas=horas;
@@ -37,6 +39,31 @@ public class Cuota implements Serializable{
 		
 			
 	}
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public void setHoras(int horas) {
+		this.horas = horas;
+	}
+
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -85,6 +112,8 @@ public String toString(){
 		StringBuffer salida = new StringBuffer();
 		
 		salida.append("\n--------- ");
+		salida.append("\nID : ");
+		salida.append(id);
 		salida.append("\nNombre : ");
 		salida.append(nombre);
 		salida.append("\nApellido : ");
