@@ -157,13 +157,6 @@ public class frmCrearCuota extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		//BD
-		
-		MyDataAccess conexion = new MyDataAccess();
-	    ResultSet resultado;
-	    
-	    //
-		
 		
 		switch(e.getActionCommand()){
 		
@@ -189,11 +182,27 @@ public class frmCrearCuota extends JFrame implements ActionListener{
 			
 		}
 		
-		String query = "insert into cuotas values (" + "'" + nombre + "','" + apellidos + "','" + horas + "','" + precio + "','" + fecha + "','"  + pendiente1 + "'," + null + ")";
-		conexion.setQuery(query);
+		creaCuota (nombre, apellidos, horas, precio, fecha, pendiente1);
 		
 		break;
 			
 		}
 	}
+	
+		public void  creaCuota (String nombre, String apellidos, int horas, int precio, String fecha, String pendiente1)
+		
+		{
+			
+			//BD
+			
+			MyDataAccess conexion = new MyDataAccess();
+		    ResultSet resultado;
+		    
+		    //
+			
+			String query = "insert into cuotas values (" + "'" + nombre + "','" + apellidos + "','" + horas + "','" + precio + "','" + fecha + "','"  + pendiente1 + "'," + null + ")";
+			conexion.setQuery(query);	
+			
+		}
+	
 }
