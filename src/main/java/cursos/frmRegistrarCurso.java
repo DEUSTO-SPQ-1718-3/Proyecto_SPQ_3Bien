@@ -10,6 +10,9 @@ import javax.swing.border.EmptyBorder;
 import bbdd.MyDataAccess;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import org.apache.log4j.Logger;
 
 public class frmRegistrarCurso extends JFrame implements ActionListener{
 	
@@ -18,6 +21,7 @@ public class frmRegistrarCurso extends JFrame implements ActionListener{
 	private JTextField textFieldAula;
 	private JTextField textFieldHorario;
 	MyDataAccess conexion = new MyDataAccess();
+	final static Logger logger = Logger.getLogger(frmRegistrarCurso.class);
 	
 	public frmRegistrarCurso() {
 		
@@ -81,6 +85,7 @@ public class frmRegistrarCurso extends JFrame implements ActionListener{
 		{
 			case "Atras":
 				frmMenuCursos objAtras=new frmMenuCursos();
+				logger.trace("This is TRACE : Ventana 'frmRegistrarCurso' se ha destruido");
 				objAtras.setVisible(true);
 				this.dispose();
 				break;
@@ -92,13 +97,26 @@ public class frmRegistrarCurso extends JFrame implements ActionListener{
 				int numC=Integer.parseInt(textFieldAula.getText());
 				String horario=textFieldHorario.getText();
 				
-				String registrar= "insert into cursos values("+"'"+ idC +"','"+ nombreC +"','"+ desc +"','"+ numC +"','"+ horario +"')";
-				//se envia el script SQL a la BBDD y se registra el curso
-				conexion.setQuery(registrar);
+				logger.trace("This is TRACE : Se han recogido los datos introducidos por pantalla");
+				
+				//llamada al metodo que registra
+				registrarCurso(idC, nombreC, desc, numC, horario);
+				logger.info("This is INFO : Registro del estudiante con id: "+idC+" creado.");
 				
 				break;
 	
 		}
+		
+	}
+
+	void registrarCurso(int idC, String nombreC, String desc, int numC, String horario) {
+		// TODO Auto-generated method stub
+		
+		String registrar= "insert into cursos values("+"'"+ idC +"','"+ nombreC +"','"+ desc +"','"+ numC +"','"+ horario +"')";
+		//se envia el script SQL a la BBDD y se registra el curso
+		conexion.setQuery(registrar);
+		
+		JOptionPane.showMessageDialog(this,"Curso con ID "+idC + " anyadido CORRECTAMENTE");
 		
 	}
 }

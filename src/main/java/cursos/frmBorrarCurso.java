@@ -16,11 +16,14 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import org.apache.log4j.Logger;
+
 public class frmBorrarCurso extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private JTextField textFieldID;
 	MyDataAccess conexion = new MyDataAccess();
+	final static Logger logger = Logger.getLogger(frmBorrarCurso.class);
 	
 	/**
 	 * Create the frame.
@@ -63,7 +66,7 @@ public class frmBorrarCurso extends JFrame implements ActionListener{
 		
 		
 			case "Atras":
-				
+				logger.trace("This is TRACE : Ventana 'frmBorrarCurso' se ha destruido");
 				this.dispose();				
 				break;
 				
@@ -72,7 +75,7 @@ public class frmBorrarCurso extends JFrame implements ActionListener{
 				String borrar= "Delete from cursos where idC='"+BorrarID+"' ";
 				//enviar la sentencia a la bbdd
 				conexion.setQuery(borrar);
-				
+				logger.info("This is INFO : Se ha borrado el curso con el id introducido");
 				this.dispose();			
 				break;
 		}
