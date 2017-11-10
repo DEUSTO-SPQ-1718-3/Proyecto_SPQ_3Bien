@@ -12,7 +12,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
-import Cuotas.Cuota;
 import bbdd.MyDataAccess;
 import main.VentanaInicial;
 
@@ -20,10 +19,13 @@ import javax.swing.JButton;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 
+import org.apache.log4j.Logger;
+
 public class frmMenuCursos extends JFrame implements ActionListener{
-private static final long serialVersionUID = 7046431761927583577L;
-private ArrayList<clsCurso> listaCursos = new ArrayList<clsCurso>();
-MyDataAccess conexion = new MyDataAccess();
+	private static final long serialVersionUID = 7046431761927583577L;
+	private ArrayList<clsCurso> listaCursos = new ArrayList<clsCurso>();
+	MyDataAccess conexion = new MyDataAccess();
+	final static Logger logger = Logger.getLogger(frmMenuCursos.class);//para los mensajes de log4java
 
 	public frmMenuCursos() {
 	
@@ -140,6 +142,7 @@ MyDataAccess conexion = new MyDataAccess();
 			
 		case "Eliminar":
 			frmBorrarCurso objB=new frmBorrarCurso();
+			logger.info("This is INFO : Se va a abrir la ventana para hacer el BORRADO");
 			objB.setVisible(true);			
 			break;
 			
@@ -151,6 +154,7 @@ MyDataAccess conexion = new MyDataAccess();
 					
 		case "Atras":
 			VentanaInicial objV= new VentanaInicial();
+			logger.trace("This is TRACE : Ventana 'frmMenuCursos' se ha destruido");
 			objV.setVisible(true);
 			this.dispose();
 			break;		
