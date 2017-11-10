@@ -32,6 +32,8 @@ import javax.swing.JTextArea;
 import main.VentanaInicial;
 import main.frmPrincipal;
 import cursos.frmRegistrarCurso;
+import estudiantes.Estudiante;
+import estudiantes.frmEstudiantes;
 
 import java.util.ArrayList;
 
@@ -39,6 +41,19 @@ import java.util.ArrayList;
 
 public class frmProfesores extends JFrame implements ActionListener{
 
+	JTextArea txtProfesores;
+	ArrayList<Profesor> listaProfesores;
+	JScrollPane scrollPane;
+	MyDataAccess conexion;
+    ResultSet resultado;
+   
+    String nombre;
+    String apellido;
+    String telefono;
+    String email;
+    String direccion;
+    String estudios;
+  
 	/**
 	 * 
 	 */
@@ -51,61 +66,46 @@ public class frmProfesores extends JFrame implements ActionListener{
 		
 		setTitle("MI ACADEMIA");
 		
-		ArrayList<Profesor> listaProfesores = new ArrayList<Profesor>(); 
+		listaProfesores = new ArrayList<Profesor>(); 
 		
 		//BD
 		
-		MyDataAccess conexion = new MyDataAccess();
-			    ResultSet resultado;
-			    String nombre;
-			    String apellido;
-			    String telefono;
-			    String email;
-			    String direccion;
-			    String estudios;
+		//MyDataAccess conexion = new MyDataAccess();
+			  //  ResultSet resultado;
+			  //  String nombre;
+			 //   String apellido;
+			 //   String telefono;
+			  //  String email;
+			 //   String direccion;
+			  //  String estudios;
 			    
-			    resultado = conexion.getQuery("select * from profesores");
+		conexion = new MyDataAccess();
+			    
+		resultado = conexion.getQuery("select * from profesores");
+			    
+			    
 		//
-				
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(700, 350, 530, 440);
+			    
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(500, 200, 530, 440);
+		
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setBounds(5, 5, 400, 400);
 		contentPane.add(scrollPane);
 		
-		JTextArea txtHabitacionesRegistradas = new JTextArea();
-		txtHabitacionesRegistradas.setEditable(false);
-		scrollPane.setViewportView(txtHabitacionesRegistradas);
-		//txtHabitacionesRegistradas.setFont(new Font("Tahoma", Font.BOLD, 14));
-		txtHabitacionesRegistradas.setText("- PROFESORES EN LA ACADEMIA - ");
-		txtHabitacionesRegistradas.setColumns(50);
-		txtHabitacionesRegistradas.setEditable(false);					
+		completarLista();
+			
+		JButton btnRefesh = new JButton("REFRESH");
+		btnRefesh.setBounds(420, 70, 100, 25);
+		btnRefesh.addActionListener(this);
+		btnRefesh.setActionCommand("Refresh");
+		contentPane.add(btnRefesh);		
 		
-		 try {
-		      while(resultado.next()){
-		      nombre = resultado.getString("nombre");
-		      apellido = resultado.getString("apellido");
-		      telefono = resultado.getString("telefono");
-		      email = resultado.getString("email");
-		      direccion = resultado.getString("direccion");
-		      estudios = resultado.getString("estudios");
-		      
-			listaProfesores.add(new Profesor(nombre, apellido, telefono, email, direccion, estudios));	
-		      }
-		    }catch (SQLException e) {
-		      // TODO Auto-generated catch block
-		      e.printStackTrace();
-		    }			
-			
-					
-		txtHabitacionesRegistradas.append(listaProfesores.toString()) ;						
-			
-					
 		JButton btnModificar = new JButton("MODIFICAR");
 		btnModificar.setBounds(420, 120, 100, 25);
 		btnModificar.addActionListener(this);
@@ -130,9 +130,46 @@ public class frmProfesores extends JFrame implements ActionListener{
 		btnSalir.addActionListener(this);
 		btnSalir.setActionCommand("Salir");
 		contentPane.add(btnSalir);
-			
+		
 		this.setResizable(false);		
 			
+			
+	}
+	
+
+	void completarLista() {
+		// TODO Auto-generated method stub
+		txtProfesores = new JTextArea();
+		txtProfesores.setEditable(false);
+		txtProfesores.setColumns(50);
+		
+		try {
+		      while(resultado.next()){
+		   		    	  
+		    	  //dni = resultado.getString("dni");
+			      nombre = resultado.getString("nombre");
+			      apellido = resultado.getString("apellido");
+			      telefono = resultado.getString("telefono");
+			      email = resultado.getString("email");
+			      direccion = resultado.getString("direccion");
+			      estudios = resultado.getString("estudios");
+			     
+		     
+			      listaProfesores.add(new Profesor(nombre, apellido, telefono, email, direccion, estudios));	
+		     		      
+		      }
+		      
+		    }catch (SQLException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		      
+		    }			
+			
+		 txtProfesores.setText("----Profesores Registrados ----\n ");
+		 txtProfesores.append(listaProfesores.toString());	
+		 
+		scrollPane.setViewportView(txtProfesores);
+				
 	}
 	
 	
@@ -165,6 +202,14 @@ public class frmProfesores extends JFrame implements ActionListener{
 			frmBorrarProfesor borrarProf = new frmBorrarProfesor();
 			borrarProf.setVisible(true);
 			this.dispose();
+			
+			break;
+			
+		case "Refresh":
+			
+			this.dispose();
+			frmProfesores nuevo = new frmProfesores();
+			nuevo.setVisible(true); 
 			
 			break;
 			

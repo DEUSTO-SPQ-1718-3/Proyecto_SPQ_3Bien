@@ -89,8 +89,8 @@ public class frmModificarProfesor extends JFrame implements ActionListener{
 	private void recogerInformacion() {
 		// TODO Auto-generated method stub
 		
-		String nombre=textFieldNombre.getText();
-		String modificar= "Select * from profesores where nombre='"+nombre+"' ";
+		String nom=textFieldNombre.getText();
+		String modificar= "Select * from profesores where nombre='"+nom+"' ";
 		//enviar la sentencia a la bbdd
 		ResultSet resultado= conexion.getQuery(modificar);
 	
@@ -111,7 +111,7 @@ public class frmModificarProfesor extends JFrame implements ActionListener{
 			      
 			      //logger.info("This is INFO : Se ha creado un objeto Estudiante con los datos de BD de DNI "+dni);
 			      
-			      frmModificarDatos modificardatos=new frmModificarDatos(profesor);
+			      frmModificarDatos modificardatos=new frmModificarDatos(profesor, nom);
 			      modificardatos.setVisible(true);
 			      
 			      this.dispose();
