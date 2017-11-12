@@ -21,7 +21,8 @@ public class CursosTest {
 	private clsCurso C1;
 	private clsCurso C2;
 	private clsCurso C3;
-	MyDataAccess conexion = new MyDataAccess();
+	MyDataAccess conexion;
+	frmRegistrarCurso registrar;
 	
 	public static junit.framework.Test suite() {
 		 return new JUnit4TestAdapter(CursosTest.class);
@@ -29,16 +30,16 @@ public class CursosTest {
 	
 	//setUp del curso C1 con atributos con valor
 	@Before public void setUp() {
-		C1= new clsCurso (1, "Programacion I","Curso inicial", 40,"lunes y martes de 10 a 12");
-		C2= new clsCurso (2, "Contabilidad I", "Curso iniciacion", 29, "martes y jueves de 8 a 10");
+		C1= new clsCurso (101, "Programacion I","Curso inicial", 40,"lunes y martes de 10 a 12");
+		C2= new clsCurso (102, "Programacion II", "Curso segundo", 40, "lunes y martes de 10 a 12");
 		C3= new clsCurso (3, "Calculo", "Nociones basicas", 48, "viernes de 10 a 14");
+		conexion = new MyDataAccess();
+		registrar = new frmRegistrarCurso();
 	}
 	
 	@Test public void testAnyadir() {
 		
-		frmRegistrarCurso registrar = new frmRegistrarCurso();
-		
-		registrar.registrarCurso(101, "Programacion I","Curso inicial", 40,"lunes y martes de 10 a 12");
+		registrar.registrarCurso(C1.getIdC(), C1.getNombreC(),C1.getDescripcion(), C1.getNumClase(),C1.getHorario());
 		
 		ResultSet comprobar;
 		String nombre="";
@@ -50,7 +51,7 @@ public class CursosTest {
 				
 		try {
 			while(comprobar.next()) {
-				comprobar.next();//paso porque el primero es el ID
+				//comprobar.next();//paso porque el primero es el ID
 				nombre=comprobar.getString("nombreC");
 				desc=comprobar.getString("descripcion");
 				nClase = comprobar.getInt("numClase");
@@ -62,7 +63,7 @@ public class CursosTest {
 		}
 		
 		assertEquals(nombre, "Programacion I");
-		assertEquals(desc, "Curso inicial I");
+		assertEquals(desc, "Curso inicial");
 		assertEquals(nClase, 40);
 		assertEquals(horario, "lunes y martes de 10 a 12");
 		
@@ -71,14 +72,13 @@ public class CursosTest {
 	}
 	
 	@Test public void testBorrar() {
-		frmRegistrarCurso registrar = new frmRegistrarCurso();
 		
-		registrar.registrarCurso(102, "Programacion II","Curso segundo", 40,"lunes y martes de 10 a 12");
+		registrar.registrarCurso(C2.getIdC(), C2.getNombreC(), C2.getDescripcion(), C2.getNumClase(), C2.getHorario());
 		
 		ResultSet comprobar;
 		String nombre="";
 		String desc="";
-		int nClase=0;
+		
 		String horario="";
 		
 		comprobar = conexion.getQuery("SELECT * from cursos where idC=102");
@@ -90,10 +90,10 @@ public class CursosTest {
 		
 		try {
 			while(comprobar.next()) {
-				comprobar.next();
+				//comprobar.next();
 				nombre=comprobar.getString("nombreC");
 				desc=comprobar.getString("descripcion");
-				nClase = comprobar.getInt("numClase");
+				comprobar.next();
 			    horario = comprobar.getString("horario");
 			} 
 		} catch (SQLException e) {
@@ -101,10 +101,9 @@ public class CursosTest {
 			e.printStackTrace();
 		}
 		
-		assertEquals(nombre, null);
-		assertEquals(desc, null);
-		assertEquals(nClase, null);
-		assertEquals(horario, null);
+		assertEquals(nombre, "");
+		assertEquals(desc, "");
+		assertEquals(horario, "");
 		
 	}
 	

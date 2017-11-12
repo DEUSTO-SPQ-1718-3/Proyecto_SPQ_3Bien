@@ -1,0 +1,6 @@
+INFO - 21:29:23,112 - main - estudiantes.frmEstudiantes - This is INFO : Query SELECT lanzada
+FATAL - 21:29:23,447 - main - estudiantes.frmRegistrarEstudiante - This is FATAL : frmReistrarEstudiante se ha destruido
+INFO - 21:29:25,870 - main - estudiantes.frmRegistrarEstudiante - This is INFO : Boton 'Atras' creado
+INFO - 21:29:25,870 - main - estudiantes.frmRegistrarEstudiante - This is INFO : Boton 'Dar de alta' creado
+INFO - 21:29:25,918 - main - estudiantes.frmEstudiantes - This is INFO : Query SELECT lanzada
+FATAL - 21:29:26,058 - main - estudiantes.frmRegistrarEstudiante - This is FATAL : frmReistrarEstudiante se ha destruido
