@@ -131,7 +131,7 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 			case "Dar de alta":
 			
 				
-				String dni=textFieldNombre.getText();
+				String dni=textFieldDni.getText();
 				String nombre=textFieldNombre.getText();
 				String apellido=textFieldApellido.getText();
 				String telefono=textFieldTelefono.getText();

@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 public class frmBorrarProfesor extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
-	private JTextField textFieldNombre;
+	private JTextField textFieldDni;
 	MyDataAccess conexion = new MyDataAccess();
 	
 	/**
@@ -41,20 +41,20 @@ public class frmBorrarProfesor extends JFrame implements ActionListener{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNombreProf = new JLabel("Indica el nombre del profesor que quieres borrar");
-		lblNombreProf.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNombreProf.setBounds(10, 26, 400, 38);
-		contentPane.add(lblNombreProf);
+		JLabel lblDniProf = new JLabel("Indica el dni del profesor que quieres borrar");
+		lblDniProf.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDniProf.setBounds(10, 26, 400, 38);
+		contentPane.add(lblDniProf);
 		
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.setBounds(270, 106, 80, 23);
 		contentPane.add(btnAtras);
 		btnAtras.addActionListener(this);
 		
-		textFieldNombre = new JTextField();
-		textFieldNombre.setBounds(215, 67, 80, 20);
-		contentPane.add(textFieldNombre);
-		textFieldNombre.setColumns(10);
+		textFieldDni = new JTextField();
+		textFieldDni.setBounds(215, 67, 80, 20);
+		contentPane.add(textFieldDni);
+		textFieldDni.setColumns(10);
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(130, 106, 89, 23);
@@ -75,8 +75,8 @@ public class frmBorrarProfesor extends JFrame implements ActionListener{
 				break;
 				
 			case "Aceptar":
-				String nombre=textFieldNombre.getText();
-				borrarProfesor(nombre);
+				String dni=textFieldDni.getText();
+				borrarProfesor(dni);
 				
 				
 				break;
@@ -85,15 +85,15 @@ public class frmBorrarProfesor extends JFrame implements ActionListener{
 	}
 	
 	
-	void borrarProfesor(String nombre) {
+	void borrarProfesor(String dni) {
 		// TODO Auto-generated method stub
 		
-		String borrar= "Delete from profesores where nombre='"+nombre+"' ";
+		String borrar= "Delete from profesores where dni='"+dni+"' ";
 		//enviar la sentencia para borrar el profesor indicado mediante el nombre de la BD
 		conexion.setQuery(borrar);
 		
 		this.dispose();
-		JOptionPane.showMessageDialog(this,"El/la profesor/a "+nombre + " ha sido borrado/a correctamente");
+		JOptionPane.showMessageDialog(this,"El/la profesor/a con dni "+dni + " ha sido borrado/a correctamente");
 				
 	}
 }

@@ -49,7 +49,7 @@ public class ProfesoresTest {
 	}
 	
 	@Test public void testRegistrarProfesor() {
-		
+	/*	
 		frmRegistrarProfesor ventana = new frmRegistrarProfesor();
 		ventana.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
 		
@@ -78,29 +78,34 @@ public class ProfesoresTest {
 			
 		
 			conexion.setQuery("Delete from profesores where dni = '222'");				
+	
+	
+	*/
+		
 	}
 	
 	@Test public void testBorrarEstudiante() {
 				
-		/*conexion.setQuery("Delete from profesores where nombre = 'Idoia'");	
-
-		String nombrePrueba = "Idoia";
+		conexion.setQuery("Delete from profesores where dni = '222'");	
+		
+		String dniBorrar ="222";
+	
 		
 		frmRegistrarProfesor ventana = new frmRegistrarProfesor();
-
-		ventana.registrarProfesor(prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
+		ventana.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
 
 		frmBorrarProfesor borrarPrueba = new frmBorrarProfesor();
-		borrarPrueba.borrarProfesor(nombrePrueba);
+		borrarPrueba.borrarProfesor(dniBorrar);
 
 
 
 		//conexion.setQuery("Delete from profesores where nombre = 'Idoia'");	
 
-		String comprobarBorrado= "Select * from profesores where nombre='Idoia' ";
+		String comprobarBorrado= "Select * from profesores where dni='222' ";
 		
 		ResultSet resultadoBD= conexion.getQuery(comprobarBorrado);
 
+		String dniEsperado="";
 		String nombreEsperado = "";
 		String apellidoEsperado="";
 		String telefonoEsperado = "";
@@ -108,15 +113,24 @@ public class ProfesoresTest {
 		String direccionEsperado = "";
 		String estudiosEsperado = "";
 		
-
-		assertEquals( resultadoBD.getString("nombre"), nombreEsperado);
-		assertEquals( resultadoBD.getString("apellido"), apellidoEsperado);
-		assertEquals( resultadoBD.getString(""), telefonoEsperado);
-		assertEquals( resultadoBD.getString(""), emailEsperado);
-		assertEquals( resultadoBD.getString(""), direccionEsperado);
-		assertEquals( resultadoBD.getString(""), estudiosEsperado);
+		try {
+			while(resultadoBD.next()) {
+				//comprobar.next();//paso porque el primero es el ID
+				assertEquals( resultadoBD.getString("dni"), dniEsperado);
+				assertEquals( resultadoBD.getString("nombre"), nombreEsperado);
+				assertEquals( resultadoBD.getString("apellido"), apellidoEsperado);
+				assertEquals( resultadoBD.getString("telefono"), telefonoEsperado);
+				assertEquals( resultadoBD.getString("email"), emailEsperado);
+				assertEquals( resultadoBD.getString("direccion"), direccionEsperado);
+				assertEquals( resultadoBD.getString("estudios"), estudiosEsperado);				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		
 
-	*/
+
+		}
 	}
 }
