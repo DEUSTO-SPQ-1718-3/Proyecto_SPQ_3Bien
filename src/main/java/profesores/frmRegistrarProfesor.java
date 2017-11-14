@@ -23,6 +23,7 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 	private JTextField textFieldEmail;
 	private JTextField textFieldEstudios;
 	private JTextField textFieldDireccion;
+	private JTextField textFieldDni;
 	
 	MyDataAccess conexion = new MyDataAccess();
 	
@@ -35,6 +36,15 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 		this.setResizable(false);
 		
 		setTitle("MI ACADEMIA: Añadir un profesor");
+		
+		JLabel lblDni = new JLabel("DNI");
+		lblDni.setBounds(40, 20, 60, 25);
+		getContentPane().add(lblDni);
+		
+		textFieldDni = new JTextField();
+		textFieldDni.setBounds(150, 20, 86, 25);
+		getContentPane().add(textFieldDni);
+		textFieldDni.setColumns(10);		
 		
 		
 		JLabel lblNombre = new JLabel("Nombre");
@@ -119,9 +129,9 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 				break;
 				
 			case "Dar de alta":
+			
 				
-				//int idC= 1;//lo suyo seria que se generara auto. con el numero correspondiente de las bbdd
-				//String dni=textFieldNombre.getText();
+				String dni=textFieldNombre.getText();
 				String nombre=textFieldNombre.getText();
 				String apellido=textFieldApellido.getText();
 				String telefono=textFieldTelefono.getText();
@@ -130,7 +140,7 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 				String estudios=textFieldEstudios.getText();
 		
 
-				registrarProfesor(nombre,apellido,telefono,email,direccion,estudios);
+				registrarProfesor(dni,nombre,apellido,telefono,email,direccion,estudios);
 				JOptionPane.showMessageDialog(this,"Nuevo profesor registrado");
 				
 				break;
@@ -140,11 +150,11 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 	
 	}
 		
-		void registrarProfesor (String nombre, String apellido, String telefono, String email, String direccion, String estudios)
+		void registrarProfesor (String dni, String nombre, String apellido, String telefono, String email, String direccion, String estudios)
 		{
 			// TODO Auto-generated method stub
 					
-			String registrar= "insert into profesores values("+"'"+ nombre +"','"+ apellido +"','"+ telefono +"','"+ email +"','"+ direccion +"','"+ estudios+"')";
+			String registrar= "insert into profesores values("+"'"+ dni +"','"+ nombre +"','"+ apellido +"','"+ telefono +"','"+ email +"','"+ direccion +"','"+ estudios+"')";
 			
 			
 			conexion.setQuery(registrar);

@@ -8,6 +8,7 @@ public class Profesor implements Serializable{
 	//private static final long serialVersionUID = -5805334843360532846L;
 	private static final long serialVersionUID = 1L;
 	
+	private String dni;
 	private String nombre;
 	private String apellido;
 	private String telefono;
@@ -17,6 +18,7 @@ public class Profesor implements Serializable{
 	
 	public Profesor(){
 		
+		dni = "";
 		nombre="";
 		apellido="";
 		telefono="";
@@ -26,8 +28,9 @@ public class Profesor implements Serializable{
 	}
 	
 	
-	public Profesor (String nombre, String apellido, String telefono, String email, String direccion, String estudios){
+	public Profesor (String dni, String nombre, String apellido, String telefono, String email, String direccion, String estudios){
 		
+		this.dni=dni;
 		this.nombre=nombre;
 		this.apellido=apellido;
 		this.telefono=telefono;
@@ -37,6 +40,14 @@ public class Profesor implements Serializable{
 		
 			
 	}
+	
+	public String getDni() {
+		return dni;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -83,6 +94,8 @@ public String toString(){
 		StringBuffer salida = new StringBuffer();
 		
 		salida.append("\n--------- ");
+		salida.append("\nDni :");
+		salida.append(dni);
 		salida.append("\nNombre : ");
 		salida.append(nombre);
 		salida.append("\nApellido : ");
