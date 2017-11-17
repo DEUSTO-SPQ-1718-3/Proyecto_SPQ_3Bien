@@ -1,24 +1,23 @@
 package profesores;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.atLeast;
+import static org.mockito.Mockito.doThrow;
 
 import bbdd.MyDataAccess;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import junit.framework.JUnit4TestAdapter;
-import cursos.clsCurso;
 
 public class ProfesoresTest {
 	
 	private Profesor prof1;
 	private Profesor prof2;
-	private Profesor prof3;
-	private Profesor prof4;
+
 	
 	String dniEsperado;
 	String nombreEsperado;
@@ -30,10 +29,13 @@ public class ProfesoresTest {
 	
 	MyDataAccess conexion = new MyDataAccess();
 	
+	//MOCKITO
+	clsGestionNomina GestorNominaMock = Mockito.mock(clsGestionNomina.class);
+	
+	
 	public static junit.framework.Test suite() {
 		 return new JUnit4TestAdapter(ProfesoresTest.class);
 	}
-	
 	
 	@Before public void setUp() {
 		prof1= new Profesor ("222","Idoia","Sanchez","648176201","idoia@gmail.com","Madrid Etorbidea 4","ADE");
@@ -46,10 +48,13 @@ public class ProfesoresTest {
 		direccionEsperado = "Madrid Etorbidea 4";
 		estudiosEsperado = "ADE";
 		
+		
+		prof2= new Profesor (GestorNominaMock);
+		
 	}
-	
+	/*
 	@Test public void testRegistrarProfesor() {
-	/*	
+		
 		frmRegistrarProfesor ventana = new frmRegistrarProfesor();
 		ventana.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
 		
@@ -80,10 +85,10 @@ public class ProfesoresTest {
 			conexion.setQuery("Delete from profesores where dni = '222'");				
 	
 	
-	*/
-		
-	}
 	
+		
+	}*/
+	/*
 	@Test public void testBorrarEstudiante() {
 				
 		conexion.setQuery("Delete from profesores where dni = '222'");	
@@ -132,5 +137,71 @@ public class ProfesoresTest {
 
 
 		}
+	}*/
+	
+	
+	@Test public void testCalcularSalarioBase() {
+		
+		when(GestorNominaMock.obtenerHorasTrabajadas()).thenReturn(100);
+		
+		assertEquals(prof2.calcularSalarioBase(), 1000.0, 0.001);
+				
+		verify(GestorNominaMock).obtenerHorasTrabajadas();
+		
 	}
+	
+	@Test public void testCalcularSalarioTotal() {
+		
+		when(GestorNominaMock.obtenerExtraMes()).thenReturn(10.0);
+		
+		assertEquals(1010.0, prof2.calcularSalarioTotal(1000), 0.001);
+		//assertEquals(1000.0, prof2.calcularSalarioTotal(1000), 0.001);
+				
+		verify(GestorNominaMock).obtenerExtraMes();
+		
+		
+		
+	}
+	
+	@Test public void testPagar() {
+		
+		when(GestorNominaMock.comprobarFechaCaducidad()).thenReturn(true);
+		when(GestorNominaMock.comprobarTarjeta()).thenReturn(true);
+		when(GestorNominaMock.realizarPago(1000.0)).thenReturn(true);
+			
+		//2 CASOS A MOSTRAR: Comentar/descomentar uno y otro
+		
+		//1) Se llama 1 vez a cada uno
+		
+				assertEquals("Pago realizado", prof2.pagar(1000.0));
+				
+				verify(GestorNominaMock, atLeast(1)).comprobarFechaCaducidad();
+				verify(GestorNominaMock, times(1)).comprobarTarjeta();
+				verify(GestorNominaMock, times(1)).realizarPago(1000.0);
+		
+			
+		//2) Se llama 2 veces a pagar() --> 2 veces a cada uno
+		
+		/*		assertEquals("Pago realizado", prof2.pagar(1000.0));		
+				assertEquals("Pago realizado", prof2.pagar(1000.0));
+				
+				verify(GestorNominaMock, atLeast(1)).comprobarFechaCaducidad();
+				verify(GestorNominaMock, atLeast(2)).comprobarTarjeta();
+				verify(GestorNominaMock, times(2)).realizarPago(1000.0);
+		
+		*/
+		
+		
+	}
+	
+	@Test public void testExcepcion() {
+		
+		doThrow(new NullPointerException()).when(GestorNominaMock).lanzaExcepcion();
+		
+	}
+	
+	
+	
+	
+	
 }

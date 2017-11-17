@@ -16,6 +16,15 @@ public class Profesor implements Serializable{
 	private String direccion;
 	private String estudios;
 	
+	private clsGestionNomina gestorNominas;
+	
+	static final double PRECIO_HORA=10;
+	
+	private double SalarioBase;
+	private double SalarioTotal;
+	private String PagarMensaje;
+	
+	
 	public Profesor(){
 		
 		dni = "";
@@ -40,6 +49,14 @@ public class Profesor implements Serializable{
 		
 			
 	}
+	
+	public Profesor (clsGestionNomina gestorNominas ){
+		
+	
+		this.gestorNominas = gestorNominas;
+			
+	}
+	
 	
 	public String getDni() {
 		return dni;
@@ -89,7 +106,7 @@ public class Profesor implements Serializable{
 	}	
 	
 	
-public String toString(){
+	public String toString(){
 		
 		StringBuffer salida = new StringBuffer();
 		
@@ -111,6 +128,50 @@ public String toString(){
 		
 		return salida.toString();	
 		
+	}
+	
+
+	public double calcularSalarioBase() {
+		
+		int horas = gestorNominas.obtenerHorasTrabajadas();
+		
+		//int horas = 100;
+		
+		SalarioBase = horas*PRECIO_HORA;
+		
+		return SalarioBase;			
+	}
+	
+	
+	public double calcularSalarioTotal(double SalarioBase) {
+		
+		double extra = gestorNominas.obtenerExtraMes();
+		
+		SalarioTotal = SalarioBase + extra;
+		
+		return SalarioTotal;
+		
+	}
+	
+	public String pagar (double SalarioTotal) {
+		
+		PagarMensaje = "Pago no se pudo realizar";
+				
+		if (gestorNominas.comprobarFechaCaducidad()) {
+			
+			if (gestorNominas.comprobarTarjeta()) {
+				
+				if (gestorNominas.realizarPago(SalarioTotal)) {
+					
+					PagarMensaje = "Pago realizado";
+					
+				}
+				
+			}
+			
+		}		
+		
+		return PagarMensaje;
 	}
 	
 }

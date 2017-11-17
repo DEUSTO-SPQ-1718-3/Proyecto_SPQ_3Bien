@@ -10,37 +10,22 @@ public class clsGestionNomina {
 	}
 	
 	
-	public boolean comprobarFinalMes(){
+	public int obtenerHorasTrabajadas() {
 		
-		boolean exito=false;
+		int horas = 100;
 		
-		//comprueba
+		return horas;
 		
+	}
+	
+	public double obtenerExtraMes() {
 		
-		return exito;
+		double extra = 14.50;
+		
+		return extra;
 	}
 	
 	
-	public boolean comprobarProfesor(String dni){
-		
-		boolean exito=false;
-		
-		//comprueba
-		
-		
-		return exito;
-	}
-	
-	
-	public String obtenerTarjeta(){
-		
-		String tarjeta="";
-		
-		//comprueba
-		
-		
-		return tarjeta;
-	}
 	
 	public boolean comprobarTarjeta(){
 		
@@ -54,24 +39,35 @@ public class clsGestionNomina {
 	
 
 	//mes y año. Formato: MM/AA
-	public String comprobarFechaCaducidad(){
+	public boolean comprobarFechaCaducidad(){
 		
-		String fecha="";
+		boolean exito = false;
 		
 		//comprueba
 		
 		
-		return fecha;
+		return exito;
 	}
 	
 	
-	public int realizarPago (double nomina){
+	public boolean realizarPago (double nomina){
 		
-		int comprobar=0;
+		boolean comprobar=false;
 		
 		//obtiene
 		
 		return comprobar;
 	}	
+	
+	public void lanzaExcepcion () throws NullPointerException{
+		
+		//metodo que no hace nada
+		
+		
+		
+		
+	}
+
+	
 	
 }
