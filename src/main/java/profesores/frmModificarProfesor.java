@@ -26,6 +26,7 @@ public class frmModificarProfesor extends JFrame implements ActionListener{
 	private JTextField textFieldNombre;
 	MyDataAccess conexion = new MyDataAccess();
 	
+	String dni;
 	String nombre;
 	String apellido;
 	String telefono;
@@ -99,7 +100,7 @@ public class frmModificarProfesor extends JFrame implements ActionListener{
 		try {
 			while(resultado.next()){
 			    	  
-				  
+				  dni =resultado.getString ("dni"); 
 			      nombre = resultado.getString("nombre");
 			      apellido = resultado.getString("apellido");
 			      telefono = resultado.getString("telefono");
@@ -107,7 +108,7 @@ public class frmModificarProfesor extends JFrame implements ActionListener{
 			      direccion = resultado.getString("direccion");
 			      estudios = resultado.getString("estudios");
 			      
-			      Profesor profesor = new Profesor(nombre, apellido, telefono, email, direccion, estudios);
+			      Profesor profesor = new Profesor(dni, nombre, apellido, telefono, email, direccion, estudios);
 			      
 			      //logger.info("This is INFO : Se ha creado un objeto Estudiante con los datos de BD de DNI "+dni);
 			      

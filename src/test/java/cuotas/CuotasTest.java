@@ -1,6 +1,6 @@
 package cuotas;
 
-/*import org.junit.Before;
+import org.junit.Before;
 import org.junit.Test;
 
 import Cuotas.Cuota;
@@ -45,7 +45,7 @@ public class CuotasTest {
 		int horas=0;
 		String fecha="";
 		
-		comprobar = conexion.getQuery("SELECT * from cursos where horas = 10");
+		comprobar = conexion.getQuery("SELECT * from cuotas where horas = 10");
 				
 		try {
 			while(comprobar.next()) {
@@ -66,7 +66,7 @@ public class CuotasTest {
 		assertEquals(fecha, "2/02/2017");
 		
 		//limpiar de BBDD el registro generado
-		conexion.setQuery("Delete from proyecto.cursos where horas = 10");
+		conexion.setQuery("Delete from proyecto.cuotas where horas = 10");
 	}
 	
-}*/
+}

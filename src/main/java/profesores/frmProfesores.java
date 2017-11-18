@@ -47,6 +47,7 @@ public class frmProfesores extends JFrame implements ActionListener{
 	MyDataAccess conexion;
     ResultSet resultado;
    
+    String dni;
     String nombre;
     String apellido;
     String telefono;
@@ -69,16 +70,7 @@ public class frmProfesores extends JFrame implements ActionListener{
 		listaProfesores = new ArrayList<Profesor>(); 
 		
 		//BD
-		
-		//MyDataAccess conexion = new MyDataAccess();
-			  //  ResultSet resultado;
-			  //  String nombre;
-			 //   String apellido;
-			 //   String telefono;
-			  //  String email;
-			 //   String direccion;
-			  //  String estudios;
-			    
+
 		conexion = new MyDataAccess();
 			    
 		resultado = conexion.getQuery("select * from profesores");
@@ -146,7 +138,7 @@ public class frmProfesores extends JFrame implements ActionListener{
 		try {
 		      while(resultado.next()){
 		   		    	  
-		    	  //dni = resultado.getString("dni");
+		    	  dni = resultado.getString("dni");
 			      nombre = resultado.getString("nombre");
 			      apellido = resultado.getString("apellido");
 			      telefono = resultado.getString("telefono");
@@ -155,7 +147,7 @@ public class frmProfesores extends JFrame implements ActionListener{
 			      estudios = resultado.getString("estudios");
 			     
 		     
-			      listaProfesores.add(new Profesor(nombre, apellido, telefono, email, direccion, estudios));	
+			      listaProfesores.add(new Profesor(dni, nombre, apellido, telefono, email, direccion, estudios));	
 		     		      
 		      }
 		      

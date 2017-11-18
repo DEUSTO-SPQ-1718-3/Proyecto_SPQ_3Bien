@@ -8,6 +8,7 @@ public class Profesor implements Serializable{
 	//private static final long serialVersionUID = -5805334843360532846L;
 	private static final long serialVersionUID = 1L;
 	
+	private String dni;
 	private String nombre;
 	private String apellido;
 	private String telefono;
@@ -15,8 +16,18 @@ public class Profesor implements Serializable{
 	private String direccion;
 	private String estudios;
 	
+	private clsGestionNomina gestorNominas;
+	
+	static final double PRECIO_HORA=10;
+	
+	private double SalarioBase;
+	private double SalarioTotal;
+	private String PagarMensaje;
+	
+	
 	public Profesor(){
 		
+		dni = "";
 		nombre="";
 		apellido="";
 		telefono="";
@@ -26,8 +37,9 @@ public class Profesor implements Serializable{
 	}
 	
 	
-	public Profesor (String nombre, String apellido, String telefono, String email, String direccion, String estudios){
+	public Profesor (String dni, String nombre, String apellido, String telefono, String email, String direccion, String estudios){
 		
+		this.dni=dni;
 		this.nombre=nombre;
 		this.apellido=apellido;
 		this.telefono=telefono;
@@ -37,6 +49,22 @@ public class Profesor implements Serializable{
 		
 			
 	}
+	
+	public Profesor (clsGestionNomina gestorNominas ){
+		
+	
+		this.gestorNominas = gestorNominas;
+			
+	}
+	
+	
+	public String getDni() {
+		return dni;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -78,11 +106,13 @@ public class Profesor implements Serializable{
 	}	
 	
 	
-public String toString(){
+	public String toString(){
 		
 		StringBuffer salida = new StringBuffer();
 		
 		salida.append("\n--------- ");
+		salida.append("\nDni :");
+		salida.append(dni);
 		salida.append("\nNombre : ");
 		salida.append(nombre);
 		salida.append("\nApellido : ");
@@ -98,6 +128,50 @@ public String toString(){
 		
 		return salida.toString();	
 		
+	}
+	
+
+	public double calcularSalarioBase() {
+		
+		int horas = gestorNominas.obtenerHorasTrabajadas();
+		
+		//int horas = 100;
+		
+		SalarioBase = horas*PRECIO_HORA;
+		
+		return SalarioBase;			
+	}
+	
+	
+	public double calcularSalarioTotal(double SalarioBase) {
+		
+		double extra = gestorNominas.obtenerExtraMes();
+		
+		SalarioTotal = SalarioBase + extra;
+		
+		return SalarioTotal;
+		
+	}
+	
+	public String pagar (double SalarioTotal) {
+		
+		PagarMensaje = "Pago no se pudo realizar";
+				
+		if (gestorNominas.comprobarFechaCaducidad()) {
+			
+			if (gestorNominas.comprobarTarjeta()) {
+				
+				if (gestorNominas.realizarPago(SalarioTotal)) {
+					
+					PagarMensaje = "Pago realizado";
+					
+				}
+				
+			}
+			
+		}		
+		
+		return PagarMensaje;
 	}
 	
 }
