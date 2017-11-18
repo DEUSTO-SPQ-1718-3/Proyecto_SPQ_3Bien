@@ -5,8 +5,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
+import org.mockito.stubbing.Answer;
 
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
@@ -154,10 +156,37 @@ public class ProfesoresTest {
 	}*/
 	
 	
+
 	@Test public void testCalcularSalarioBase() {
 		
+		Answer <Integer> baja = new Answer<Integer>()
+		{
+		public Integer baja() throws Throwable {
+	            //String mensaje = "Empleado en estado de baja";
+	      int calculo;  
+	      //calcular el salario en caso de baja
+	      
+	      calculo =0;
+				
+			return calculo;
+	            
+	           
+	            
+	            
+			}
+
+		@Override
+		public Integer answer(InvocationOnMock arg0) throws Throwable {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+        
+		};
 		
 		when(GestorNominaMock.calcularSalarioBase("jornada commpleta")).thenReturn(1500);
+		when(GestorNominaMock.calcularSalarioBase("baja")).then(baja);
+		
 		when(GestorNominaMock.calcularSalarioBase("media jornada")).thenReturn(950);
 		
 		when(GestorNominaMock.obtenerHorasTrabajadas()).thenReturn(100);
@@ -168,7 +197,7 @@ public class ProfesoresTest {
 		
 		//verify(GestorNominaMock).calcularSalarioBase("media jornada");
 		
-	}
+		}
 	
 	@Test public void testCalcularSalarioTotal() {
 		
