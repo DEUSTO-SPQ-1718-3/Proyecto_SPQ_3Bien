@@ -2,6 +2,7 @@ package profesores;
 
 public class clsGestionNomina {
 
+	private int SalarioBase;
 		
 	public clsGestionNomina(){
 		
@@ -17,6 +18,7 @@ public class clsGestionNomina {
 		return horas;
 		
 	}
+
 	
 	public double obtenerExtraMes() {
 		
@@ -26,10 +28,11 @@ public class clsGestionNomina {
 	}
 	
 	
+
 	
-	public boolean comprobarTarjeta(){
+	public boolean comprobarTarjeta(boolean exito){
 		
-		boolean exito=false;
+		//boolean exito=false;
 		
 		//comprueba
 		
@@ -39,9 +42,7 @@ public class clsGestionNomina {
 	
 
 	//mes y año. Formato: MM/AA
-	public boolean comprobarFechaCaducidad(){
-		
-		boolean exito = false;
+	public boolean comprobarFechaCaducidad(boolean exito){
 		
 		//comprueba
 		
@@ -58,6 +59,15 @@ public class clsGestionNomina {
 		
 		return comprobar;
 	}	
+	
+	public int calcularSalarioBase(String tipo)
+	{
+	
+	
+		return SalarioBase;			
+		
+	}
+	
 	
 	public void lanzaExcepcion () throws NullPointerException{
 		

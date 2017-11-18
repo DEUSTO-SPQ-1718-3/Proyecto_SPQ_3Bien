@@ -1,14 +1,18 @@
 package profesores;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
+
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.doThrow;
-
 import bbdd.MyDataAccess;
 import static org.junit.Assert.assertEquals;
 import junit.framework.JUnit4TestAdapter;
@@ -29,7 +33,17 @@ public class ProfesoresTest {
 	
 	MyDataAccess conexion = new MyDataAccess();
 	
-	//MOCKITO
+	//Opcion 1 MOCKITO//
+/*
+	@Mock
+	clsGestionNomina GestorNominaMock;	
+	
+	@Rule public MockitoRule rule = MockitoJUnit.rule();
+	
+*/
+	
+	//Opcion 2 MOCKITO
+	
 	clsGestionNomina GestorNominaMock = Mockito.mock(clsGestionNomina.class);
 	
 	
@@ -142,11 +156,17 @@ public class ProfesoresTest {
 	
 	@Test public void testCalcularSalarioBase() {
 		
+		
+		when(GestorNominaMock.calcularSalarioBase("jornada commpleta")).thenReturn(1500);
+		when(GestorNominaMock.calcularSalarioBase("media jornada")).thenReturn(950);
+		
 		when(GestorNominaMock.obtenerHorasTrabajadas()).thenReturn(100);
 		
 		assertEquals(prof2.calcularSalarioBase(), 1000.0, 0.001);
 				
 		verify(GestorNominaMock).obtenerHorasTrabajadas();
+		
+		//verify(GestorNominaMock).calcularSalarioBase("media jornada");
 		
 	}
 	
@@ -163,6 +183,7 @@ public class ProfesoresTest {
 		
 	}
 	
+	/*
 	@Test public void testPagar() {
 		
 		when(GestorNominaMock.comprobarFechaCaducidad()).thenReturn(true);
@@ -177,6 +198,43 @@ public class ProfesoresTest {
 				
 				verify(GestorNominaMock, atLeast(1)).comprobarFechaCaducidad();
 				verify(GestorNominaMock, times(1)).comprobarTarjeta();
+				verify(GestorNominaMock, times(1)).realizarPago(1000.0);
+		
+			
+		//2) Se llama 2 veces a pagar() --> 2 veces a cada uno
+		/*
+				assertEquals("Pago realizado", prof2.pagar(1000.0));		
+				assertEquals("Pago realizado", prof2.pagar(1000.0));
+				
+				verify(GestorNominaMock, atLeast(1)).comprobarFechaCaducidad();
+				verify(GestorNominaMock, atLeast(2)).comprobarTarjeta();
+				verify(GestorNominaMock, times(2)).realizarPago(1000.0);
+		
+		
+	
+
+	}
+
+*/
+	
+@Test public void testPagar() {
+		
+		when(GestorNominaMock.comprobarFechaCaducidad(true)).thenReturn(true);
+		when(GestorNominaMock.comprobarFechaCaducidad(false)).thenReturn(false);
+		
+		when(GestorNominaMock.comprobarTarjeta(true)).thenReturn(true);
+		when(GestorNominaMock.comprobarTarjeta(false)).thenReturn(true);
+		
+		when(GestorNominaMock.realizarPago(1000.0)).thenReturn(true);
+			
+		//2 CASOS A MOSTRAR: Comentar/descomentar uno y otro
+		
+		//1) Se llama 1 vez a cada uno
+		
+				assertEquals("Pago realizado", prof2.pagar(1000.0));
+				
+				verify(GestorNominaMock, atLeast(1)).comprobarFechaCaducidad(true);
+				verify(GestorNominaMock, times(1)).comprobarTarjeta(true);
 				verify(GestorNominaMock, times(1)).realizarPago(1000.0);
 		
 			
