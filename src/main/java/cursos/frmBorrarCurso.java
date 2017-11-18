@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import bbdd.MyDataAccess;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -72,13 +74,19 @@ public class frmBorrarCurso extends JFrame implements ActionListener{
 				
 			case "Aceptar":
 				int BorrarID=Integer.parseInt(textFieldID.getText());
-				String borrar= "Delete from cursos where idC='"+BorrarID+"' ";
-				//enviar la sentencia a la bbdd
-				conexion.setQuery(borrar);
-				logger.info("This is INFO : Se ha borrado el curso con el id introducido");
+				borrarCurso(BorrarID);
 				this.dispose();			
 				break;
 		}
 		
+	}
+
+	void borrarCurso(int borrarID) {
+		// TODO Auto-generated method stub
+		String borrar= "Delete from cursos where idC='"+borrarID+"' ";
+		//enviar la sentencia a la bbdd
+		conexion.setQuery(borrar);
+		logger.info("This is INFO : Se ha borrado el curso con el id introducido");
+		JOptionPane.showMessageDialog(this,"Curso de ID "+borrarID+ " borrado CORRECTAMENTE");
 	}
 }

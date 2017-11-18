@@ -26,7 +26,13 @@ public class frmMenuCursos extends JFrame implements ActionListener{
 	private ArrayList<clsCurso> listaCursos = new ArrayList<clsCurso>();
 	MyDataAccess conexion = new MyDataAccess();
 	final static Logger logger = Logger.getLogger(frmMenuCursos.class);//para los mensajes de log4java
-
+	ResultSet visualizar;
+	int idC;
+	String nombreC;
+	String descripcion;
+	int numClase;
+	String horario;
+	
 	public frmMenuCursos() {
 	
 		
@@ -53,31 +59,9 @@ public class frmMenuCursos extends JFrame implements ActionListener{
 		txtCursosRegistrados.setEditable(false);
 		
 		//RELLENAR LA LISTA CON LOS DATOS DE LA BBDD
-		 ResultSet visualizar;
-		 int idC;
-		 String nombreC;
-		 String descripcion;
-		 int numClase;
-		 String horario;
-		    
 		visualizar = conexion.getQuery("SELECT * from cursos");
-		
-		try {
-		    while(visualizar.next()){
-		    idC= visualizar.getInt("idC");
-		    nombreC = visualizar.getString("nombreC");
-		    descripcion = visualizar.getString("descripcion");
-		    numClase = visualizar.getInt("numClase");
-		    horario = visualizar.getString("horario");
-		      
-			listaCursos.add(new clsCurso(idC, nombreC, descripcion, numClase, horario));	
-		 }
-		 }catch (SQLException e) {
-		      // TODO Auto-generated catch block
-		      e.printStackTrace();
-		 }
-		
-		
+		cargarCursos();		    
+				
 		txtCursosRegistrados.append(listaCursos.toString());		
 		
 		JButton btnModificar = new JButton("MODIFICAR");
@@ -122,6 +106,27 @@ public class frmMenuCursos extends JFrame implements ActionListener{
 	}
 	
 	
+	void cargarCursos() {
+		// TODO Auto-generated method stub
+				
+		try {
+		    while(visualizar.next()){
+		    idC= visualizar.getInt("idC");
+		    nombreC = visualizar.getString("nombreC");
+		    descripcion = visualizar.getString("descripcion");
+		    numClase = visualizar.getInt("numClase");
+		    horario = visualizar.getString("horario");
+		      
+			listaCursos.add(new clsCurso(idC, nombreC, descripcion, numClase, horario));	
+		 }
+		 }catch (SQLException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		 }
+		
+	}
+
+
 	public void actionPerformed(ActionEvent e) {
 		
 		

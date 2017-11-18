@@ -112,20 +112,22 @@ public class frmModificarDatosCurso extends JFrame implements ActionListener{
 				int numC=Integer.parseInt(textFieldNumC.getText());
 				String horario=textFieldHorario.getText();
 				
-				logger.trace("This is TRACE : Se han recogido los datos introducidos para modificar");
+				modificarCurso(idC, nombreC, descrip, numC, horario);
 				
-				String registrar= "update cursos set idC='"+ idC +"',nombreC='"+ nombreC +"',descripcion='"+ descrip +"', numClase='"+ numC +"', horario='"+ horario +"' where idC='"+idC+"'";
-				//se envia el script SQL a la BBDD y se registra el curso
-								
-				conexion.setQuery(registrar);
-				
-				this.dispose();
-				
-				JOptionPane.showMessageDialog(this,"Curso con ID: "+idC + " modificado CORRECTAMENTE");
-				
+				this.dispose();				
 				break;
 	
 		}
 		
+	}
+
+	private void modificarCurso(int idC, String nombreC, String descrip, int numC, String horario) {
+		// TODO Auto-generated method stub
+		logger.trace("This is TRACE : Se han recogido los datos introducidos para modificar");
+		
+		String registrar= "update cursos set idC='"+ idC +"',nombreC='"+ nombreC +"',descripcion='"+ descrip +"', numClase='"+ numC +"', horario='"+ horario +"' where idC='"+idC+"'";
+		//se envia el script SQL a la BBDD y se registra el curso			
+		conexion.setQuery(registrar);
+		JOptionPane.showMessageDialog(this,"Curso con ID: "+idC + " modificado CORRECTAMENTE");
 	}
 }

@@ -23,6 +23,9 @@ public class CursosTest {
 	private clsCurso C3;
 	MyDataAccess conexion;
 	frmRegistrarCurso registrar;
+	frmBorrarCurso borrar;
+	frmModificarDatosCurso modificar;
+	frmMenuCursos menu;
 	
 	public static junit.framework.Test suite() {
 		 return new JUnit4TestAdapter(CursosTest.class);
@@ -32,9 +35,12 @@ public class CursosTest {
 	@Before public void setUp() {
 		C1= new clsCurso (101, "Programacion I","Curso inicial", 40,"lunes y martes de 10 a 12");
 		C2= new clsCurso (102, "Programacion II", "Curso segundo", 40, "lunes y martes de 10 a 12");
-		C3= new clsCurso (3, "Calculo", "Nociones basicas", 48, "viernes de 10 a 14");
+		C3= new clsCurso (103, "Calculo", "Nociones basicas", 48, "viernes de 10 a 14");
 		conexion = new MyDataAccess();
 		registrar = new frmRegistrarCurso();
+		borrar= new frmBorrarCurso();
+		modificar= new frmModificarDatosCurso(C1);
+		menu= new frmMenuCursos();
 	}
 	
 	@Test public void testAnyadir() {
@@ -48,7 +54,9 @@ public class CursosTest {
 		String horario="";
 		
 		comprobar = conexion.getQuery("SELECT * from cursos where idC=101");
-				
+		
+		menu.cargarCursos();
+		
 		try {
 			while(comprobar.next()) {
 				//comprobar.next();//paso porque el primero es el ID
@@ -68,7 +76,71 @@ public class CursosTest {
 		assertEquals(horario, "lunes y martes de 10 a 12");
 		
 		//limpiar de BBDD el registro generado
-		conexion.setQuery("Delete from proyecto.cursos where idC=101");
+		borrar.borrarCurso(101);
+	}
+	
+	@Test public void testModificar() {
+		registrar.registrarCurso(C3.getIdC(), C3.getNombreC(), C3.getDescripcion(), C3.getNumClase(), C3.getHorario());
+		
+		ResultSet comprobar;
+		String nombre="";
+		String desc="";
+		int nClase=0;
+		String horario="";
+		
+		comprobar = conexion.getQuery("SELECT * from cursos where idC=103");
+		
+		menu.cargarCursos();
+		
+		try {
+			while(comprobar.next()) {
+				//comprobar.next();//paso porque el primero es el ID
+				nombre=comprobar.getString("nombreC");
+				desc=comprobar.getString("descripcion");
+				nClase = comprobar.getInt("numClase");
+			    horario = comprobar.getString("horario");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertEquals(nombre, "Calculo");
+		assertEquals(desc, "Nociones basicas");
+		assertEquals(nClase, 48);
+		assertEquals(horario, "viernes de 10 a 14");
+		
+		nombre="Calculo";
+		desc="Nociones basicas y funcionales";
+		nClase=58;
+		horario="quedan suspendidas hasta nuevo aviso";
+		
+		conexion.setQuery("update cursos set idC=103, nombreC='"+ nombre +"',descripcion='"+ desc +"', numClase='"+ nClase +"', horario='"+ horario +"' where idC=103");
+		
+		
+		comprobar = conexion.getQuery("SELECT * from cursos where idC=103");
+		
+		menu.cargarCursos();
+		try {
+			while(comprobar.next()) {
+				//comprobar.next();//paso porque el primero es el ID
+				nombre=comprobar.getString("nombreC");
+				desc=comprobar.getString("descripcion");
+				nClase = comprobar.getInt("numClase");
+			    horario = comprobar.getString("horario");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertEquals(nombre, "Calculo");
+		assertEquals(desc, "Nociones basicas y funcionales");
+		assertEquals(nClase, 58);
+		assertEquals(horario, "quedan suspendidas hasta nuevo aviso");
+		
+		//limpiar de BBDD el registro generado
+		borrar.borrarCurso(103);
 	}
 	
 	@Test public void testBorrar() {
@@ -78,15 +150,16 @@ public class CursosTest {
 		ResultSet comprobar;
 		String nombre="";
 		String desc="";
-		
 		String horario="";
 		
 		comprobar = conexion.getQuery("SELECT * from cursos where idC=102");
 		
 		//limpiar de BBDD el registro generado
-		conexion.setQuery("Delete from proyecto.cursos where idC=102");
+		borrar.borrarCurso(102);
 		
 		comprobar = conexion.getQuery("SELECT * from cursos where idC=102");
+		
+		menu.cargarCursos();
 		
 		try {
 			while(comprobar.next()) {
