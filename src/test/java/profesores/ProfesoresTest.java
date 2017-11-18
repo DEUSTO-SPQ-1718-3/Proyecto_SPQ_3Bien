@@ -10,6 +10,7 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.mockito.stubbing.Answer;
 
+import org.mockito.stubbing.Answer;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
@@ -170,8 +171,7 @@ public class ProfesoresTest {
 				
 			return calculo;
 	            
-	           
-	            
+	           	            
 	            
 			}
 
@@ -184,33 +184,86 @@ public class ProfesoresTest {
         
 		};
 		
-		when(GestorNominaMock.calcularSalarioBase("jornada commpleta")).thenReturn(1500);
-		when(GestorNominaMock.calcularSalarioBase("baja")).then(baja);
-		
-		when(GestorNominaMock.calcularSalarioBase("media jornada")).thenReturn(950);
-		
-		when(GestorNominaMock.obtenerHorasTrabajadas()).thenReturn(100);
-		
-		assertEquals(prof2.calcularSalarioBase(), 1000.0, 0.001);
-				
-		verify(GestorNominaMock).obtenerHorasTrabajadas();
-		
-		//verify(GestorNominaMock).calcularSalarioBase("media jornada");
-		
-		}
-	
-	@Test public void testCalcularSalarioTotal() {
-		
-		when(GestorNominaMock.obtenerExtraMes()).thenReturn(10.0);
-		
-		assertEquals(1010.0, prof2.calcularSalarioTotal(1000), 0.001);
-		//assertEquals(1000.0, prof2.calcularSalarioTotal(1000), 0.001);
-				
-		verify(GestorNominaMock).obtenerExtraMes();
 		
 		
 		
 	}
+	
+//SALARIO BASE --------------------------------------------------------------------------------
+	@Test public void testCalcularSalarioBaseCompleta() {
+		
+		when(GestorNominaMock.calcularPrecioHora("jornada completa")).thenReturn(11.0);
+					
+		when(GestorNominaMock.obtenerHorasTrabajadas("jornada completa")).thenReturn(120);
+		
+		assertEquals(prof2.calcularSalarioBase("jornada completa"), 1320.0, 0.001);
+				
+		verify(GestorNominaMock, atLeast(1)).calcularPrecioHora("jornada completa");
+				
+		verify(GestorNominaMock, atLeast(1)).obtenerHorasTrabajadas("jornada completa");
+		
+		
+	}
+	
+	@Test public void testCalcularSalarioBaseMedia() {
+		
+		
+		when(GestorNominaMock.calcularPrecioHora("media jornada")).thenReturn(13.0);
+				
+		when(GestorNominaMock.obtenerHorasTrabajadas("media jornada")).thenReturn(60);
+					
+		assertEquals(prof2.calcularSalarioBase("media jornada"), 780.0, 0.001);
+
+		verify(GestorNominaMock, atLeast(1)).calcularPrecioHora("media jornada");
+		
+		verify(GestorNominaMock, atLeast(1)).obtenerHorasTrabajadas("media jornada");
+	
+		
+	}
+
+	@Test public void testCalcularSalarioBaseBaja() {
+	
+	
+	when(GestorNominaMock.calcularPrecioHora("baja")).thenReturn(0.0);
+	
+	
+	
+	when(GestorNominaMock.obtenerHorasTrabajadas("baja")).thenReturn(0);
+	
+		
+	assertEquals(prof2.calcularSalarioBase("baja"), 0.0, 0.001);
+	
+	verify(GestorNominaMock, times(1)).calcularPrecioHora("baja");
+	
+	
+	verify(GestorNominaMock, times(1)).obtenerHorasTrabajadas("baja");	
+	
+	
+	}
+	
+//SALARIO TOTAL --------------------------------------------------------------------------------	
+	@Test public void testCalcularSalarioTotalNormal() {
+		
+		when(GestorNominaMock.obtenerExtraMes("normal")).thenReturn(50.0);
+		
+		assertEquals(1050.0, prof2.calcularSalarioTotal("normal",1000.0), 0.001);
+						
+		verify(GestorNominaMock).obtenerExtraMes("normal");
+				
+		
+	}
+	
+	@Test public void testCalcularSalarioTotalEspecial() {
+		
+		when(GestorNominaMock.obtenerExtraMes("especial")).thenReturn(100.0);
+		
+		assertEquals(1100.0, prof2.calcularSalarioTotal("especial",1000.0), 0.001);
+						
+		verify(GestorNominaMock).obtenerExtraMes("especial");
+				
+		
+	}
+	
 	
 	/*
 	@Test public void testPagar() {
@@ -246,24 +299,24 @@ public class ProfesoresTest {
 
 */
 	
-@Test public void testPagar() {
+//PAGAR --------------------------------------------------------------------------------------	
+	
+@Test public void testPagarOk() {
 		
-		when(GestorNominaMock.comprobarFechaCaducidad(true)).thenReturn(true);
-		when(GestorNominaMock.comprobarFechaCaducidad(false)).thenReturn(false);
-		
-		when(GestorNominaMock.comprobarTarjeta(true)).thenReturn(true);
-		when(GestorNominaMock.comprobarTarjeta(false)).thenReturn(true);
-		
+		when(GestorNominaMock.comprobarFechaCaducidad("112233")).thenReturn(true);
+				
+		when(GestorNominaMock.comprobarTarjeta("112233")).thenReturn(true);
+				
 		when(GestorNominaMock.realizarPago(1000.0)).thenReturn(true);
 			
 		//2 CASOS A MOSTRAR: Comentar/descomentar uno y otro
 		
 		//1) Se llama 1 vez a cada uno
 		
-				assertEquals("Pago realizado", prof2.pagar(1000.0));
+				assertEquals("Pago realizado", prof2.pagar(1000.0,"112233"));
 				
-				verify(GestorNominaMock, atLeast(1)).comprobarFechaCaducidad(true);
-				verify(GestorNominaMock, times(1)).comprobarTarjeta(true);
+				verify(GestorNominaMock, atLeast(1)).comprobarFechaCaducidad("112233");
+				verify(GestorNominaMock, times(1)).comprobarTarjeta("112233");
 				verify(GestorNominaMock, times(1)).realizarPago(1000.0);
 		
 			
@@ -280,7 +333,33 @@ public class ProfesoresTest {
 		
 		
 	}
+
+
+	@Test public void testPagarMal() {
 	
+	when(GestorNominaMock.comprobarFechaCaducidad("112233")).thenReturn(false);
+	
+	when(GestorNominaMock.comprobarTarjeta("112233")).thenReturn(false);
+	
+	when(GestorNominaMock.realizarPago(1000.0)).thenReturn(true);
+		
+		
+			assertEquals("Pago no se pudo realizar", prof2.pagar(1000.0, "112233"));
+			
+			verify(GestorNominaMock, atLeast(1)).comprobarFechaCaducidad("112233");
+			
+			//da error, porque da false el anterior. No llega aquí
+			verify(GestorNominaMock, times(0)).comprobarTarjeta("112233"); 
+			//verify(GestorNominaMock, times(1)).comprobarTarjeta("112233"); 
+						
+			verify(GestorNominaMock, times(0)).realizarPago(1000.0);
+			//verify(GestorNominaMock, times(1)).realizarPago(1000.0);
+	
+}
+	
+
+//EXCEPCION --------------------------------------------------------------------------------------------
+
 	@Test public void testExcepcion() {
 		
 		doThrow(new NullPointerException()).when(GestorNominaMock).lanzaExcepcion();
