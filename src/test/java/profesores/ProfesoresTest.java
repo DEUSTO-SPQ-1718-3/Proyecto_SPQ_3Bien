@@ -1,13 +1,16 @@
 package profesores;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
-
 import org.mockito.stubbing.Answer;
+
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
@@ -67,6 +70,92 @@ public class ProfesoresTest {
 		
 	}
 	
+	
+@Test public void testRegistrarProfesor() {
+		
+		frmRegistrarProfesor ventana = new frmRegistrarProfesor();
+		ventana.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
+		
+		String registrado= "Select * from profesores where dni='222' ";
+		//enviar la sentencia a la bbdd
+		ResultSet resultadoBD= conexion.getQuery(registrado);
+		
+		
+		try {
+			while(resultadoBD.next()) {
+				//comprobar.next();//paso porque el primero es el ID
+				assertEquals( resultadoBD.getString("dni"), dniEsperado);
+				assertEquals( resultadoBD.getString("nombre"), nombreEsperado);
+				assertEquals( resultadoBD.getString("apellido"), apellidoEsperado);
+				assertEquals( resultadoBD.getString("telefono"), telefonoEsperado);
+				assertEquals( resultadoBD.getString("email"), emailEsperado);
+				assertEquals( resultadoBD.getString("direccion"), direccionEsperado);
+				assertEquals( resultadoBD.getString("estudios"), estudiosEsperado);				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+			
+		
+			conexion.setQuery("Delete from profesores where dni = '222'");				
+	
+	
+	
+		
+	}
+	
+	@Test public void testBorrarProfesor() {
+				
+		conexion.setQuery("Delete from profesores where dni = '222'");	
+		
+		String dniBorrar ="222";
+	
+		
+		frmRegistrarProfesor ventana = new frmRegistrarProfesor();
+		ventana.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
+
+		frmBorrarProfesor borrarPrueba = new frmBorrarProfesor();
+		borrarPrueba.borrarProfesor(dniBorrar);
+
+
+
+		//conexion.setQuery("Delete from profesores where nombre = 'Idoia'");	
+
+		String comprobarBorrado= "Select * from profesores where dni='222' ";
+		
+		ResultSet resultadoBD= conexion.getQuery(comprobarBorrado);
+
+		String dniEsperado="";
+		String nombreEsperado = "";
+		String apellidoEsperado="";
+		String telefonoEsperado = "";
+		String emailEsperado = "";
+		String direccionEsperado = "";
+		String estudiosEsperado = "";
+		
+		try {
+			while(resultadoBD.next()) {
+				//comprobar.next();//paso porque el primero es el ID
+				assertEquals( resultadoBD.getString("dni"), dniEsperado);
+				assertEquals( resultadoBD.getString("nombre"), nombreEsperado);
+				assertEquals( resultadoBD.getString("apellido"), apellidoEsperado);
+				assertEquals( resultadoBD.getString("telefono"), telefonoEsperado);
+				assertEquals( resultadoBD.getString("email"), emailEsperado);
+				assertEquals( resultadoBD.getString("direccion"), direccionEsperado);
+				assertEquals( resultadoBD.getString("estudios"), estudiosEsperado);				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		
+
+
+		}
+	}
 
 //SALARIO BASE --------------------------------------------------------------------------------
 	@Test public void testCalcularSalarioBaseCompleta() {
