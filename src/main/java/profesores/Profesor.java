@@ -136,6 +136,8 @@ public class Profesor implements Serializable{
 		
 		int horas = gestorNominas.obtenerHorasTrabajadas(tipo);
 		
+		// = gestorNominas.obtenerHorasTrabajadas(tipo);
+		
 		double precio = gestorNominas.calcularPrecioHora(tipo);		
 		
 		SalarioBase = horas*precio;

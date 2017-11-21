@@ -66,126 +66,8 @@ public class ProfesoresTest {
 		prof2= new Profesor (GestorNominaMock);
 		
 	}
-	/*
-	@Test public void testRegistrarProfesor() {
-		
-		frmRegistrarProfesor ventana = new frmRegistrarProfesor();
-		ventana.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
-		
-		String registrado= "Select * from profesores where dni='222' ";
-		//enviar la sentencia a la bbdd
-		ResultSet resultadoBD= conexion.getQuery(registrado);
-		
-		
-		try {
-			while(resultadoBD.next()) {
-				//comprobar.next();//paso porque el primero es el ID
-				assertEquals( resultadoBD.getString("dni"), dniEsperado);
-				assertEquals( resultadoBD.getString("nombre"), nombreEsperado);
-				assertEquals( resultadoBD.getString("apellido"), apellidoEsperado);
-				assertEquals( resultadoBD.getString("telefono"), telefonoEsperado);
-				assertEquals( resultadoBD.getString("email"), emailEsperado);
-				assertEquals( resultadoBD.getString("direccion"), direccionEsperado);
-				assertEquals( resultadoBD.getString("estudios"), estudiosEsperado);				
-				
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-			
-		
-			conexion.setQuery("Delete from profesores where dni = '222'");				
-	
-	
-	
-		
-	}*/
-	/*
-	@Test public void testBorrarEstudiante() {
-				
-		conexion.setQuery("Delete from profesores where dni = '222'");	
-		
-		String dniBorrar ="222";
-	
-		
-		frmRegistrarProfesor ventana = new frmRegistrarProfesor();
-		ventana.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
-
-		frmBorrarProfesor borrarPrueba = new frmBorrarProfesor();
-		borrarPrueba.borrarProfesor(dniBorrar);
-
-
-
-		//conexion.setQuery("Delete from profesores where nombre = 'Idoia'");	
-
-		String comprobarBorrado= "Select * from profesores where dni='222' ";
-		
-		ResultSet resultadoBD= conexion.getQuery(comprobarBorrado);
-
-		String dniEsperado="";
-		String nombreEsperado = "";
-		String apellidoEsperado="";
-		String telefonoEsperado = "";
-		String emailEsperado = "";
-		String direccionEsperado = "";
-		String estudiosEsperado = "";
-		
-		try {
-			while(resultadoBD.next()) {
-				//comprobar.next();//paso porque el primero es el ID
-				assertEquals( resultadoBD.getString("dni"), dniEsperado);
-				assertEquals( resultadoBD.getString("nombre"), nombreEsperado);
-				assertEquals( resultadoBD.getString("apellido"), apellidoEsperado);
-				assertEquals( resultadoBD.getString("telefono"), telefonoEsperado);
-				assertEquals( resultadoBD.getString("email"), emailEsperado);
-				assertEquals( resultadoBD.getString("direccion"), direccionEsperado);
-				assertEquals( resultadoBD.getString("estudios"), estudiosEsperado);				
-				
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		
-
-
-		}
-	}*/
-	
 	
 
-	@Test public void testCalcularSalarioBase() {
-		
-		Answer <Integer> baja = new Answer<Integer>()
-		{
-		public Integer baja() throws Throwable {
-	            //String mensaje = "Empleado en estado de baja";
-	      int calculo;  
-	      //calcular el salario en caso de baja
-	      
-	      calculo =0;
-				
-			return calculo;
-	            
-	           	            
-	            
-			}
-
-		@Override
-		public Integer answer(InvocationOnMock arg0) throws Throwable {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-        
-		};
-		
-		
-		
-		
-	}
-	
 //SALARIO BASE --------------------------------------------------------------------------------
 	@Test public void testCalcularSalarioBaseCompleta() {
 		
@@ -197,7 +79,7 @@ public class ProfesoresTest {
 				
 		verify(GestorNominaMock, atLeast(1)).calcularPrecioHora("jornada completa");
 				
-		verify(GestorNominaMock, atLeast(1)).obtenerHorasTrabajadas("jornada completa");
+		verify(GestorNominaMock, times(1)).obtenerHorasTrabajadas("jornada completa");
 		
 		
 	}
@@ -213,7 +95,7 @@ public class ProfesoresTest {
 
 		verify(GestorNominaMock, atLeast(1)).calcularPrecioHora("media jornada");
 		
-		verify(GestorNominaMock, atLeast(1)).obtenerHorasTrabajadas("media jornada");
+		verify(GestorNominaMock, times(1)).obtenerHorasTrabajadas("media jornada");
 	
 		
 	}
@@ -223,19 +105,14 @@ public class ProfesoresTest {
 	
 	when(GestorNominaMock.calcularPrecioHora("baja")).thenReturn(0.0);
 	
-	
-	
 	when(GestorNominaMock.obtenerHorasTrabajadas("baja")).thenReturn(0);
-	
-		
+			
 	assertEquals(prof2.calcularSalarioBase("baja"), 0.0, 0.001);
 	
 	verify(GestorNominaMock, times(1)).calcularPrecioHora("baja");
-	
-	
+		
 	verify(GestorNominaMock, times(1)).obtenerHorasTrabajadas("baja");	
-	
-	
+		
 	}
 	
 //SALARIO TOTAL --------------------------------------------------------------------------------	
@@ -257,44 +134,10 @@ public class ProfesoresTest {
 		assertEquals(1100.0, prof2.calcularSalarioTotal("especial",1000.0), 0.001);
 						
 		verify(GestorNominaMock).obtenerExtraMes("especial");
-				
+	
 		
 	}
 	
-	
-	/*
-	@Test public void testPagar() {
-		
-		when(GestorNominaMock.comprobarFechaCaducidad()).thenReturn(true);
-		when(GestorNominaMock.comprobarTarjeta()).thenReturn(true);
-		when(GestorNominaMock.realizarPago(1000.0)).thenReturn(true);
-			
-		//2 CASOS A MOSTRAR: Comentar/descomentar uno y otro
-		
-		//1) Se llama 1 vez a cada uno
-		
-				assertEquals("Pago realizado", prof2.pagar(1000.0));
-				
-				verify(GestorNominaMock, atLeast(1)).comprobarFechaCaducidad();
-				verify(GestorNominaMock, times(1)).comprobarTarjeta();
-				verify(GestorNominaMock, times(1)).realizarPago(1000.0);
-		
-			
-		//2) Se llama 2 veces a pagar() --> 2 veces a cada uno
-		/*
-				assertEquals("Pago realizado", prof2.pagar(1000.0));		
-				assertEquals("Pago realizado", prof2.pagar(1000.0));
-				
-				verify(GestorNominaMock, atLeast(1)).comprobarFechaCaducidad();
-				verify(GestorNominaMock, atLeast(2)).comprobarTarjeta();
-				verify(GestorNominaMock, times(2)).realizarPago(1000.0);
-		
-		
-	
-
-	}
-
-*/
 	
 //PAGAR --------------------------------------------------------------------------------------	
 	
