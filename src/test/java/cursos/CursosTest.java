@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import bbdd.MyDataAccess;
-import estudiantes.Estudiante;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -180,4 +179,19 @@ public class CursosTest {
 		
 	}
 	
+	@Test public void testApuntarseCurso() {
+		
+	}
+	
+	@Test public void testComprobarExistenciaCurso() {
+		
+	}
+	
+	@Test public void testComprobarExistenciaEstudiante() {
+		
+	}
+	
+	@Test public void testInformeCurso() {
+		
+	}
 }

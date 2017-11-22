@@ -62,9 +62,7 @@ public class clsGestionNomina {
 	public void lanzaExcepcion () throws NullPointerException{
 		
 		//metodo que no hace nada
-		
-		
-		
+			
 		
 	}
 

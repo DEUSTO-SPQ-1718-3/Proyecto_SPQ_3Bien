@@ -88,6 +88,7 @@ public class frmMenuCursos extends JFrame implements ActionListener{
 		btnSalir.addActionListener(this);
 		btnSalir.setActionCommand("Salir");
 		contentPane.add(btnSalir);
+		btnSalir.addActionListener(this);
 		
 		JButton btnInformes = new JButton("INFORMES");
 		btnInformes.setActionCommand("Informes");
@@ -99,7 +100,14 @@ public class frmMenuCursos extends JFrame implements ActionListener{
 		btnAtras.setActionCommand("Atras");
 		btnAtras.setBounds(443, 7, 71, 23);
 		contentPane.add(btnAtras);
-		btnAtras.addActionListener(this);		
+		btnAtras.addActionListener(this);
+		
+		JButton btnApuntarse = new JButton("APUNTARSE");
+		btnApuntarse.setActionCommand("Apuntarse");
+		btnApuntarse.setBounds(415, 60, 105, 32);
+		contentPane.add(btnApuntarse);
+		btnApuntarse.addActionListener(this);
+				
 			
 		this.setResizable(false);		
 			
@@ -152,7 +160,10 @@ public class frmMenuCursos extends JFrame implements ActionListener{
 			break;
 			
 		case "Informes":
-					
+			frmInformeCursos objI =new frmInformeCursos();
+			logger.info("This is INFO : Se va a abrir la ventana para visualizar los INFORMES");
+			objI.setVisible(true);
+			this.dispose();
 			//
 					
 			break;
@@ -162,10 +173,17 @@ public class frmMenuCursos extends JFrame implements ActionListener{
 			logger.trace("This is TRACE : Ventana 'frmMenuCursos' se ha destruido");
 			objV.setVisible(true);
 			this.dispose();
-			break;		
+			break;
+			
+		case "Apuntarse":
+			frmApuntarseCurso objA= new frmApuntarseCurso();
+			logger.trace("This is TRACE : Ventana 'frmMenuCursos' se ha ocultado");
+			objA.setVisible(true);
+			break;
 			
 		case "SALIR":
 			System.out.println("Cerrando programa...");
+			logger.trace("This is TRACE : ACADEMIA se ha destruido");
 			System.exit(0);
 			break;
 			
