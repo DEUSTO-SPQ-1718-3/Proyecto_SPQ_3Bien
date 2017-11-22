@@ -130,22 +130,27 @@ public class Profesor implements Serializable{
 		
 	}
 	
+		
 
-	public double calcularSalarioBase() {
+	public double calcularSalarioBase(String tipo) {
 		
-		int horas = gestorNominas.obtenerHorasTrabajadas();
+		int horas = gestorNominas.obtenerHorasTrabajadas(tipo);
 		
-		//int horas = 100;
+		// = gestorNominas.obtenerHorasTrabajadas(tipo);
 		
-		SalarioBase = horas*PRECIO_HORA;
+		double precio = gestorNominas.calcularPrecioHora(tipo);		
 		
+		SalarioBase = horas*precio;
+	
 		return SalarioBase;			
-	}
-	
-	
-	public double calcularSalarioTotal(double SalarioBase) {
 		
-		double extra = gestorNominas.obtenerExtraMes();
+	}
+
+	
+	
+	public double calcularSalarioTotal(String tipo, double SalarioBase) {
+		
+		double extra = gestorNominas.obtenerExtraMes(tipo);
 		
 		SalarioTotal = SalarioBase + extra;
 		
@@ -153,13 +158,13 @@ public class Profesor implements Serializable{
 		
 	}
 	
-	public String pagar (double SalarioTotal) {
+	public String pagar (double SalarioTotal, String tarjeta) {
 		
 		PagarMensaje = "Pago no se pudo realizar";
 				
-		if (gestorNominas.comprobarFechaCaducidad()) {
+		if (gestorNominas.comprobarFechaCaducidad(tarjeta)) {
 			
-			if (gestorNominas.comprobarTarjeta()) {
+			if (gestorNominas.comprobarTarjeta(tarjeta)) {
 				
 				if (gestorNominas.realizarPago(SalarioTotal)) {
 					
@@ -169,7 +174,9 @@ public class Profesor implements Serializable{
 				
 			}
 			
-		}		
+		}
+		
+		//System.out.println (PagarMensaje);
 		
 		return PagarMensaje;
 	}

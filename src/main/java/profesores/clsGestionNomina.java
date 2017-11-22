@@ -2,32 +2,63 @@ package profesores;
 
 public class clsGestionNomina {
 
+	private double PrecioHora;
+	private int HorasTrabajadas;
+	private double extra;
+	
+	public int obtenerHorasTrabajadas(String tipo) {
 		
-	public clsGestionNomina(){
+		switch (tipo){
 		
+		case "jornada completa": HorasTrabajadas = 120; break;
+		
+		case "media jornada": HorasTrabajadas = 60; break;
+		
+		case "baja": HorasTrabajadas = 0; break;
+						
+		}
+	
+		return HorasTrabajadas;
+		
+	}
+
+	public double calcularPrecioHora(String tipo)
+	{
+			
+		switch (tipo){
+			
+		case "jornada completa": PrecioHora = 11.0; break;
+		
+		case "media jornada": PrecioHora = 13.0; break;
+		
+		case "baja": PrecioHora = 0.0; break;
+			
+			
+		}
+	
+		return PrecioHora;			
+		
+	}
+	
+	public double obtenerExtraMes(String tipo) {
 			
 		
-	}
+		switch (tipo){
+		
+		case "normal": extra = 50.0; break;
+		
+		case "especial": extra = 100.0; break;
+		
 	
-	
-	public int obtenerHorasTrabajadas() {
-		
-		int horas = 100;
-		
-		return horas;
-		
-	}
-	
-	public double obtenerExtraMes() {
-		
-		double extra = 14.50;
+		}
 		
 		return extra;
 	}
 	
 	
+
 	
-	public boolean comprobarTarjeta(){
+	public boolean comprobarTarjeta(String tarjeta){
 		
 		boolean exito=false;
 		
@@ -39,10 +70,9 @@ public class clsGestionNomina {
 	
 
 	//mes y año. Formato: MM/AA
-	public boolean comprobarFechaCaducidad(){
+	public boolean comprobarFechaCaducidad(String tarjeta){
 		
-		boolean exito = false;
-		
+		boolean exito=false;
 		//comprueba
 		
 		
@@ -58,6 +88,8 @@ public class clsGestionNomina {
 		
 		return comprobar;
 	}	
+	
+	
 	
 	public void lanzaExcepcion () throws NullPointerException{
 		
