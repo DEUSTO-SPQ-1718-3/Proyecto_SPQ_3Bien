@@ -1,7 +1,6 @@
 package main;
 
 import java.awt.BorderLayout;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,13 +9,14 @@ import javax.swing.border.EmptyBorder;
 
 import Cuotas.frmCuotas;
 import cursos.frmMenuCursos;
-
 import estudiantes.frmEstudiantes;
 import cursos.frmRegistrarCurso;
 import estudiantes.frmEstudiantes;
 import profesores.frmProfesores;
+import usuarios.frmUsuarios;
 
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -90,7 +90,10 @@ public class VentanaInicial extends JFrame {
 		btnUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-					//inicializa ventana USUARIOS
+					
+				frmUsuarios ventanaUsuarios = new frmUsuarios();
+				ventanaUsuarios.setVisible(true); 
+				//inicializa ventana USUARIOS
 				
 				
 			}

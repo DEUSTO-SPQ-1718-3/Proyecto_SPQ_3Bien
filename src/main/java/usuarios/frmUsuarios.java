@@ -38,7 +38,7 @@ public class frmUsuarios extends JFrame implements ActionListener
 	public frmUsuarios() {
 	
 		
-		setBounds(400, 400, 430, 230); //TamaÃ±o
+		setBounds(400, 400, 430, 230); //Tamaño
 		
 		setTitle("MI ACADEMIA");
 		
@@ -188,7 +188,5 @@ public class frmUsuarios extends JFrame implements ActionListener
 		}
 	}
 }
-
-
 
 
