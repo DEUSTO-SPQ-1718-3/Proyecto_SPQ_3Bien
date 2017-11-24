@@ -146,8 +146,8 @@ public class frmUsuarios extends JFrame implements ActionListener
 		
 		case "Modificar":
 			
-			//frmModificarProfesor modifProf = new frmModificarProfesor();
-			//modifProf.setVisible(true); 
+			frmModificarUsuario modifUsu = new frmModificarUsuario();
+			modifUsu.setVisible(true); 
 			break;
 			
 		case "Anyadir":
