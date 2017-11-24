@@ -151,16 +151,13 @@ public class frmUsuarios extends JFrame implements ActionListener
 			break;
 			
 		case "Anyadir":
+	
+			frmRegistrarUsuario ventanaanyadirUsuario = new frmRegistrarUsuario();
+			ventanaanyadirUsuario.setVisible(true); 
 			
-			//
-			
-			//frmRegistrarProfesor ventanaanyadirProfesor = new frmRegistrarProfesor();
-			//ventanaanyadirProfesor.setVisible(true); 
 			this.dispose();	
 			break;
-			
-	
-			
+						
 		case "Eliminar":
 			
 			//frmBorrarProfesor borrarProf = new frmBorrarProfesor();
