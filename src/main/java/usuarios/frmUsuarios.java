@@ -160,8 +160,8 @@ public class frmUsuarios extends JFrame implements ActionListener
 						
 		case "Eliminar":
 			
-			//frmBorrarProfesor borrarProf = new frmBorrarProfesor();
-			//borrarProf.setVisible(true);
+			frmBorrarUsuario borrarUsu = new frmBorrarUsuario();
+			borrarUsu.setVisible(true);
 			this.dispose();
 			
 			break;
