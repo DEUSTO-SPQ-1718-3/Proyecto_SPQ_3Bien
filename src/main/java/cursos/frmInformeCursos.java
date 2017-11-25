@@ -33,9 +33,11 @@ public class frmInformeCursos extends JFrame implements ActionListener{
 	MyDataAccess conexion = new MyDataAccess();
 	JScrollPane scrollPane;
 	JTextArea txtAsistencia;
-	 ResultSet resultado;
-	 String dni; //del estudiante
-	 int id; //del curso
+	//JTextArea textAsistMax;
+	ResultSet resultado;
+	//ResultSet consulta2;
+	String dni; //del estudiante
+	int id; //del curso
 	
 	final static Logger logger = Logger.getLogger(frmRegistrarCurso.class);
 	/**
@@ -52,18 +54,30 @@ public class frmInformeCursos extends JFrame implements ActionListener{
 		contentPane.setLayout(null);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(5, 0, 336, 261);
+		scrollPane.setBounds(10, 11, 336, 250);
 		contentPane.add(scrollPane);
 		
 		listAsistencia = new ArrayList<clsAsistencia>();
 		//pido una lista ordenada de los cursos por cantidad de asistentes
 		resultado=conexion.getQuery("select COUNT(dniE), idC from Asistencia group by idC order by COUNT(dniE) desc");
 		completarLista();
-				
+		
+		//para sacar el curso con mas asistencia
+		//resultado=conexion.getQuery("Select Max (dniE) from (Select dniE, COUNT(dniE) idC from Asistencia group by idC)");
+		//consulta2=conexion.getQuery("SELECT idC, count(dniE) \r\n" + 
+		//		" from Asistencia group by idC ORDER BY count(dniE)");
+		//completarMax();
+		
 		JButton btnAtras = new JButton("Atras");
 		btnAtras.setBounds(358, 11, 76, 23);
 		getContentPane().add(btnAtras);
 		btnAtras.addActionListener(this);
+		
+		/*JScrollPane scrollPane_Max = new JScrollPane();
+		scrollPane_Max.setBounds(10, 11, 196, 68);
+		contentPane.add(scrollPane_Max);
+		scrollPane_Max.setViewportView(textAsistMax);*/
+		
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
@@ -79,11 +93,14 @@ public class frmInformeCursos extends JFrame implements ActionListener{
 		}
 	}
 	
+	/**
+	 * Recupera los datos de los alumnos y cursos de la bbdd
+	 */
 	void completarLista() {
 		
 		txtAsistencia = new JTextArea();
 		txtAsistencia.setEditable(false);
-		txtAsistencia.setColumns(50);
+		txtAsistencia.setColumns(25);
 		
 		
 		try {
@@ -108,4 +125,33 @@ public class frmInformeCursos extends JFrame implements ActionListener{
 		scrollPane.setViewportView(txtAsistencia);
 		
 	}
+	
+	/*void completarMax() {
+		
+		textAsistMax = new JTextArea();		
+		textAsistMax.setEditable(false);
+		textAsistMax.setColumns(20);
+		
+		try {
+		      while(consulta2.next()){
+		   		    	  
+		    	  dni = consulta2.getString("COUNT(dniE)");
+			      id = consulta2.getInt("idC");
+			      
+			      listAsistMax.add(new clsAsistencia(id, dni));
+		     		      
+		      }
+		      
+		    }catch (SQLException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		      
+		    }			
+			
+		 textAsistMax.setText("CURSO MAX. ASIST.\n ");
+		 textAsistMax.append(listAsistMax.toString());	
+		 
+		scrollPane.setViewportView(textAsistMax);
+		
+	}*/
 }

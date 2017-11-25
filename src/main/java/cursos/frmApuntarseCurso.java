@@ -28,7 +28,7 @@ import javax.swing.JTextField;
 public class frmApuntarseCurso extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
-	MyDataAccess conexion = new MyDataAccess();
+	MyDataAccess conexion;
 	final static Logger logger = Logger.getLogger(frmApuntarseCurso.class);
 	private JTextField textFieldID;
 	private JTextField textFieldDNI;
@@ -38,6 +38,8 @@ public class frmApuntarseCurso extends JFrame implements ActionListener{
 	 */
 	public frmApuntarseCurso() {
 		
+		
+		conexion = new MyDataAccess();
 		setBounds(100, 100, 356, 178);
 		setTitle("MI ACADEMIA - APUNTARSE CURSO ");
 		contentPane = new JPanel();
