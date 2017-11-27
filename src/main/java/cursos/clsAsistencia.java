@@ -2,6 +2,7 @@ package cursos;
 
 /**clase que sirve para declarar los atributos que tendra
  * cada fila cuando un alumno se apunte a un curso
+ * guardamos la correspondencia entre estudiantes y cursos por los identificadores de cada uno
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

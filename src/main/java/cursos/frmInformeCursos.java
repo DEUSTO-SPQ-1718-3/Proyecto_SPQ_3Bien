@@ -95,6 +95,7 @@ public class frmInformeCursos extends JFrame implements ActionListener{
 	
 	/**
 	 * Recupera los datos de los alumnos y cursos de la bbdd
+	 * los anhade a una lista para luego hacer la lista agrupada de estudiantes por curso
 	 */
 	void completarLista() {
 		
