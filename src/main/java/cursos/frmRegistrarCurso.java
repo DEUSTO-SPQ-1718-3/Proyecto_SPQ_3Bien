@@ -14,6 +14,11 @@ import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 
+/**frame para dar de alta un curso en el sistema
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmRegistrarCurso extends JFrame implements ActionListener{
 	
 	private JTextField textFieldNombre;
@@ -108,7 +113,15 @@ public class frmRegistrarCurso extends JFrame implements ActionListener{
 		}
 		
 	}
-
+	
+	/**Especificamos los valores que tiene el curso que vamos a anhadir a nuestra base de datos
+	 * 
+	 * @param idC Identidficador y clave primaria del curso, es aleatorio
+	 * @param nombreC nombre del curso en cuestion
+	 * @param desc descripcion del curso
+	 * @param numC el numero de la clase
+	 * @param horario que tendran las clases
+	 */
 	void registrarCurso(int idC, String nombreC, String desc, int numC, String horario) {
 		// TODO Auto-generated method stub
 		
@@ -117,6 +130,9 @@ public class frmRegistrarCurso extends JFrame implements ActionListener{
 		conexion.setQuery(registrar);
 		
 		JOptionPane.showMessageDialog(this,"Curso con ID "+idC + " anyadido CORRECTAMENTE");
-		
+		textFieldNombre.setText("");
+		textFieldDesc.setText("");
+		textFieldAula.setText("");
+		textFieldHorario.setText("");
 	}
 }
