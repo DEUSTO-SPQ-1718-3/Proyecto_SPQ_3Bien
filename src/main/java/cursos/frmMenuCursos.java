@@ -21,6 +21,14 @@ import javax.swing.Action;
 
 import org.apache.log4j.Logger;
 
+/**Clase principal del modulo Cursos
+ * Menu en el que mostramos las opciones a los usuarios de la aplicacion y le redirigimos a la pantalla que quieran
+ * Opciones: Añadir curso, modificar, borrar, ver informes asistencia, apuntar un estudiante al curso
+ * El propio menu muestra los cursos que tenemos en la base de datos
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmMenuCursos extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 7046431761927583577L;
 	private ArrayList<clsCurso> listaCursos = new ArrayList<clsCurso>();

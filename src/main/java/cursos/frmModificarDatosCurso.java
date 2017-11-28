@@ -13,6 +13,11 @@ import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 
+/**Si el ID que hemos introducido en frmModificarCurso esta dado de alta, podremos modificar los datos a excepcion de su ID
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmModificarDatosCurso extends JFrame implements ActionListener{
 	
 	private JTextField textFieldidC;
@@ -120,7 +125,15 @@ public class frmModificarDatosCurso extends JFrame implements ActionListener{
 		}
 		
 	}
-
+	
+	/**Nuevos valores para el curso que queremos modificar
+	 * 
+	 * @param idC no tiene opcion de cambiar el id, no es editable
+	 * @param nombreC nombre del curso
+	 * @param descrip descripcion breve del curso
+	 * @param numC numero de clase en la que se imparte
+	 * @param horario del curso
+	 */
 	private void modificarCurso(int idC, String nombreC, String descrip, int numC, String horario) {
 		// TODO Auto-generated method stub
 		logger.trace("This is TRACE : Se han recogido los datos introducidos para modificar");

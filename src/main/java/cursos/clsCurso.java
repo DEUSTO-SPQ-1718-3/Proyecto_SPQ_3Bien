@@ -1,5 +1,10 @@
 package cursos;
 
+/**clase con los atributos de un curso que guardamos en la base de datos
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class clsCurso {
 	
 	private int idC; //el identificador del curso
@@ -11,6 +16,9 @@ public class clsCurso {
 	//private ArrayList<Alumno> listaMatriculados; //datos de los alumnos matriculados para un determinado curso
 	
 	
+	/**metodo para rellenar las listas de los frame
+	 * @return String con la informacion del curso en cuestion
+	 */
 	@Override
 	public String toString() {
 		return "Curso con id:" + idC + ", con título '" + nombreC + "', impartido en la clase "

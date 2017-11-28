@@ -20,11 +20,14 @@ public class CursosTest {
 	private clsCurso C1;
 	private clsCurso C2;
 	private clsCurso C3;
+	private clsAsistencia A1;
+	private clsAsistencia A2;
 	MyDataAccess conexion;
 	frmRegistrarCurso registrar;
 	frmBorrarCurso borrar;
 	frmModificarDatosCurso modificar;
 	frmMenuCursos menu;
+	frmApuntarseCurso apuntarse;
 	
 	public static junit.framework.Test suite() {
 		 return new JUnit4TestAdapter(CursosTest.class);
@@ -35,11 +38,14 @@ public class CursosTest {
 		C1= new clsCurso (101, "Programacion I","Curso inicial", 40,"lunes y martes de 10 a 12");
 		C2= new clsCurso (102, "Programacion II", "Curso segundo", 40, "lunes y martes de 10 a 12");
 		C3= new clsCurso (103, "Calculo", "Nociones basicas", 48, "viernes de 10 a 14");
+		A1= new clsAsistencia (1, "11");
+		A2= new clsAsistencia (22, "222");
 		conexion = new MyDataAccess();
 		registrar = new frmRegistrarCurso();
 		borrar= new frmBorrarCurso();
 		modificar= new frmModificarDatosCurso(C1);
 		menu= new frmMenuCursos();
+		apuntarse= new frmApuntarseCurso();
 	}
 	
 	@Test public void testAnyadir() {
@@ -179,17 +185,52 @@ public class CursosTest {
 		
 	}
 	
+	/**
+	 * testeamos que el estudiante pueda apuntarse correctamente al curso
+	 */
 	@Test public void testApuntarseCurso() {
+		apuntarse.apuntarmeCurso(A1.getIdC(), A1.getDniE());
+		
+		ResultSet comprobar;
+		String dniEst="";
+		int idCurso=0;
+		
+		
+		comprobar = conexion.getQuery("SELECT * from asistencia where idC=1 and dniE='11'");
+		
+			
+		try {
+			while(comprobar.next()) {
+				dniEst=comprobar.getString("dniE");
+				//System.out.println(dniEst);
+				idCurso=comprobar.getInt("idC");
+				//System.out.println(idCurso);
+	
+			} 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertEquals(dniEst, A1.getDniE());
+		assertEquals(idCurso, A1.getIdC());		
+		
+		//limpiar esa fila en la BBDD
+		conexion.setQuery("Delete from asistencia where idC=1 and dniE=11");
 		
 	}
 	
-	@Test public void testComprobarExistenciaCurso() {
+	@Test public void testComprobarExistenciaCursoEstudiante() {
+		apuntarse.apuntarmeCurso(A1.getIdC(), A1.getDniE());
 		
+		//esto debería devolver true ya que, compruebo un curso y estudiante que existen
+		assertTrue(apuntarse.comprobarExistencia(A1.getIdC(), A1.getDniE()));
+		assertFalse(apuntarse.comprobarExistencia(A2.getIdC(), A2.getDniE()));
+	
+		//borramos la fila
+		conexion.setQuery("Delete from asistencia where idC=1 and dniE=11");
 	}
 	
-	@Test public void testComprobarExistenciaEstudiante() {
-		
-	}
 	
 	@Test public void testInformeCurso() {
 		
