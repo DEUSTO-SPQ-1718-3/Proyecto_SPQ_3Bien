@@ -4,11 +4,18 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
+
+import bbdd.MyDataAccess;
+import usuarios.frmRegistrarUsuario;
+
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -73,14 +80,21 @@ public class frmPrincipal extends JFrame implements ActionListener{
 		panel.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JButton btnRegistrarse = new JButton("Iniciar Sesion");
-		btnRegistrarse.setBounds(50, 120, 130, 25);
+		JButton btnIniciar = new JButton("Iniciar Sesion");
+		btnIniciar.setBounds(20, 120, 130, 25);
+		btnIniciar.addActionListener(this);
+		btnIniciar.setActionCommand("Iniciar Sesion");
+		panel.add(btnIniciar);
+		
+		JButton btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse.setBounds(100, 120, 130, 25);
 		btnRegistrarse.addActionListener(this);
 		btnRegistrarse.setActionCommand("Registrarse");
 		panel.add(btnRegistrarse);
 		
+		
 		JButton btnSalir = new JButton("SALIR");
-		btnSalir.setBounds(200, 120, 100, 25);
+		btnSalir.setBounds(300, 120, 100, 25);
 		btnSalir.addActionListener(this);
 		btnSalir.setActionCommand("Salir");
 		panel.add(btnSalir);
@@ -97,10 +111,27 @@ public class frmPrincipal extends JFrame implements ActionListener{
 		switch(e.getActionCommand()){
 		
 		
+		case "Iniciar Sesion":
+			
+			String nombre = textField_1.getText();
+			String pass = textField_2.getText();
+			
+			boolean exito = acreditarse(nombre, pass);
+			
+			if (exito) {
+				
+				VentanaInicial ventanaInicial = new VentanaInicial();
+				ventanaInicial.setVisible(true); 
+				
+			}
+			else JOptionPane.showMessageDialog(this,"Usuario invalido. Registrate");	
+			
+			break;
+			
 		case "Registrarse":
 			
-			VentanaInicial ventanaInicial = new VentanaInicial();
-			ventanaInicial.setVisible(true); 
+			frmRegistrarUsuario registrar = new frmRegistrarUsuario();
+			registrar.setVisible(true); 
 			
 			break;
 			
@@ -111,5 +142,37 @@ public class frmPrincipal extends JFrame implements ActionListener{
 			break;
 			
 		}
+	}
+
+
+	private boolean acreditarse(String nombre, String pass) {
+		
+		boolean exito = false;
+		String nombreBD="";
+		String passBD="";
+		
+		MyDataAccess conexion = new MyDataAccess();
+		
+		String usuario= "Select * from usuarios where nom_usuario='"+nombre+"' ";
+		//enviar la sentencia a la bbdd
+		ResultSet resultado= conexion.getQuery(usuario);
+		
+		try {
+			nombreBD = resultado.getString("nom_usuario");
+			passBD = resultado.getString("contra");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if ((nombreBD.equals(nombre))&&(passBD.equals(pass))) {
+			
+			exito = true;
+		}
+		
+		
+		return exito;
+		
+		
 	}
 }
