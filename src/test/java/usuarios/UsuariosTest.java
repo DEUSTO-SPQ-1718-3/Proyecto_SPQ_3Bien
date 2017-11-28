@@ -35,7 +35,7 @@ public class UsuariosTest {
 		conexion = new MyDataAccess();
 	}
 	
-	@Test public void testRegistrarEstudiante() {
+	@Test public void testRegistrarUsuario() {
 		
 				
 		registrar_usu.registrarUsuario(usuario1.getNom_usuario(), usuario1.getContra(), usuario1.getNombre(),usuario1.getApellido());
@@ -72,7 +72,7 @@ public class UsuariosTest {
 					
 	}
 	
-	@Test public void testBorrarEstudiante() {
+	@Test public void testBorrarUsuario() {
 		
 		conexion.setQuery("Delete from usuarios where nom_usuario='a_a'");	
 		
