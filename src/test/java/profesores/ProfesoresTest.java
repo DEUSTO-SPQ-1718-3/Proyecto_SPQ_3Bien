@@ -24,6 +24,9 @@ public class ProfesoresTest {
 	
 	private Profesor prof1;
 	private Profesor prof2;
+	
+	private frmRegistrarProfesor registrar_prof;
+	private frmBorrarProfesor borrar_prof;
 
 	
 	String dniEsperado;
@@ -56,7 +59,11 @@ public class ProfesoresTest {
 	
 	@Before public void setUp() {
 		prof1= new Profesor ("222","Idoia","Sanchez","648176201","idoia@gmail.com","Madrid Etorbidea 4","ADE");
-			
+		
+		
+		registrar_prof = new frmRegistrarProfesor();
+		borrar_prof = new frmBorrarProfesor();
+		
 		dniEsperado = "222";
 		nombreEsperado = "Idoia";
 		apellidoEsperado="Sanchez";
@@ -73,8 +80,8 @@ public class ProfesoresTest {
 	
 @Test public void testRegistrarProfesor() {
 		
-		frmRegistrarProfesor ventana = new frmRegistrarProfesor();
-		ventana.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
+		//frmRegistrarProfesor ventana = new frmRegistrarProfesor();
+		registrar_prof.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
 		
 		String registrado= "Select * from profesores where dni='222' ";
 		//enviar la sentencia a la bbdd
@@ -99,12 +106,7 @@ public class ProfesoresTest {
 		}
 		
 			
-		
-			conexion.setQuery("Delete from profesores where dni = '222'");				
-	
-	
-	
-		
+			conexion.setQuery("Delete from profesores where dni = '222'");					
 	}
 	
 	@Test public void testBorrarProfesor() {
@@ -114,11 +116,11 @@ public class ProfesoresTest {
 		String dniBorrar ="222";
 	
 		
-		frmRegistrarProfesor ventana = new frmRegistrarProfesor();
-		ventana.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
+		//frmRegistrarProfesor ventana = new frmRegistrarProfesor();
+		registrar_prof.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
 
-		frmBorrarProfesor borrarPrueba = new frmBorrarProfesor();
-		borrarPrueba.borrarProfesor(dniBorrar);
+		//frmBorrarProfesor borrarPrueba = new frmBorrarProfesor();
+		borrar_prof.borrarProfesor(dniBorrar);
 
 
 
