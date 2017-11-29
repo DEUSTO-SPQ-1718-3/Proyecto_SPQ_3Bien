@@ -63,6 +63,12 @@
 				<artifactId>cobertura-maven-plugin</artifactId>
 				<version>2.6</version>
 			</plugin>
+			<plugin>
+		      <groupId>com.soebes.maven.plugins</groupId>
+		      <artifactId>doxygen-maven-plugin</artifactId>
+		      <version>1.1.0</version>
+		    </plugin>
+			
 		</plugins>
 	</reporting>
 	<!--  FIN:Para usar el GOAL de reporting de cobertura  -->
@@ -136,16 +142,12 @@
 		             </execution>
 		         </executions>
 		     </plugin>
-		     
-			  <!-- To define the plugin version in your parent POM -->
-	           <plugin>
-	                <groupId>com.soebes.maven.plugins.dmg</groupId>
-					<artifactId>doxygen-maven-plugin</artifactId>
-					<version>1.1.0</version>
-					<configuration>
-			        	<configurationFile>${doxygen.config.file}</configurationFile>
-					</configuration>
-	       	</plugin>      
+		      <plugin>
+	        <groupId>com.soebes.maven.plugins</groupId>
+	        <artifactId>doxygen-maven-plugin</artifactId>
+	        <version>1.1.0</version>
+	    	  </plugin>  
+			    
 		</plugins>
 	</build>
 </project>
