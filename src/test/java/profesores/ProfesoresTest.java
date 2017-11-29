@@ -24,6 +24,10 @@ public class ProfesoresTest {
 	
 	private Profesor prof1;
 	private Profesor prof2;
+	
+	private frmRegistrarProfesor registrar_prof;
+	private frmBorrarProfesor borrar_prof;
+	private frmProfesores principal_prof;
 
 	
 	String dniEsperado;
@@ -34,6 +38,7 @@ public class ProfesoresTest {
 	String direccionEsperado;
 	String estudiosEsperado;
 	
+
 	MyDataAccess conexion = new MyDataAccess();
 	
 	//Opcion 1 MOCKITO//
@@ -56,7 +61,11 @@ public class ProfesoresTest {
 	
 	@Before public void setUp() {
 		prof1= new Profesor ("222","Idoia","Sanchez","648176201","idoia@gmail.com","Madrid Etorbidea 4","ADE");
-			
+		
+		
+		registrar_prof = new frmRegistrarProfesor();
+		borrar_prof = new frmBorrarProfesor();
+		
 		dniEsperado = "222";
 		nombreEsperado = "Idoia";
 		apellidoEsperado="Sanchez";
@@ -73,8 +82,8 @@ public class ProfesoresTest {
 	
 @Test public void testRegistrarProfesor() {
 		
-		frmRegistrarProfesor ventana = new frmRegistrarProfesor();
-		ventana.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
+		//frmRegistrarProfesor ventana = new frmRegistrarProfesor();
+		registrar_prof.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
 		
 		String registrado= "Select * from profesores where dni='222' ";
 		//enviar la sentencia a la bbdd
@@ -99,12 +108,7 @@ public class ProfesoresTest {
 		}
 		
 			
-		
-			conexion.setQuery("Delete from profesores where dni = '222'");				
-	
-	
-	
-		
+			conexion.setQuery("Delete from profesores where dni = '222'");					
 	}
 	
 	@Test public void testBorrarProfesor() {
@@ -114,11 +118,11 @@ public class ProfesoresTest {
 		String dniBorrar ="222";
 	
 		
-		frmRegistrarProfesor ventana = new frmRegistrarProfesor();
-		ventana.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
+		//frmRegistrarProfesor ventana = new frmRegistrarProfesor();
+		registrar_prof.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
 
-		frmBorrarProfesor borrarPrueba = new frmBorrarProfesor();
-		borrarPrueba.borrarProfesor(dniBorrar);
+		//frmBorrarProfesor borrarPrueba = new frmBorrarProfesor();
+		borrar_prof.borrarProfesor(dniBorrar);
 
 
 
@@ -155,6 +159,70 @@ public class ProfesoresTest {
 
 
 		}
+	}
+	
+	@Test public void testModificarProfesor() {
+		registrar_prof.registrarProfesor(prof1.getDni(),prof1.getNombre(),prof1.getApellido(),prof1.getTelefono(),prof1.getEmail(),prof1.getDireccion(),prof1.getEstudios());
+		ResultSet resultadoBD;
+		
+		resultadoBD = conexion.getQuery("SELECT * from profesores where dni=222");
+		
+	
+		try {
+			while(resultadoBD.next()) {
+		
+				assertEquals( resultadoBD.getString("dni"), dniEsperado);
+				assertEquals( resultadoBD.getString("nombre"), nombreEsperado);
+				assertEquals( resultadoBD.getString("apellido"), apellidoEsperado);
+				assertEquals( resultadoBD.getString("telefono"), telefonoEsperado);
+				assertEquals( resultadoBD.getString("email"), emailEsperado);
+				assertEquals( resultadoBD.getString("direccion"), direccionEsperado);
+				assertEquals( resultadoBD.getString("estudios"), estudiosEsperado);				
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String dniMod;
+		String nombreMod;
+		String apellidoMod;
+		String telefonoMod;
+		String emailMod;
+		String direccionMod;
+		String estudiosMod;
+		
+		dniMod= "212";
+		nombreMod = "Aaia";
+		apellidoMod="Elola";
+		telefonoMod = "648176201";
+		emailMod = "ai@gmail.com";
+		direccionMod = "Madrid Etorbidea 4";
+		estudiosMod = "Derecho";
+		
+		
+		conexion.setQuery("update profesores set dni='"+ dniMod+"',nombre='"+ nombreMod +"',apellido='"+ apellidoMod +"',telefono='"+ telefonoMod +"',email='"+ emailMod +"',direccion='"+ direccionMod +"',estudios='"+ estudiosMod +"' where dni = '222'");
+				
+		resultadoBD = conexion.getQuery("SELECT * from profesores where dni= "+dniMod+" ");
+		
+		try {
+			while(resultadoBD.next()) {
+				assertEquals( resultadoBD.getString("dni"), dniMod);
+				assertEquals( resultadoBD.getString("nombre"), nombreMod);
+				assertEquals( resultadoBD.getString("apellido"), apellidoMod);
+				assertEquals( resultadoBD.getString("telefono"), telefonoMod);
+				assertEquals( resultadoBD.getString("email"), emailMod);
+				assertEquals( resultadoBD.getString("direccion"), direccionMod);
+				assertEquals( resultadoBD.getString("estudios"), estudiosMod);			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		conexion.setQuery("Delete from profesores where dni = '222'");	
+		conexion.setQuery("Delete from profesores where dni = '212'");	
 	}
 
 //SALARIO BASE --------------------------------------------------------------------------------
