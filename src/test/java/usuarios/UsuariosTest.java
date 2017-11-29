@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import bbdd.MyDataAccess;
-
 import static org.junit.Assert.*;
 
 import java.sql.ResultSet;
@@ -37,7 +36,8 @@ public class UsuariosTest {
 	
 	@Test public void testRegistrarUsuario() {
 		
-				
+		conexion.setQuery("Delete from profesores where dni = '222'");	
+		
 		registrar_usu.registrarUsuario(usuario1.getNom_usuario(), usuario1.getContra(), usuario1.getNombre(),usuario1.getApellido());
 					
 		ResultSet comprobar;
@@ -107,6 +107,65 @@ public class UsuariosTest {
 		assertEquals(nombre, "");
 		assertEquals(apellido, "");
 		
+	}
+	
+	@Test public void testModificarProfesor() 
+	{
+		conexion.setQuery("Delete from usuarios where nom_usuario= 'a_a' ");	
+		registrar_usu.registrarUsuario(usuario1.getNom_usuario(), usuario1.getContra(), usuario1.getNombre(),usuario1.getApellido());
+		
+		ResultSet resultadoBD;
+		resultadoBD = conexion.getQuery("SELECT * from usuarios where nom_usuario= 'a_a'");
+		
+		String nom_usuario="";
+		String contra="";
+		String nombre="";
+		String apellido="";
+	
+		
+		try {
+			while(resultadoBD.next()) {
+				//comprobar.next();//paso porque el primero es el ID
+				nom_usuario=resultadoBD.getString("nom_usuario");
+				contra=resultadoBD.getString("contra");
+				nombre=resultadoBD.getString("nombre");
+				apellido = resultadoBD.getString("apellido");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//String registrar= "update profesores set nombre='"+ nombre +"',apellido='"+ apellido +"',telefono='"+ telefono +"',email='"+ email +"',direccion='"+ direccion +"',estudios='"+ estudios +"' where nombre = '"+nomReferente+"'";
+		
+		String nom_usuarioMod="w_w";
+		String contraMod="aaa";
+		String nombreMod="Ion";
+		String apellidoMod="Kazabon";
+		
+		
+			
+		
+		conexion.setQuery("update usuarios set nom_usuario='"+ nom_usuarioMod+"',contra='"+ contraMod +"',nombre='"+ nombreMod +"',apellido='"+ apellidoMod +"' where nom_usuario = 'a_a'");
+		
+		
+		resultadoBD = conexion.getQuery("SELECT * from usuarios where nom_usuario='w_w'");
+		
+		//principal_prof.completarLista();
+		try {
+			while(resultadoBD.next()) {
+				//comprobar.next();//paso porque el primero es el ID
+				assertEquals( resultadoBD.getString("nom_usuario"), nom_usuarioMod);
+				assertEquals( resultadoBD.getString("contra"), contraMod);
+				assertEquals( resultadoBD.getString("nombre"), nombreMod);
+				assertEquals( resultadoBD.getString("apellido"), apellidoMod);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		conexion.setQuery("Delete from usuarios where nom_usuario= 'w_w'");	
 	}
 	
 }
