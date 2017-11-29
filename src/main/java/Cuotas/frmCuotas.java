@@ -100,11 +100,16 @@ public class frmCuotas extends JFrame implements ActionListener{
 		btnEliminar.setBounds(420, 220, 100, 25);
 		btnEliminar.addActionListener(this);
 		btnEliminar.setActionCommand("Eliminar");
-		contentPane.add(btnEliminar);		
+		contentPane.add(btnEliminar);
 		
+		JButton btnEnviar = new JButton("ENVIAR");
+		btnEnviar.setBounds(420, 270, 100, 25);
+		btnEnviar.addActionListener(this);
+		btnEnviar.setActionCommand("Enviar");
+		contentPane.add(btnEnviar);
 		
 		JButton btnSalir = new JButton("SALIR");
-		btnSalir.setBounds(420, 270, 100, 25);
+		btnSalir.setBounds(420, 320, 100, 25);
 		btnSalir.addActionListener(this);
 		btnSalir.setActionCommand("Salir");
 		contentPane.add(btnSalir);
@@ -203,6 +208,12 @@ public class frmCuotas extends JFrame implements ActionListener{
 			
 			
 			 break;
+			 
+		case "Enviar":
+		
+			frmEnviarCuota enviarCuota = new frmEnviarCuota();
+			enviarCuota.setVisible(true);
+			break;
 			
 					
 		case "Salir":
