@@ -2,6 +2,7 @@ package profesores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -11,8 +12,11 @@ import bbdd.MyDataAccess;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.Logger;
+
 public class frmModificarDatos extends JFrame implements ActionListener{
 	
+	final static Logger logger = Logger.getLogger(frmModificarDatos.class);
 	
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
@@ -117,6 +121,7 @@ public class frmModificarDatos extends JFrame implements ActionListener{
 				frmProfesores objAtras=new frmProfesores();
 				objAtras.setVisible(true);
 				this.dispose();
+				logger.trace("This is TRACE : Se ha destruido la ventana de modificar datos del profesor");
 				break;
 				
 			case "MODIFICAR":
@@ -131,10 +136,10 @@ public class frmModificarDatos extends JFrame implements ActionListener{
 				
 				String registrar= "update profesores set nombre='"+ nombre +"',apellido='"+ apellido +"',telefono='"+ telefono +"',email='"+ email +"',direccion='"+ direccion +"',estudios='"+ estudios +"' where nombre = '"+nomReferente+"'";
 				//se envia el script SQL a la BBDD y se registra el curso
-			
-								
+						
 				conexion.setQuery(registrar);
-				
+				logger.trace("This is TRACE : Se ha modificado un profesor");
+		
 				this.dispose();
 				
 				JOptionPane.showMessageDialog(this,"Profesor  modificado");

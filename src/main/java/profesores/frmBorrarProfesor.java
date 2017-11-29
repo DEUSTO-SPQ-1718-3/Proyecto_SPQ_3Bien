@@ -17,6 +17,10 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import org.apache.log4j.Logger;
+
+import estudiantes.frmBorrarEstudiante;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -25,9 +29,12 @@ import java.awt.event.ActionEvent;
 
 public class frmBorrarProfesor extends JFrame implements ActionListener{
 
+	final static Logger logger = Logger.getLogger(frmBorrarProfesor.class);
+	
 	private JPanel contentPane;
 	private JTextField textFieldDni;
 	MyDataAccess conexion = new MyDataAccess();
+	
 	
 	/**
 	 * Create the frame.
@@ -69,10 +76,11 @@ public class frmBorrarProfesor extends JFrame implements ActionListener{
 		switch(e.getActionCommand()){
 		
 		
-			case "Atras":
-				
-				this.dispose();				
+			case "Atras":	
+				this.dispose();	
+				logger.trace("This is TRACE : Se ha destruido la ventana de borrar profesor");
 				break;
+			
 				
 			case "Aceptar":
 				String dni=textFieldDni.getText();
@@ -91,6 +99,8 @@ public class frmBorrarProfesor extends JFrame implements ActionListener{
 		String borrar= "Delete from profesores where dni='"+dni+"' ";
 		//enviar la sentencia para borrar el profesor indicado mediante el nombre de la BD
 		conexion.setQuery(borrar);
+		
+		logger.info("This is INFO : Se ha eliminado un profesor de la base de datos");
 		
 		this.dispose();
 		JOptionPane.showMessageDialog(this,"El/la profesor/a con dni "+dni + " ha sido borrado/a correctamente");
