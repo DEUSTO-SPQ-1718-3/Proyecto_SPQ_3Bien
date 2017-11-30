@@ -53,6 +53,14 @@
 		    <version>2.8.9</version>
 		    <scope>test</scope>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+    	<groupId>javax.mail</groupId>
+   		 <artifactId>mail</artifactId>
+   		 <version>1.4</version>
+		</dependency>
+		
 
 	</dependencies>
 	<!--  Para usar el GOAL de reporting de cobertura  -->

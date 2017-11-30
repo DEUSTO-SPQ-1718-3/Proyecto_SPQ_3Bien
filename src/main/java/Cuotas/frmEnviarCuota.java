@@ -109,13 +109,7 @@ public class frmEnviarCuota extends JFrame {
 				      // TODO Auto-generated catch block
 				      e.printStackTrace();
 				    }
-				System.out.println(nombre);
-				System.out.println(apellido);
-				System.out.println(email);
-				System.out.println(horas);
-				System.out.println(precio);
-				System.out.print(fecha);
-				
+
 				enviar_Email enviarEmail = new enviar_Email();
 				enviarEmail.mandarCorreo(nombre, apellido, email, horas, precio, fecha);
 				
