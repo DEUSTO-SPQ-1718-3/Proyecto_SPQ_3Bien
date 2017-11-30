@@ -44,7 +44,7 @@ public class CuotasTest {
 		//apuntarse= new frmApuntarseCurso();
 	}
 	
-	@Test public void testAnyadir() {
+	@Test public void testCreaCuota() {
 		
 		crearCuota.creaCuota("Pablo", "Villegas", 5, 1500, "10/09/2017", "PENDIENTE");
 		
@@ -86,6 +86,70 @@ public class CuotasTest {
 		//limpiar de BBDD el registro generado
 		conexion.setQuery("DELETE from cuotas where id = '"+ id + "'");
 
+	}
+	
+	@Test public void testModificarCuota() {
+
+		crearCuota.creaCuota("Javier", "Cerro", 7, 150, "10/09/2018", "PENDIENTE");
+		
+		ResultSet comprobar;
+		String nombre="";
+		String apellido="";
+		int horas =0;
+		int precio =0;
+		String fecha ="";
+		String estado ="";
+		int id =0;
+		
+		comprobar = conexion.getQuery("SELECT * from cuotas order by id desc limit 1");
+		
+		try {
+			while(comprobar.next()) {
+
+			    id = comprobar.getInt("id");
+			    
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		nombre="Pablo";
+		apellido="Villegas";
+		horas=5;
+		precio=1500;
+		fecha="10/09/2017";
+		
+		modificarCuota.modificarCuota(nombre, apellido, horas, precio, fecha, id);
+		
+		comprobar = conexion.getQuery("SELECT * from cursos where id  = '" + id + "'");
+
+		try {
+			while(comprobar.next()) {
+				//comprobar.next();//paso porque el primero es el ID
+				nombre=comprobar.getString("nombre");
+				apellido=comprobar.getString("apellido");
+				horas = comprobar.getInt("horas");
+			    precio = comprobar.getInt("precio");
+			    fecha = comprobar.getString("fecha");
+			    estado = comprobar.getString("estado");
+			    id = comprobar.getInt("id");
+			    
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		assertEquals(nombre, C1.getNombre());
+		assertEquals(apellido, C1.getApellido());
+		assertEquals(horas, C1.getHoras());
+		assertEquals(precio, C1.getPrecio());
+		assertEquals(fecha, C1.getFecha());
+		assertEquals(estado, C1.getEstado());
+		
+		//limpiar de BBDD el registro generado
+		//conexion.setQuery("DELETE from cuotas where id = '"+ id + "'");
 	}
 	
 }

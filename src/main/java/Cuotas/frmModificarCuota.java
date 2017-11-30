@@ -231,12 +231,6 @@ public class frmModificarCuota extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		//BD
-		
-		MyDataAccess conexion = new MyDataAccess();
-	    ResultSet resultado;
-	    
-	    //
 		
 		
 		switch(e.getActionCommand()){
@@ -264,11 +258,29 @@ public class frmModificarCuota extends JFrame implements ActionListener{
 			
 		}
 		
-		String query = "update Cuotas set nombre = '" + nombre1 + "', apellido = '" + apellidos1 + "', horas = '" + horas1 + "', precio = '" + precio1 + "', fecha = '" + fecha1 + "'  where id = '" + id1 + "'";
-		conexion.setQuery(query);
+		modificarCuota (nombre1, apellidos1, horas1, precio1, fecha1, id1);
+		
+
 		
 		break;
 			
 		}
 	}
+	
+	public void modificarCuota (String nombre1, String apellidos1, int horas1, int precio1, String fecha1, int id1)
+	
+	{
+		
+		//BD
+		
+				MyDataAccess conexion = new MyDataAccess();
+			    ResultSet resultado;
+			    
+		//
+	
+	String query = "update Cuotas set nombre = '" + nombre1 + "', apellido = '" + apellidos1 + "', horas = '" + horas1 + "', precio = '" + precio1 + "', fecha = '" + fecha1 + "'  where id = '" + id1 + "'";
+	conexion.setQuery(query);
+	
+	}
+
 }
