@@ -71,17 +71,26 @@ public class frmBorrarCuota extends JFrame {
 				
 				int id = Integer.parseInt(textField.getText());
 				
-				//BD
+				borrarCuota (id);
 				
-				MyDataAccess conexion = new MyDataAccess();
-
-			    //
-				
-				String query = "delete from cuotas where id = '" + id + "'";
-				conexion.setQuery(query);
 			}
 		});
 		btnNewButton.setBounds(92, 88, 86, 20);
 		contentPane.add(btnNewButton);
+	}
+	
+	public void borrarCuota (int id)
+	
+	{
+		
+		//BD
+		
+		MyDataAccess conexion = new MyDataAccess();
+
+	    //
+		
+		String query = "delete from cuotas where id = '" + id + "'";
+		conexion.setQuery(query);
+		
 	}
 }

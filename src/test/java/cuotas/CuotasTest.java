@@ -155,4 +155,52 @@ public class CuotasTest {
 		//conexion.setQuery("DELETE from cuotas where id = '"+ id + "'");
 	}
 	
+@Test public void testBorrarCuota() {
+		
+		
+	crearCuota.creaCuota("Pablo", "Villegas", 5, 1500, "10/09/2017", "PENDIENTE");
+	
+	ResultSet comprobar;
+	String nombre="";
+	String apellido="";
+	int horas =0;
+	int precio =0;
+	String fecha ="";
+	String estado ="";
+	int id =0;
+	int id1 =0;
+	
+	comprobar = conexion.getQuery("SELECT * from cuotas order by id desc limit 1");
+	
+	try {
+		while(comprobar.next()) {
+		    id = comprobar.getInt("id");
+		    
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+		borrarCuota.borrarCuota(id);
+		
+		comprobar = conexion.getQuery("SELECT * from cuotas where id = '" + id + "'");
+		
+		try {
+			while(comprobar.next()) {
+			    id1 = comprobar.getInt("id");
+			    
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		System.out.println(id1);
+		
+		assertEquals(id1, 0);
+
+		
+	}
+	
 }
