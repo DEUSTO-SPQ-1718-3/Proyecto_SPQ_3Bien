@@ -54,7 +54,7 @@ mimeMessage.setSubject("Cuota miAcademia");
 
 // Creo la parte del mensaje
 MimeBodyPart mimeBodyPart = new MimeBodyPart();
-mimeBodyPart.setText("La cuota a pagar con fecha " + fecha + " por el estudiante " + nombre + " " + apellido + " por un total de " + horas + " horas realizadas en miAcademia es de " + precio);
+mimeBodyPart.setText("La cuota a pagar con fecha " + fecha + " por el estudiante " + nombre + " " + apellido + " por un total de " + horas + " horas realizadas en miAcademia es de " + precio + " €");
 
 // Crear el multipart para agregar la parte del mensaje anterior
 Multipart multipart = new MimeMultipart();

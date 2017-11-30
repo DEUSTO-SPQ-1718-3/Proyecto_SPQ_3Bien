@@ -7,7 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.log4j.Logger;
+
 import bbdd.MyDataAccess;
+import cursos.frmRegistrarCurso;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -35,6 +38,8 @@ public class frmEnviarCuota extends JFrame {
 	String fecha;
 	
 	ArrayList<Cuota> listaCuotas = new ArrayList<Cuota>(); 
+	final static Logger logger = Logger.getLogger(frmRegistrarCurso.class);
+
 
 
 	/**
@@ -112,6 +117,7 @@ public class frmEnviarCuota extends JFrame {
 
 				enviar_Email enviarEmail = new enviar_Email();
 				enviarEmail.mandarCorreo(nombre, apellido, email, horas, precio, fecha);
+				
 				
 			}
 		});
