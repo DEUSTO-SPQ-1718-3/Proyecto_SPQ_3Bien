@@ -120,9 +120,12 @@ public class CuotasTest {
 		precio=1500;
 		fecha="10/09/2017";
 		
+		System.out.println(nombre);
+		System.out.println(id);
+		
 		modificarCuota.modificarCuota(nombre, apellido, horas, precio, fecha, id);
 		
-		comprobar = conexion.getQuery("SELECT * from cursos where id  = '" + id + "'");
+		comprobar = conexion.getQuery("SELECT * from cuotas where id  = '" + id + "'");
 
 		try {
 			while(comprobar.next()) {
