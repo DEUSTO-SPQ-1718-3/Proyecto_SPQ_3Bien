@@ -13,6 +13,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.log4j.Logger;
+
 import main.VentanaInicial;
 import profesores.Profesor;
 import profesores.frmBorrarProfesor;
@@ -21,8 +23,17 @@ import profesores.frmProfesores;
 import profesores.frmRegistrarProfesor;
 import bbdd.MyDataAccess;
 
+/**clase que gestiona las operaciones de los usuarios administradores
+ * Opciones que se recogen: Añadir, modificar,borrar y refrescar
+ * Visualizacion de los usuarios registrados en la ventana
+* @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+*
+*/
+
 public class frmUsuarios extends JFrame implements ActionListener
 {
+	final static Logger logger = Logger.getLogger(frmUsuarios.class);
+	
 	JTextArea txtUsuarios;
 	ArrayList<usuario> listaUsuarios;
 	JScrollPane scrollPane;
@@ -171,7 +182,7 @@ public class frmUsuarios extends JFrame implements ActionListener
 			this.dispose();
 			frmUsuarios nuevo = new frmUsuarios();
 			nuevo.setVisible(true); 
-			
+			 logger.error("This is ERROR : Se ha refrescado la pagina de usuarios");
 			break;
 			
 					

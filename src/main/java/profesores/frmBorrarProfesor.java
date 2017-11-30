@@ -24,7 +24,12 @@ import estudiantes.frmBorrarEstudiante;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
+/**en esta clase se recogen todos los metodos, atributos y recursos necesarios
+ * para poder borrar un profesor ya existente en la BD de la Academia
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 //en esta clase se recogen todos los metodos, atributos y recursos necesarios para poder borrar un profesor ya existente en la BD de la Academia
 
 public class frmBorrarProfesor extends JFrame implements ActionListener{
@@ -85,13 +90,16 @@ public class frmBorrarProfesor extends JFrame implements ActionListener{
 			case "Aceptar":
 				String dni=textFieldDni.getText();
 				borrarProfesor(dni);
-				
-				
+					
 				break;
 		}
 		
 	}
 	
+	/**
+	 * Se borran de la BD los datos correspondientes al dni del profesor que se pasa por parametro
+	 * @param dni
+	 */
 	
 	void borrarProfesor(String dni) {
 		// TODO Auto-generated method stub

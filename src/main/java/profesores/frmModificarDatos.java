@@ -14,6 +14,12 @@ import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
 
+/**Se recogen lo datos de frmModificarProfesor, y aqui es realemtente donde se da la opción de que el
+ * usuario realice las modificaciones, y que esas modificaciones sean guardades correctamente en la BD
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmModificarDatos extends JFrame implements ActionListener{
 	
 	final static Logger logger = Logger.getLogger(frmModificarDatos.class);

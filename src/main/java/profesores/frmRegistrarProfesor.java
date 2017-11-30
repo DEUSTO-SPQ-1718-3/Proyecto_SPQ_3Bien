@@ -12,7 +12,11 @@ import javax.swing.JLabel;
 import org.apache.log4j.Logger;
 
 import bbdd.MyDataAccess;
-
+/**frame en el que se recogen todos los metodos, atributos y recursos necesarios para registrar o anadir un nuevo profesor a la BD de la Academia
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 
 //en esta clase se recogen todos los metodos, atributos y recursos necesarios para registrar o anadir un nuevo profesor a la BD de la Academia
 
@@ -31,7 +35,9 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 	MyDataAccess conexion = new MyDataAccess();
 	
 	
-	
+	/**
+	 * ficha para rellenar los datos del nuevo profesor, que luego seran almacenados en la BD
+	 */
 	public frmRegistrarProfesor() {
 		getContentPane().setLayout(null);
 		
@@ -151,6 +157,18 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 			}
 	}
 		
+	
+	/**
+	 * Se registra un profesor en la BD guardando los siguientes campos
+	 * 
+	 * @param dni
+	 * @param nombre
+	 * @param apellido
+	 * @param telefono
+	 * @param email
+	 * @param direccion
+	 * @param estudios
+	 */
 		void registrarProfesor (String dni, String nombre, String apellido, String telefono, String email, String direccion, String estudios)
 		{
 			// TODO Auto-generated method stub

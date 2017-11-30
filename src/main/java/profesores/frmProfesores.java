@@ -39,7 +39,11 @@ import estudiantes.frmEstudiantes;
 
 import java.util.ArrayList;
 
-
+/**clase que muestra todas las operaciones de profesores y visualicacion de los profesores ya registrados en la BD
+ * Opciones que se recogen: Añadir, modificar,borrar y refrescar
+* @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+*
+*/
 
 public class frmProfesores extends JFrame implements ActionListener{
 
@@ -188,7 +192,7 @@ public class frmProfesores extends JFrame implements ActionListener{
 			frmRegistrarProfesor ventanaanyadirProfesor = new frmRegistrarProfesor();
 			ventanaanyadirProfesor.setVisible(true); 
 			this.dispose();	
-			logger.debug("This is INFO : Llamando a ventana de añadir profesor");
+			logger.fatal("This is FATAL : Llamando a ventana de añadir profesor");
 			
 			break;
 			
