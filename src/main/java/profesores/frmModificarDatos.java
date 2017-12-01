@@ -23,7 +23,9 @@ import org.apache.log4j.Logger;
  */
 public class frmModificarDatos extends JFrame implements ActionListener{
 	
-	final static Logger logger = Logger.getLogger(frmModificarDatos.class);
+	//final static Logger logger = Logger.getLogger(frmModificarDatos.class);
+	
+	Logger logger1 = Logger.getLogger("modificar");
 	
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
@@ -128,7 +130,7 @@ public class frmModificarDatos extends JFrame implements ActionListener{
 				frmProfesores objAtras=new frmProfesores();
 				objAtras.setVisible(true);
 				this.dispose();
-				logger.trace("This is TRACE : Se ha destruido la ventana de modificar datos del profesor");
+				logger1.trace("This is TRACE : Se ha destruido la ventana de modificar datos del profesor");
 				break;
 				
 			case "MODIFICAR":
@@ -145,7 +147,7 @@ public class frmModificarDatos extends JFrame implements ActionListener{
 				//se envia el script SQL a la BBDD y se registra el curso
 						
 				conexion.setQuery(registrar);
-				logger.trace("This is TRACE : Se ha modificado un profesor");
+				logger1.trace("This is TRACE : Se ha modificado un profesor");
 		
 				this.dispose();
 				
