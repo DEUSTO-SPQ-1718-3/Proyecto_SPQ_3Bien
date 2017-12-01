@@ -2,8 +2,9 @@ package usuarios;
 
 import java.io.Serializable;
 
-/**clase con los datos de los usuarios administradores que tienen autorizacion para manejar los datos de la Academia
- * 
+/**Clase con los datos de los usuarios administradores que tienen autorizacion para manejar los datos de la Academia
+ * \class usuario
+ * @package usuarios
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

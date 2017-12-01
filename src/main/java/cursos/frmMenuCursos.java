@@ -25,6 +25,7 @@ import org.apache.log4j.Logger;
  * Menu en el que mostramos las opciones a los usuarios de la aplicacion y le redirigimos a la pantalla que quieran
  * Opciones: Añadir curso, modificar, borrar, ver informes asistencia, apuntar un estudiante al curso
  * El propio menu muestra los cursos que tenemos en la base de datos
+ * \class frmMenuCursos
  * @package cursos
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *

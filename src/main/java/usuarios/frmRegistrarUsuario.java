@@ -17,8 +17,9 @@ import org.apache.log4j.Logger;
 import profesores.frmRegistrarProfesor;
 import bbdd.MyDataAccess;
 
-/**frame en el que se recogen todos los metodos, atributos y recursos necesarios para registrar o anadir un nuevo usuario a la BD de la Academia
- * 
+/**Frame en el que se recogen todos los metodos, atributos y recursos necesarios para registrar o anadir un nuevo usuario a la BD de la Academia
+ * \class frmRegistrarUsuario
+ * @package usuarios
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

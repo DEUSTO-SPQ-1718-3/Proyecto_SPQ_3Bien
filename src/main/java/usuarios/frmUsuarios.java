@@ -23,9 +23,12 @@ import profesores.frmProfesores;
 import profesores.frmRegistrarProfesor;
 import bbdd.MyDataAccess;
 
-/**clase que gestiona las operaciones de los usuarios administradores
+/**Clase que gestiona las operaciones de los usuarios administradores
  * Opciones que se recogen: Añadir, modificar,borrar y refrescar
  * Visualizacion de los usuarios registrados en la ventana
+ * \class frmUsuarios
+ *@package usuarios
+ *@brief Paquete que configura el modulo usuarios
 * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
 *
 */

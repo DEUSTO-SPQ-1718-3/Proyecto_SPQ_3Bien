@@ -26,6 +26,7 @@ import java.awt.Font;
 import javax.swing.UIManager;
 
 /**Clase principal del programa
+ * \class frmPrincipal
  * @package main
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *

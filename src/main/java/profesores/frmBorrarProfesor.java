@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 
 /**en esta clase se recogen todos los metodos, atributos y recursos necesarios
  * para poder borrar un profesor ya existente en la BD de la Academia
+ * \class frmBorrarProfesor
  * @package profesores
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *

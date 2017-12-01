@@ -16,7 +16,8 @@ import org.apache.log4j.Logger;
 
 /**Se recogen lo datos de frmModificarUsuario, y aqui es realemtente donde se da la opción de que el
  * usuario realice las modificaciones, y que esas modificaciones sean guardades correctamente en la BD
- * 
+ * \class frmModificarDatos
+ * @package usuarios
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
