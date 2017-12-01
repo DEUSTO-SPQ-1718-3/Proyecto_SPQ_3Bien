@@ -26,7 +26,9 @@ import java.awt.event.ActionEvent;
  */
 public class frmModificarProfesor extends JFrame implements ActionListener{
 
-	final static Logger logger = Logger.getLogger(frmModificarProfesor.class);
+	//final static Logger logger = Logger.getLogger(frmModificarProfesor.class);
+	Logger logger2 = Logger.getLogger("modificar.prof");
+	
 	
 	private JPanel contentPane;
 	private JTextField textFieldNombre;
@@ -104,7 +106,7 @@ public class frmModificarProfesor extends JFrame implements ActionListener{
 		//enviar la sentencia a la bbdd
 		ResultSet resultado= conexion.getQuery(modificar);
 	
-		logger.debug("This is INFO : Se han lanzado la query de Select de profesores para identificar el profesor a modificar");
+		logger2.debug("This is INFO : Se han lanzado la query de Select de profesores para identificar el profesor a modificar");
 		
 		try {
 			while(resultado.next()){
@@ -119,7 +121,7 @@ public class frmModificarProfesor extends JFrame implements ActionListener{
 			      
 			      Profesor profesor = new Profesor(dni, nombre, apellido, telefono, email, direccion, estudios);
 			      
-			      logger.info("This is INFO : Se ha creado un profesor con los datos obtenidos de la BD del profesor con DNI "+dni);
+			      logger2.info("This is INFO : Se ha creado un profesor con los datos obtenidos de la BD del profesor con DNI "+dni);
 			      
 			      frmModificarDatos modificardatos=new frmModificarDatos(profesor, nom);
 			      modificardatos.setVisible(true);

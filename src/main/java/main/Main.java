@@ -2,6 +2,8 @@ package main;
 
 import java.sql.SQLException;
 
+import org.apache.log4j.xml.DOMConfigurator;
+
 import Cuotas.enviar_Email;
 
 /**Clase Main del programa
@@ -17,6 +19,8 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		DOMConfigurator.configure("log4java.xml");
 		
 		frmPrincipal objP = new frmPrincipal ();
 		objP.setVisible(true);
