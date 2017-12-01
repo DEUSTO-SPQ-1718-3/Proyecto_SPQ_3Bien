@@ -23,7 +23,8 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 /**Clase para la configuracion del frame de la funcionalidad enviar cuota.
- * 
+ * \class frmEnviarCuota
+ * @package Cuotas
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

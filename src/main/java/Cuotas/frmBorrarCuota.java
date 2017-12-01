@@ -17,7 +17,8 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 /**Clase para la configuracion del frame y de la funcionalidad borrar cuotas.
- * 
+ *\class frmBorrarCuota
+ * @package Cuotas
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

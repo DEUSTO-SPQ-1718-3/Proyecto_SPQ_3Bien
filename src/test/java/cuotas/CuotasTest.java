@@ -20,7 +20,8 @@ import java.sql.SQLException;
 import junit.framework.JUnit4TestAdapter;
 
 /**Clase para realizar los test correspondientes a el modulo de Cuotas.
- * 
+ *\class CuotasTest
+ * @package cuotas
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

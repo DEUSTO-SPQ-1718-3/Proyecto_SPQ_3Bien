@@ -13,7 +13,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 /**Clase con los metodos necesarios para enviar el email con la cuota correspondiente al estudiante.
- * 
+ * \class enviar_Email
+ * @package Cuotas
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

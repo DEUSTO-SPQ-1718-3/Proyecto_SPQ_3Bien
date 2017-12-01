@@ -24,7 +24,8 @@ import java.util.ArrayList;
 import java.sql.*;
 /**Clase para la configuracion del frame principal de la aplicacion en la que se mostraran todas
  *las cuotas de las que se dispone.
- * 
+ * \class frmCuotas
+ * @package Cuotas
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

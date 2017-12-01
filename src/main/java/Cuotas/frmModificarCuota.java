@@ -27,7 +27,8 @@ import javax.swing.WindowConstants;
 import javax.swing.JRadioButton;
 
 /**Clase para la configuracion del frame y de la funcionalidad modificar cuota 
- * 
+ * \class frmModificarCuota
+ * @package Cuotas
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
