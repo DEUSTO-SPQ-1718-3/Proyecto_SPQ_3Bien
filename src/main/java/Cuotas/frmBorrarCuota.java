@@ -16,7 +16,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
-
+/**Clase para la configuracion del frame y de la funcionalidad borrar cuotas.
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmBorrarCuota extends JFrame {
 
 	private JPanel contentPane;
@@ -24,7 +28,7 @@ public class frmBorrarCuota extends JFrame {
 	private JButton btnNewButton;
 
 	/**
-	 * Launch the application.
+	 * Lanza frmBorrarCuota
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -40,7 +44,7 @@ public class frmBorrarCuota extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Crea el frame.
 	 */
 	public frmBorrarCuota() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,6 +83,9 @@ public class frmBorrarCuota extends JFrame {
 		contentPane.add(btnNewButton);
 	}
 	
+	/**
+	 * Borra la cuota que le pases a traves de su id.
+	 */
 	public void borrarCuota (int id)
 	
 	{

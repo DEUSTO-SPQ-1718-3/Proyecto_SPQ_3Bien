@@ -22,8 +22,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
-
-
+/**Clase para la configuracion del frame de la funcionalidad enviar cuota.
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmEnviarCuota extends JFrame {
 
 	private JPanel contentPane;
@@ -43,7 +46,7 @@ public class frmEnviarCuota extends JFrame {
 
 
 	/**
-	 * Launch the application.
+	 * Lanza frmEnviarCuota.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -59,7 +62,7 @@ public class frmEnviarCuota extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Crea el frame.
 	 */
 	public frmEnviarCuota() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

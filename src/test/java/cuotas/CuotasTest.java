@@ -19,7 +19,11 @@ import java.sql.SQLException;
 
 import junit.framework.JUnit4TestAdapter;
 
-
+/**Clase para realizar los test correspondientes a el modulo de Cuotas.
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class CuotasTest {
 
 	Cuota C1;
@@ -33,7 +37,9 @@ public class CuotasTest {
 	public static junit.framework.Test suite() {
 		 return new JUnit4TestAdapter(CuotasTest.class);
 	}
-	
+	/**
+	 * Inicializa los valores que se usaran en la clase.
+	 */
 	@Before public void setUp() {
 		C1= new Cuota ("Pablo", "Villegas",5, 1500,"10/09/2017","PENDIENTE", 100);
 		conexion = new MyDataAccess();
@@ -44,6 +50,9 @@ public class CuotasTest {
 		//apuntarse= new frmApuntarseCurso();
 	}
 	
+	/**
+	 * Test sobre el metodo CreaCuota
+	 */
 	@Test public void testCreaCuota() {
 		
 		crearCuota.creaCuota("Pablo", "Villegas", 5, 1500, "10/09/2017", "PENDIENTE");
@@ -87,7 +96,9 @@ public class CuotasTest {
 		conexion.setQuery("DELETE from cuotas where id = '"+ id + "'");
 
 	}
-	
+	/**
+	 * Test sobre el metodo ModificarCuota
+	 */
 	@Test public void testModificarCuota() {
 
 		crearCuota.creaCuota("Javier", "Cerro", 7, 150, "10/09/2018", "PENDIENTE");
@@ -154,7 +165,9 @@ public class CuotasTest {
 		//limpiar de BBDD el registro generado
 		//conexion.setQuery("DELETE from cuotas where id = '"+ id + "'");
 	}
-	
+	/**
+	 * Test sobre el metodo BorrarCuota.
+	 */	
 @Test public void testBorrarCuota() {
 		
 		

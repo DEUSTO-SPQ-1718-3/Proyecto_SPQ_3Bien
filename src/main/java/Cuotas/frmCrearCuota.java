@@ -24,7 +24,11 @@ import java.awt.Font;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.JRadioButton;
-
+/**Clase para la configuracion del frame y de la funcionalidad crear cuota.
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmCrearCuota extends JFrame implements ActionListener{
 
 	/**
@@ -45,6 +49,10 @@ public class frmCrearCuota extends JFrame implements ActionListener{
 	JRadioButton rdbtnPagada;
 	String pendiente1 = "PENDIENTE";
 	
+	
+	/**
+	 * Crea el frame.
+	 */
 	public frmCrearCuota() {
 
 	
@@ -189,6 +197,9 @@ public class frmCrearCuota extends JFrame implements ActionListener{
 		}
 	}
 	
+	/**
+	 * Lanza la query correspondiente para crear una nueva fila en la BD.
+	 */
 		public void  creaCuota (String nombre, String apellidos, int horas, int precio, String fecha, String pendiente1)
 		
 		{

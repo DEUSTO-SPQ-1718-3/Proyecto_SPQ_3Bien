@@ -22,12 +22,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.util.ArrayList;
 import java.sql.*;
+/**Clase para la configuracion del frame principal de la aplicacion en la que se mostraran todas
+ *las cuotas de las que se dispone.
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmCuotas extends JFrame implements ActionListener{
 
-	/**
-	 * 
-	 */
-	
     int id;
     String nombre;
     String apellido;
@@ -44,6 +46,9 @@ public class frmCuotas extends JFrame implements ActionListener{
 	
 	private static final long serialVersionUID = 7046431761927583577L;
 	
+	/**
+	 *Crea el frame.
+	 */
 	public frmCuotas() {
 	
 		
@@ -223,7 +228,9 @@ public class frmCuotas extends JFrame implements ActionListener{
 			
 		}
 	}
-	
+	/**
+	 *Vuelve a lanzar la query a la BD para actualizar los valores y sacarlos por pantalla.
+	 */
 	public void actualizar ()
 	
 	{
@@ -255,6 +262,9 @@ public class frmCuotas extends JFrame implements ActionListener{
 		
 	}
 	
+	/**
+	 *Sirve para sacar por pantalla unicamente aquellas cuotas que esten PENDIENTES.
+	 */
 	public void sacarPendientes ()
 	
 	{		

@@ -26,11 +26,13 @@ import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.JRadioButton;
 
+/**Clase para la configuracion del frame y de la funcionalidad modificar cuota 
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmModificarCuota extends JFrame implements ActionListener{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7046431761927583577L;
 	
 	private JPanel contentPane;
@@ -55,6 +57,10 @@ public class frmModificarCuota extends JFrame implements ActionListener{
 	String estado;
 	int id1;
 	
+
+	/**
+	 * Lanza frmModificarCuota.
+	 */
 	public frmModificarCuota() {
 
 	
@@ -266,7 +272,10 @@ public class frmModificarCuota extends JFrame implements ActionListener{
 			
 		}
 	}
-	
+
+	/**
+	 * Actualiza la fila seleccionada en la BD segun el id pasado como parametro y con los valores introducidos.
+	 */
 	public void modificarCuota (String nombre1, String apellidos1, int horas1, int precio1, String fecha1, int id1)
 	
 	{

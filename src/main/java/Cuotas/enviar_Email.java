@@ -1,5 +1,6 @@
 package Cuotas;
 
+
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -11,11 +12,18 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-/**
- * @author datojava.blogspot.com
- */
+/**Clase con los metodos necesarios para enviar el email con la cuota correspondiente al estudiante.
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class enviar_Email {
 
+/**
+*Metodo que es llamado una vez pulsado el boton enviar en frmEnviarCuota y que dispone de todo el codigo para conectarse
+*al gmail de la academia y enviar el mensaje. A traves de los parametros, se le pasa el email del estudiante al que se va a enviar el 
+*correo y otros datos para completar el contenido.
+*/
 public void mandarCorreo(String nombre, String apellido, String email, int horas, int precio, String fecha) {
 // El correo gmail de envío
 String correoEnvia = "miAcademiaDonosti@gmail.com";

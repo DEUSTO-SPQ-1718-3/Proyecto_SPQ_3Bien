@@ -1,6 +1,11 @@
 package Cuotas;
-import java.io.Serializable;
 
+import java.io.Serializable;
+/**Clase con los atributos de una cuota que guardamos en la base de datos.
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class Cuota implements Serializable{
 	
 	
@@ -26,7 +31,9 @@ public class Cuota implements Serializable{
 		estado="";		
 	}
 	
-	
+	/**
+	 * Clase constructor de Cuota
+	 */
 	public Cuota (String nombre, String apellido, int horas, int precio, String fecha, String estado, int id){
 		
 		this.id=id;
@@ -106,7 +113,9 @@ public class Cuota implements Serializable{
 		this.estado = estado;
 	}	
 	
-	
+	/**Metodo para rellenar las listas de los frame.
+	 * @return String con la informacion del cuota en cuestion.
+	 */
 public String toString(){
 		
 		StringBuffer salida = new StringBuffer();
