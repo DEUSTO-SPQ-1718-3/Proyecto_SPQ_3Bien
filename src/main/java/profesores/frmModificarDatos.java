@@ -23,8 +23,6 @@ import org.apache.log4j.Logger;
  */
 public class frmModificarDatos extends JFrame implements ActionListener{
 	
-	//final static Logger logger = Logger.getLogger(frmModificarDatos.class);
-	
 	Logger logger1 = Logger.getLogger("modificar");
 	
 	private JTextField textFieldNombre;
