@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 
 /**clase que sirve para apuntar a un alumno a un determinado curso
  * debemos introducir el dni del alumno y el id del curso para formalizarlo
+ * @package cursos
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
@@ -115,7 +116,7 @@ public class frmApuntarseCurso extends JFrame implements ActionListener{
 	 * @param idC identificador del curso
 	 * @param dni identificador del estudiante
 	 */
-	void apuntarmeCurso(int idC, String dni) {
+	public void apuntarmeCurso(int idC, String dni) {
 		String apuntar = "insert into asistencia values ('"+dni+"','"+idC+"')";
 		conexion.setQuery(apuntar);
 		
@@ -129,7 +130,7 @@ public class frmApuntarseCurso extends JFrame implements ActionListener{
 	 * @param dni
 	 * @return verdadero si ambos existen, falso si alguno de los dos no existe en bbdd
 	 */
-	boolean comprobarExistencia(int idC, String dni) {
+	public boolean comprobarExistencia(int idC, String dni) {
 		comprobar=conexion.getQuery("SELECT * from estudiantes where dni='"+dni+"'");
 		String dniE="";
 		int idCurso=-1;

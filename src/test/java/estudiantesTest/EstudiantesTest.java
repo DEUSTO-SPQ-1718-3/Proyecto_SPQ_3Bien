@@ -1,9 +1,13 @@
-package estudiantes;
+package estudiantesTest;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import bbdd.MyDataAccess;
+import estudiantes.Estudiante;
+import estudiantes.frmBorrarEstudiante;
+import estudiantes.frmEstudiantes;
+import estudiantes.frmRegistrarEstudiante;
 
 import static org.junit.Assert.*;
 
@@ -11,8 +15,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import junit.framework.JUnit4TestAdapter;
-
-
+/**Clase para realizar los test correspondientes a el modulo de Estudiantes.
+ *\class EstudiantesTest
+ * @package cursosTest
+ * @brief Paquete con las clases de test correspondientes al modulo Estudiantes
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class EstudiantesTest {
 	
 	private Estudiante estudiante1;

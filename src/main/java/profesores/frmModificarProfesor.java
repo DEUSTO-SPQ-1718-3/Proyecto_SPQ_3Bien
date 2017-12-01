@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 
 /**Frame en el que se recoge el profesor que el usuario desea borrar
  * Nos introduce el nombre de un profesor ya existente en la BD, y lanzamos desde aqui la consulta a la BD
+ * @package profesores
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

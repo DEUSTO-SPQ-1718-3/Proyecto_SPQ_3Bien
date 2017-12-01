@@ -5,7 +5,8 @@ import java.sql.SQLException;
 import Cuotas.enviar_Email;
 
 /**Clase Main del programa
- * 
+ * @package main
+ * @brief Paquete con las clases de main para lanzar la aplicacion
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

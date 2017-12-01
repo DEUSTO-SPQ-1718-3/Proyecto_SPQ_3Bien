@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 
 /**frame para dar de alta un curso en el sistema
- * 
+ * @package cursos
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
@@ -122,7 +122,7 @@ public class frmRegistrarCurso extends JFrame implements ActionListener{
 	 * @param numC el numero de la clase
 	 * @param horario que tendran las clases
 	 */
-	void registrarCurso(int idC, String nombreC, String desc, int numC, String horario) {
+	public void registrarCurso(int idC, String nombreC, String desc, int numC, String horario) {
 		// TODO Auto-generated method stub
 		
 		String registrar= "insert into cursos values("+"'"+ idC +"','"+ nombreC +"','"+ desc +"','"+ numC +"','"+ horario +"')";

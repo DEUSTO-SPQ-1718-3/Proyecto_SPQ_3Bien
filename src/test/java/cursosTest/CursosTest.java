@@ -1,9 +1,16 @@
-package cursos;
+package cursosTest;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import bbdd.MyDataAccess;
+import cursos.clsAsistencia;
+import cursos.clsCurso;
+import cursos.frmApuntarseCurso;
+import cursos.frmBorrarCurso;
+import cursos.frmMenuCursos;
+import cursos.frmModificarDatosCurso;
+import cursos.frmRegistrarCurso;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -13,7 +20,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import junit.framework.JUnit4TestAdapter;
-
+/**Clase para realizar los test correspondientes a el modulo de Cursos.
+ *\class CursosTest
+ * @package cursosTest
+ * @brief Paquete que con las clases de test correspondientes al modulo Cursos
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 
 public class CursosTest {
 	

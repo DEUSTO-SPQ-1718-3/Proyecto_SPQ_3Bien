@@ -194,7 +194,7 @@ public class frmRegistrarUsuario extends JFrame implements ActionListener{
 	 * @param contra
 	 */
 	
-	void registrarUsuario (String nombre, String apellido, String nom_usuario, String contra)
+	public void registrarUsuario (String nombre, String apellido, String nom_usuario, String contra)
 		{
 			// TODO Auto-generated method stub
 					

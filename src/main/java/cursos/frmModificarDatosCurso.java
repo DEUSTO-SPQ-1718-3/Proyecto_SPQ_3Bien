@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 
 /**Si el ID que hemos introducido en frmModificarCurso esta dado de alta, podremos modificar los datos a excepcion de su ID
- * 
+ * @package cursos
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
