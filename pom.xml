@@ -9,6 +9,7 @@
 	<properties>
 	    <maven.compiler.source>1.8</maven.compiler.source>
 	    <maven.compiler.target>1.8</maven.compiler.target>
+	    <version.junit>4.10</version.junit>
 	    <doxygen.config.file>${basedir}/src/main/resources/Doxyfile</doxygen.config.file>
 	</properties>
 
@@ -26,8 +27,15 @@
 		<dependency>
 		    <groupId>junit</groupId>
 		    <artifactId>junit</artifactId>
-		    <version>4.12</version>
+		    <version>4.10</version>
 		    <scope>test</scope>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.databene</groupId>
+			<artifactId>contiperf</artifactId>
+			<version>2.1.0</version>
+			<scope>test</scope>
 		</dependency>
 	
 		<dependency>

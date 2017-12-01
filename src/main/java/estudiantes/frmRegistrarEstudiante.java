@@ -195,7 +195,7 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 		
 		this.dispose();
 		
-		logger.fatal("This is FATAL : frmReistrarEstudiante se ha destruido");
+		logger.info("This is INFOR : frmReistrarEstudiante se ha destruido");
 		
 		JOptionPane.showMessageDialog(this,"Estudiante con DNI "+dni + " anyadido CORRECTAMENTE");
 			

@@ -92,7 +92,7 @@ public class frmBorrarEstudiante extends JFrame implements ActionListener{
 	void borrarEstudiante(String borrardni) {
 		// TODO Auto-generated method stub
 		
-		String borrar= "Delete from estudiantes where dni='"+borrardni+"' ";
+		String borrar= "Delete from estudiantes where dni='"+borrardni+"'";
 		
 		conexion.setQuery(borrar);
 		logger.info("This is INFO : Se ha lanzado Query de Delete");
