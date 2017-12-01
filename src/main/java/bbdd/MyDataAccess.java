@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 /**Clase que realiza la conexion con la BD
- * 
+ * \class MyDataAccess
+ * @package bbdd
+ * @brief Paquete que dispone de las clases relacionadas con la conexion a la BD
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
