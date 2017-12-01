@@ -1,8 +1,9 @@
 package profesores;
 
 import java.io.Serializable;
-
 import org.apache.log4j.Logger;
+
+
 
 /**clase de profesores con los atributos, constructores y getters&setters
  * @package profesores
@@ -13,7 +14,7 @@ import org.apache.log4j.Logger;
 public class Profesor implements Serializable{
 	
 	final static Logger logger = Logger.getLogger(Profesor.class);
-	
+
 	private static final long serialVersionUID = 1L;
 	
 	private String dni;
@@ -136,7 +137,7 @@ public class Profesor implements Serializable{
 		salida.append("\nEstudios : ");
 		salida.append(estudios);
 		
-		logger.info("This is INFO : Se generado la estructura de visualizacion de los datos de los profesores");
+		//logger.info("This is INFO : Se generado la estructura de visualizacion de los datos de los profesores");
 		
 		return salida.toString();	
 		

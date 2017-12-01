@@ -38,7 +38,7 @@ public class frmPrincipal extends JFrame implements ActionListener{
 	 */
 	private static final long serialVersionUID = 7046431761927583577L;
 	
-	final static Logger logger = Logger.getLogger(frmBorrarEstudiante.class);
+	final static Logger logger = Logger.getLogger(frmPrincipal.class);
 	
 	private JPanel contentPane;
 	private JTextField textField_1;
