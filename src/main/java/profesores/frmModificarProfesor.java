@@ -18,9 +18,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
+/**Frame en el que se recoge el profesor que el usuario desea borrar
+ * Nos introduce el nombre de un profesor ya existente en la BD, y lanzamos desde aqui la consulta a la BD
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmModificarProfesor extends JFrame implements ActionListener{
 
-	//final static Logger logger = Logger.getLogger(frmBorrarEstudiante.class);
+	final static Logger logger = Logger.getLogger(frmModificarProfesor.class);
 	
 	private JPanel contentPane;
 	private JTextField textFieldNombre;
@@ -86,7 +91,10 @@ public class frmModificarProfesor extends JFrame implements ActionListener{
 		}
 		
 	}
-
+	
+	/**
+	 * Se recogen los todos los campos del profesor que se desea modificar para luego visualizarlos para la modificacion
+	 */
 	private void recogerInformacion() {
 		// TODO Auto-generated method stub
 		
@@ -95,7 +103,7 @@ public class frmModificarProfesor extends JFrame implements ActionListener{
 		//enviar la sentencia a la bbdd
 		ResultSet resultado= conexion.getQuery(modificar);
 	
-		//logger.trace("This is TRACE : Se han lanzado la query de Select Estudiante");
+		logger.debug("This is INFO : Se han lanzado la query de Select de profesores para identificar el profesor a modificar");
 		
 		try {
 			while(resultado.next()){
@@ -110,7 +118,7 @@ public class frmModificarProfesor extends JFrame implements ActionListener{
 			      
 			      Profesor profesor = new Profesor(dni, nombre, apellido, telefono, email, direccion, estudios);
 			      
-			      //logger.info("This is INFO : Se ha creado un objeto Estudiante con los datos de BD de DNI "+dni);
+			      logger.info("This is INFO : Se ha creado un profesor con los datos obtenidos de la BD del profesor con DNI "+dni);
 			      
 			      frmModificarDatos modificardatos=new frmModificarDatos(profesor, nom);
 			      modificardatos.setVisible(true);
