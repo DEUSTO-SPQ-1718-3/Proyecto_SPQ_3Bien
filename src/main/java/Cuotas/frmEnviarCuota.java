@@ -41,26 +41,9 @@ public class frmEnviarCuota extends JFrame {
 	int precio;
 	String fecha;
 	
-	ArrayList<Cuota> listaCuotas = new ArrayList<Cuota>(); 
+	ArrayList<Cuota> listaCuotas = new ArrayList<Cuota>();
+	ArrayList listaBuscar = new ArrayList ();
 	final static Logger logger = Logger.getLogger(frmRegistrarCurso.class);
-
-
-
-	/**
-	 * Lanza frmEnviarCuota.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frmBorrarCuota frame = new frmBorrarCuota();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Crea el frame.
@@ -94,33 +77,13 @@ public class frmEnviarCuota extends JFrame {
 				
 				int id = Integer.parseInt(textField.getText());
 				
-				//BD
-				
-				MyDataAccess conexion = new MyDataAccess();
-				ResultSet resultado;
-
-			    //
-				
-				String query = "select estudiantes.email as email, estudiantes.nombre as nombre, estudiantes.apellido as apellido, cuotas.precio as precio, cuotas.horas as horas, cuotas.fecha as fecha from estudiantes inner join cuotas on cuotas.nombre = estudiantes.nombre where cuotas.id = '" + id + "'";
-				resultado = conexion.getQuery(query);
-				
-				try {
-				      while(resultado.next()){
-				      nombre = resultado.getString("nombre");
-				      apellido = resultado.getString("apellido");
-				      email = resultado.getString("email");
-				      horas = resultado.getInt("horas");
-				      precio = resultado.getInt("precio");
-				      fecha = resultado.getString("fecha");
-				      
-				      }
-				    }catch (SQLException e) {
-				      // TODO Auto-generated catch block
-				      e.printStackTrace();
-				    }
+				ArrayList resultado1 = buscarDatos(id);
 
 				enviar_Email enviarEmail = new enviar_Email();
-				enviarEmail.mandarCorreo(nombre, apellido, email, horas, precio, fecha);
+				resultado1 = buscarDatos(id);
+
+				
+				enviarEmail.mandarCorreo((String) resultado1.get(0), (String) resultado1.get(1),(String) resultado1.get(2),(int) resultado1.get(3),(int) resultado1.get(4),(String) resultado1.get(5) );
 				
 				
 			}
@@ -131,4 +94,48 @@ public class frmEnviarCuota extends JFrame {
 		btnNewButton.setBounds(92, 88, 86, 20);
 		contentPane.add(btnNewButton);
 	}
+	
+	/**
+	 * Se le pasa un id y busca el nombre de la cuota al que le corresponde y lo compara con los de estudiantes para obtener
+	 * su email.
+	 */	
+		public ArrayList buscarDatos (int id)
+		
+		{
+			
+			//BD
+			
+			MyDataAccess conexion = new MyDataAccess();
+			ResultSet resultado;
+
+		    //
+			
+			String query = "select estudiantes.email as email, estudiantes.nombre as nombre, estudiantes.apellido as apellido, cuotas.precio as precio, cuotas.horas as horas, cuotas.fecha as fecha from estudiantes inner join cuotas on cuotas.nombre = estudiantes.nombre where cuotas.id = '" + id + "'";
+			resultado = conexion.getQuery(query);
+			
+			try {
+			      while(resultado.next()){
+			      nombre = resultado.getString("nombre");
+			      apellido = resultado.getString("apellido");
+			      email = resultado.getString("email");
+			      horas = resultado.getInt("horas");
+			      precio = resultado.getInt("precio");
+			      fecha = resultado.getString("fecha");
+			      
+			      }
+			    }catch (SQLException e) {
+			      // TODO Auto-generated catch block
+			      e.printStackTrace();
+			    }
+			
+			listaBuscar.add(nombre);
+			listaBuscar.add(apellido);
+			listaBuscar.add(email);
+			listaBuscar.add(horas);
+			listaBuscar.add(precio);
+			listaBuscar.add(fecha);
+			
+			return listaBuscar;
+			
+		}
 }

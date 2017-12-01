@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**frame para dar de alta un estudiante en el sistema
- * 
+ * @package estudiantes
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
