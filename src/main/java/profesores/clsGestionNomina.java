@@ -1,5 +1,4 @@
 package profesores;
-package profesores;
 
 /**Se recogen los métodos que nos proporcionará en un futuro un servidor externo para la gestion y el pago de las nominas a los profesores
  * 
