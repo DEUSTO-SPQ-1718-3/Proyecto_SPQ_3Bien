@@ -1,7 +1,8 @@
 package cursos;
 
 /**Clase con los atributos de un curso que guardamos en la base de datos
- * 
+ * @package cursos
+ * @brief Paquete que configura el modulo cursos
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

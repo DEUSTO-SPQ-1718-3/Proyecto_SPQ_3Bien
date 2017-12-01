@@ -7,6 +7,7 @@ import org.junit.Test;
 import Cuotas.Cuota;
 import Cuotas.frmBorrarCuota;
 import Cuotas.frmCrearCuota;
+import Cuotas.frmCuotas;
 import Cuotas.frmModificarCuota;
 import bbdd.MyDataAccess;
 
@@ -33,8 +34,7 @@ public class CuotasTest {
 	frmCrearCuota crearCuota;
 	frmBorrarCuota borrarCuota;
 	frmModificarCuota modificarCuota;
-//	frmMenuCursos menu;
-//	frmApuntarseCurso apuntarse;
+	frmCuotas cuotas;
 	
 	public static junit.framework.Test suite() {
 		 return new JUnit4TestAdapter(CuotasTest.class);
@@ -48,8 +48,6 @@ public class CuotasTest {
 		crearCuota = new frmCrearCuota();
 		borrarCuota = new frmBorrarCuota();
 		modificarCuota = new frmModificarCuota();
-		//menu= new frmMenuCursos();
-		//apuntarse= new frmApuntarseCurso();
 	}
 	
 	/**
@@ -72,7 +70,6 @@ public class CuotasTest {
 		
 		try {
 			while(comprobar.next()) {
-				//comprobar.next();//paso porque el primero es el ID
 				nombre=comprobar.getString("nombre");
 				apellido=comprobar.getString("apellido");
 				horas = comprobar.getInt("horas");
@@ -142,7 +139,6 @@ public class CuotasTest {
 
 		try {
 			while(comprobar.next()) {
-				//comprobar.next();//paso porque el primero es el ID
 				nombre=comprobar.getString("nombre");
 				apellido=comprobar.getString("apellido");
 				horas = comprobar.getInt("horas");

@@ -52,7 +52,7 @@ mimeMessage.setFrom(new InternetAddress(correoEnvia, "miAcademia Donosti"));
 
 // Los destinatarios
 InternetAddress[] internetAddresses = {
-new InternetAddress("pablovillegas@opendeusto.es")};
+new InternetAddress(email)};
 
 // Agregar los destinatarios al mensaje
 mimeMessage.setRecipients(Message.RecipientType.TO,
