@@ -17,6 +17,13 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**frame si con el metodo para borrar un estudiante, le pasaremos su dni por pantalla y si coincide con alguno de las bbdd lo borrara
+ * sino saldra un mensaje diciendo que no existe esa fila
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
+
 public class frmBorrarEstudiante extends JFrame implements ActionListener{
 
 	final static Logger logger = Logger.getLogger(frmBorrarEstudiante.class);
@@ -26,7 +33,7 @@ public class frmBorrarEstudiante extends JFrame implements ActionListener{
 	MyDataAccess conexion = new MyDataAccess();
 	
 	/**
-	 * Create the frame.
+	 * Construccion ventana
 	 */
 	public frmBorrarEstudiante() {
 		setTitle("MI ACADEMIA - BORRAR ESTUDIANTE");
@@ -78,7 +85,10 @@ public class frmBorrarEstudiante extends JFrame implements ActionListener{
 		}
 		
 	}
-
+	/**metodo para borrar el estudiante, el string lo indica el usuario de la aplicacion por pantalla
+	 * 
+	 * @param borrarEstudiante le pasamos el dni del estudiante (string)
+	 */
 	void borrarEstudiante(String borrardni) {
 		// TODO Auto-generated method stub
 		

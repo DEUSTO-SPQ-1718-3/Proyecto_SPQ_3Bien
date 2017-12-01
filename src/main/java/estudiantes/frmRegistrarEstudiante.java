@@ -13,6 +13,11 @@ import bbdd.MyDataAccess;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+/**frame para dar de alta un estudiante en el sistema
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 	
 	final static Logger logger = Logger.getLogger(frmRegistrarEstudiante.class);
@@ -166,6 +171,20 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 		}
 		
 	}
+	
+	/**Especificamos los valores que tiene el estudiante que vamos a anhadir a nuestra base de datos
+	 * 
+	 * @param dni Identidficador y clave primaria del estudiante
+	 * @param nombre nombre del estudiante en cuestion
+	 * @param apellido apellido del estudiante en cuestion
+	 * @param telefono telefono del estudiante
+	 * @param email email del estudiante
+	 * @param colegio colegio del estudiante
+	 * @param direccion direccion del estudiante
+	 * @param nombre_contacto el nombre de la persona de contacto
+	 * @param telf_contacto telefono de la persona de contacto
+	 * 
+	 */
 	void registrarEstudiante(String dni, String nombre, String apellido, String telefono, String email, String colegio, String direccion, String nombre_contacto, String telf_contacto) {
 		// TODO Auto-generated method stub
 				

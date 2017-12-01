@@ -25,11 +25,9 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.UIManager;
 
-/**
- * Documentacion de la clase
- * \class frmPrincipal
- * @package main
- * @author aneiturzaeta
+/**Clase principal del programa
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
 

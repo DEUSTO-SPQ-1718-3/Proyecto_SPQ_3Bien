@@ -18,6 +18,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
+/**Frame que sirve para que el usuario nos indique el estudiante que quiere modificar
+ * Nos introduce el dni que quiera, y lanzamos desde aqui la consulta a la BBDD, si existe, nos llevara a otra ventana que podemos modificar datos
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmModificarEstudiante extends JFrame implements ActionListener{
 
 	final static Logger logger = Logger.getLogger(frmBorrarEstudiante.class);
@@ -37,7 +43,7 @@ public class frmModificarEstudiante extends JFrame implements ActionListener{
     String telf_contacto;		
 	
 	/**
-	 * Create the frame.
+	 * Constructor vacio
 	 */
 	public frmModificarEstudiante() {
 		setTitle("MI ACADEMIA - MODIFICAR ESTUDIANTE");
@@ -88,7 +94,9 @@ public class frmModificarEstudiante extends JFrame implements ActionListener{
 		}
 		
 	}
-
+	/**
+	 * Leer de la base de datos todos los datos del estudiante que tiene el dni indicado por usuario
+	 */
 	private void recogerInformacion() {
 		// TODO Auto-generated method stub
 		

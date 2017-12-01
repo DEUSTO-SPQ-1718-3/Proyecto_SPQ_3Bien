@@ -35,7 +35,7 @@ public class frmBorrarUsuario extends JFrame implements ActionListener{
 	MyDataAccess conexion = new MyDataAccess();
 	
 	/**
-	 * Create the frame.
+	 * Constructor
 	 */
 	public frmBorrarUsuario() {
 		setTitle("MI ACADEMIA - Borrar usuario");
