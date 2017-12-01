@@ -19,11 +19,19 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**Clase de la ventana de menu del programa
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class VentanaInicial extends JFrame {
 
 	private JPanel contentPane;
 
+	/**Constructor
+	 * 
+	 */
+	
 	public VentanaInicial() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(500, 200, 530, 440);

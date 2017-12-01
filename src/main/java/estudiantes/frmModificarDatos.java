@@ -11,6 +11,11 @@ import bbdd.MyDataAccess;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+/**Si el dni que hemos introducido en frmModificarEstudiante esta dado de alta, podremos modificar los datos a excepcion de su dni
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmModificarDatos extends JFrame implements ActionListener{
 	
 	private JTextField textFieldDni;
@@ -25,7 +30,10 @@ public class frmModificarDatos extends JFrame implements ActionListener{
 	
 	MyDataAccess conexion = new MyDataAccess();
 	
-	
+	/**Nuevos valores para el estudiante que queremos modificar
+	 * 
+	 * @param objeto Estudiante
+	 */
 	public frmModificarDatos(Estudiante estudiante) {
 		getContentPane().setLayout(null);
 		
