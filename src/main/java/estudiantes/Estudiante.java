@@ -1,6 +1,11 @@
 package estudiantes;
 import java.io.Serializable;
 
+/**Clase que es un Estudiante
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class Estudiante implements Serializable{
 	
 	
@@ -16,6 +21,9 @@ public class Estudiante implements Serializable{
 	private String nombre_contacto;
 	private String telf_contacto;
 	
+	/**Constructor vacío
+	 * 
+	 */
 	public Estudiante(){
 		
 		dni="";		
@@ -29,7 +37,19 @@ public class Estudiante implements Serializable{
 		telf_contacto="";	
 	}
 	
-	
+	/**Constructor con parámetros
+	 * 
+	 * @param dni Identidficador y clave primaria del estudiante
+	 * @param nombre nombre del estudiante en cuestion
+	 * @param apellido apellido del estudiante en cuestion
+	 * @param telefono telefono del estudiante
+	 * @param email email del estudiante
+	 * @param colegio colegio del estudiante
+	 * @param direccion direccion del estudiante
+	 * @param nombre_contacto el nombre de la persona de contacto
+	 * @param telf_contacto telefono de la persona de contacto
+	 *  
+	 */
 	public Estudiante (String dni, String nombre, String apellido, String telefono, String email, String colegio, String direccion, String nombre_contacto, String telf_contacto ){
 		
 		this.dni=dni;
@@ -136,7 +156,9 @@ public class Estudiante implements Serializable{
 		this.telf_contacto = telf_contacto;
 	}
 
-
+	/**toString para formato de impresion de atributos
+	 * @return String con la informacion del estudiante 
+	 */
 public String toString(){
 		
 		StringBuffer salida = new StringBuffer();

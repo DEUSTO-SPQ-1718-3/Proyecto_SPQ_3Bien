@@ -9,14 +9,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
-import bbdd.MyDataAccess;
+import org.apache.log4j.Logger;
 
+import bbdd.MyDataAccess;
+/**frame en el que se recogen todos los metodos, atributos y recursos necesarios para registrar o anadir un nuevo profesor a la BD de la Academia
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 
 //en esta clase se recogen todos los metodos, atributos y recursos necesarios para registrar o anadir un nuevo profesor a la BD de la Academia
 
 public class frmRegistrarProfesor extends JFrame implements ActionListener{
 	
-
+	final static Logger logger = Logger.getLogger(frmRegistrarProfesor.class);
+	
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
 	private JTextField textFieldTelefono;
@@ -28,7 +35,9 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 	MyDataAccess conexion = new MyDataAccess();
 	
 	
-	
+	/**
+	 * ficha para rellenar los datos del nuevo profesor, que luego seran almacenados en la BD
+	 */
 	public frmRegistrarProfesor() {
 		getContentPane().setLayout(null);
 		
@@ -126,6 +135,7 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 				frmProfesores objAtras=new frmProfesores();
 				objAtras.setVisible(true);
 				this.dispose();
+				logger.trace("This is TRACE : Se ha destruido la ventana de registrar profesor");
 				break;
 				
 			case "Dar de alta":
@@ -143,21 +153,30 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 				registrarProfesor(dni,nombre,apellido,telefono,email,direccion,estudios);
 				JOptionPane.showMessageDialog(this,"Nuevo profesor registrado");
 				
-				break;
-				
+				break;	
 			}
-
-	
 	}
 		
+	
+	/**
+	 * Se registra un profesor en la BD guardando los siguientes campos
+	 * 
+	 * @param dni
+	 * @param nombre
+	 * @param apellido
+	 * @param telefono
+	 * @param email
+	 * @param direccion
+	 * @param estudios
+	 */
 		void registrarProfesor (String dni, String nombre, String apellido, String telefono, String email, String direccion, String estudios)
 		{
 			// TODO Auto-generated method stub
 					
-			String registrar= "insert into profesores values("+"'"+ dni +"','"+ nombre +"','"+ apellido +"','"+ telefono +"','"+ email +"','"+ direccion +"','"+ estudios+"')";
-			
-			
+			String registrar= "insert into profesores values("+"'"+ dni +"','"+ nombre +"','"+ apellido +"','"+ telefono +"','"+ email +"','"+ direccion +"','"+ estudios+"')";	
 			conexion.setQuery(registrar);
+			
+			logger.debug("This is INFO : Se ha insertado un nuevo profesor en la BD");
 			
 			//se envia el script SQL a la BBDD y queda registrado el nuevo profesor insertado
 		
@@ -165,7 +184,7 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 			this.dispose();
 			
 			
-			//logger.fatal("This is FATAL : frmReistrarEstudiante se ha destruido");
+			logger.fatal("This is FATAL : la ventana de registrar profesor se ha destruido");
 			
 			
 			

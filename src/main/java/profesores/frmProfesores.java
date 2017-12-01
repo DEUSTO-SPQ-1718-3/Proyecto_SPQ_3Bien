@@ -29,6 +29,8 @@ import javax.swing.UIManager;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import org.apache.log4j.Logger;
+
 import main.VentanaInicial;
 import main.frmPrincipal;
 import cursos.frmRegistrarCurso;
@@ -37,10 +39,16 @@ import estudiantes.frmEstudiantes;
 
 import java.util.ArrayList;
 
-
+/**clase que muestra todas las operaciones de profesores y visualicacion de los profesores ya registrados en la BD
+ * Opciones que se recogen: Añadir, modificar,borrar y refrescar
+* @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+*
+*/
 
 public class frmProfesores extends JFrame implements ActionListener{
 
+	final static Logger logger = Logger.getLogger(frmProfesores.class);
+	
 	JTextArea txtProfesores;
 	ArrayList<Profesor> listaProfesores;
 	JScrollPane scrollPane;
@@ -176,15 +184,16 @@ public class frmProfesores extends JFrame implements ActionListener{
 			
 			frmModificarProfesor modifProf = new frmModificarProfesor();
 			modifProf.setVisible(true); 
+			logger.debug("This is INFO : Llamando a ventana de modificar profesor");
 			break;
 			
 		case "Anyadir":
 			
-			//
-			
 			frmRegistrarProfesor ventanaanyadirProfesor = new frmRegistrarProfesor();
 			ventanaanyadirProfesor.setVisible(true); 
 			this.dispose();	
+			logger.fatal("This is FATAL : Llamando a ventana de añadir profesor");
+			
 			break;
 			
 	
@@ -195,6 +204,7 @@ public class frmProfesores extends JFrame implements ActionListener{
 			borrarProf.setVisible(true);
 			this.dispose();
 			
+			logger.debug("This is INFO : Llamando a ventana de eliminar profesor");
 			break;
 			
 		case "Refresh":
@@ -202,6 +212,8 @@ public class frmProfesores extends JFrame implements ActionListener{
 			this.dispose();
 			frmProfesores nuevo = new frmProfesores();
 			nuevo.setVisible(true); 
+			
+			 logger.info("This is INFO : Se ha refrescado la ventana frmProfesores");
 			
 			break;
 			

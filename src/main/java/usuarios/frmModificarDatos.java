@@ -2,6 +2,7 @@ package usuarios;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -11,8 +12,17 @@ import bbdd.MyDataAccess;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.Logger;
+
+/**Se recogen lo datos de frmModificarUsuario, y aqui es realemtente donde se da la opción de que el
+ * usuario realice las modificaciones, y que esas modificaciones sean guardades correctamente en la BD
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmModificarDatos extends JFrame implements ActionListener{
 	
+	final static Logger logger = Logger.getLogger(frmModificarDatos.class);
 	
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
@@ -110,7 +120,8 @@ public class frmModificarDatos extends JFrame implements ActionListener{
 				
 				String registrar= "update usuarios set nom_usuario='"+ nom_usu +"',contra='"+ contra +"',nombre='"+ nombre +"',apellido='"+ apellido +"' where nom_usuario = '"+nomReferente+"'";
 				//se envia el script SQL a la BBDD y se registra el usuario
-			
+				
+				logger.trace("This is TRACE : Se ha modificado el usuario seleccionado");
 								
 				conexion.setQuery(registrar);
 				

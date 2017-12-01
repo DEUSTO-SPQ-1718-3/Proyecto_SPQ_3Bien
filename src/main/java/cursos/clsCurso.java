@@ -1,6 +1,6 @@
 package cursos;
 
-/**clase con los atributos de un curso que guardamos en la base de datos
+/**Clase con los atributos de un curso que guardamos en la base de datos
  * 
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
@@ -24,8 +24,10 @@ public class clsCurso {
 		return "Curso con id:" + idC + ", con título '" + nombreC + "', impartido en la clase "
 				+ numClase + " y su horario es de " + horario + ".\n";
 	}
-
-
+	
+	/**
+	 *Clase constructor de Cursos
+	 */
 	public clsCurso(int idC, String nombreC, String descripcion, int numClase, String horario) {
 		super();
 		this.idC = idC;

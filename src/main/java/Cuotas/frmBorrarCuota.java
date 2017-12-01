@@ -16,7 +16,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
-
+/**Clase para la configuracion del frame y de la funcionalidad borrar cuotas.
+ *\class frmBorrarCuota
+ * @package Cuotas
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmBorrarCuota extends JFrame {
 
 	private JPanel contentPane;
@@ -24,7 +29,7 @@ public class frmBorrarCuota extends JFrame {
 	private JButton btnNewButton;
 
 	/**
-	 * Launch the application.
+	 * Lanza frmBorrarCuota
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -40,7 +45,7 @@ public class frmBorrarCuota extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Crea el frame.
 	 */
 	public frmBorrarCuota() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,17 +76,29 @@ public class frmBorrarCuota extends JFrame {
 				
 				int id = Integer.parseInt(textField.getText());
 				
-				//BD
+				borrarCuota (id);
 				
-				MyDataAccess conexion = new MyDataAccess();
-
-			    //
-				
-				String query = "delete from cuotas where id = '" + id + "'";
-				conexion.setQuery(query);
 			}
 		});
 		btnNewButton.setBounds(92, 88, 86, 20);
 		contentPane.add(btnNewButton);
+	}
+	
+	/**
+	 * Borra la cuota que le pases a traves de su id.
+	 */
+	public void borrarCuota (int id)
+	
+	{
+		
+		//BD
+		
+		MyDataAccess conexion = new MyDataAccess();
+
+	    //
+		
+		String query = "delete from cuotas where id = '" + id + "'";
+		conexion.setQuery(query);
+		
 	}
 }

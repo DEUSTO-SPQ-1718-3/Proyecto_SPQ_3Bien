@@ -17,7 +17,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.util.ArrayList;
 
-
+/**Clase principal del modulo Estudiantes
+ * Menu en el que mostramos las opciones a los usuarios de la aplicacion y le redirigimos a la pantalla que quieran
+ * Opciones: Añadir estudiante, modificar, borrar,
+ * El propio menu muestra los estudiantes que tenemos en la base de datos
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmEstudiantes extends JFrame implements ActionListener{
 
 	/**
@@ -43,7 +50,9 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 	
 	final static Logger logger = Logger.getLogger(frmEstudiantes.class);
 	
-	
+	/**Constructor de Estudiante
+	 *  
+	 */
 	public frmEstudiantes() {
 			
 		setTitle("MI ACADEMIA");
@@ -107,7 +116,9 @@ public class frmEstudiantes extends JFrame implements ActionListener{
 			
 	}
 	
-	
+	/**Método para mostrar los estudiantes en la base de datos en la pantala 
+	 *  
+	 */
 	void completarLista() {
 		// TODO Auto-generated method stub
 		txtEstudiantes = new JTextArea();

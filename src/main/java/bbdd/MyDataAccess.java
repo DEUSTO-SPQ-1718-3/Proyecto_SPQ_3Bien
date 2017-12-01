@@ -5,7 +5,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+/**Clase que realiza la conexion con la BD
+ * \class MyDataAccess
+ * @package bbdd
+ * @brief Paquete que dispone de las clases relacionadas con la conexion a la BD
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class MyDataAccess {
 
  private String _usuario="root";
@@ -33,7 +39,9 @@ public class MyDataAccess {
       System.out.println(ex);
    }  
  }
- 
+	/**
+	 * Metodo para querys de consulta que devuelven un valor. (Select)
+	 */
  public ResultSet getQuery(String _query)
  {
     Statement state = null;
@@ -48,7 +56,9 @@ public class MyDataAccess {
     }
     return resultado;
  }
- 
+	/**
+	 * Metodo para querys que realizan cambios en la BD y no devuelven valor. (Insert, Delete y Update)
+	 */
  public void setQuery(String _query){
 
     Statement state = null;
