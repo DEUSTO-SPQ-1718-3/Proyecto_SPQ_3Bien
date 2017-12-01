@@ -41,6 +41,7 @@ import java.util.ArrayList;
 
 /**clase que muestra todas las operaciones de profesores y visualicacion de los profesores ya registrados en la BD
  * Opciones que se recogen: Añadir, modificar,borrar y refrescar
+* @package profesores
 * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
 *
 */

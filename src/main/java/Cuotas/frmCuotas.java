@@ -76,13 +76,13 @@ public class frmCuotas extends JFrame implements ActionListener{
 		txtCuotasRegistradas.setColumns(50);
 		txtCuotasRegistradas.setEditable(false);
 		
-		actualizar();
+		actualizar(listaCuotas);
 		sacarPendientes();
 		
-		JButton btnActualizar = new JButton("ACTUALIZAR");
+		JButton btnActualizar = new JButton("REFRESH");
 		btnActualizar.setBounds(420, 20, 100, 25);
 		btnActualizar.addActionListener(this);
-		btnActualizar.setActionCommand("Actualizar");
+		btnActualizar.setActionCommand("Refresh");
 		contentPane.add(btnActualizar);
 			
 		btnPendientes.setBounds(420, 70, 100, 25);
@@ -186,11 +186,11 @@ public class frmCuotas extends JFrame implements ActionListener{
 			
 			break;
 			
-		case "Actualizar":
+		case "Refresh":
 			
 			listaCuotas.clear();
 			
-			actualizar();
+			actualizar(listaCuotas);
 			
 			if(btnPendientes.getText().equals("PENDIENTES"))
 				
@@ -232,7 +232,7 @@ public class frmCuotas extends JFrame implements ActionListener{
 	/**
 	 *Vuelve a lanzar la query a la BD para actualizar los valores y sacarlos por pantalla.
 	 */
-	public void actualizar ()
+	public void actualizar (ArrayList <Cuota> listaCuotas)
 	
 	{
 		

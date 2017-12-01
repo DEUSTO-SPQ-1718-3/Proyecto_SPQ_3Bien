@@ -20,7 +20,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 /**Clase de la ventana de menu del programa
- * 
+ * @package main
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

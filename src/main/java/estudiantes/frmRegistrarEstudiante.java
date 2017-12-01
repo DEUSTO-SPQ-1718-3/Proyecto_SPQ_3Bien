@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**frame para dar de alta un estudiante en el sistema
- * 
+ * @package estudiantes
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
@@ -185,7 +185,7 @@ public class frmRegistrarEstudiante extends JFrame implements ActionListener{
 	 * @param telf_contacto telefono de la persona de contacto
 	 * 
 	 */
-	void registrarEstudiante(String dni, String nombre, String apellido, String telefono, String email, String colegio, String direccion, String nombre_contacto, String telf_contacto) {
+	public void registrarEstudiante(String dni, String nombre, String apellido, String telefono, String email, String colegio, String direccion, String nombre_contacto, String telf_contacto) {
 		// TODO Auto-generated method stub
 				
 		String registrar= "insert into estudiantes values("+"'"+ dni +"','"+ nombre +"','"+ apellido +"','"+ telefono +"','"+ email +"','"+ colegio +"','"+ direccion +"','"+ nombre_contacto +"','"+telf_contacto+"')";

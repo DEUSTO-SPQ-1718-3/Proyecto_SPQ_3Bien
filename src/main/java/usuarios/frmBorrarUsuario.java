@@ -93,7 +93,7 @@ public class frmBorrarUsuario extends JFrame implements ActionListener{
 	 * Se borran de la BD los datos correspondientes al nom_usuario del usuario que se pasa por parametro
 	 * @param nom_usu
 	 */
-	void borrarUsuario(String nom_usu) {
+	public void borrarUsuario(String nom_usu) {
 		// TODO Auto-generated method stub
 		
 		String borrar= "Delete from usuarios where nom_usuario='"+nom_usu+"' ";

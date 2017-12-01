@@ -1,4 +1,4 @@
-package usuarios;
+package usuariosTest;
 
 import org.databene.contiperf.PerfTest;
 import org.databene.contiperf.Required;
@@ -16,7 +16,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import junit.framework.JUnit4TestAdapter;
-
+import usuarios.frmBorrarUsuario;
+import usuarios.frmRegistrarUsuario;
+import usuarios.frmUsuarios;
+import usuarios.usuario;
+/**Clase para realizar los test correspondientes a el modulo de Usuarios.
+ *\class UsuariosTest
+ * @package usuariosTest
+ * @brief Paquete que con las clases de test correspondientes al modulo Usuarios
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 
 public class UsuariosTest {
 	

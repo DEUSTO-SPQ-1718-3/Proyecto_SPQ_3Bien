@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * Menu en el que mostramos las opciones a los usuarios de la aplicacion y le redirigimos a la pantalla que quieran
  * Opciones: Añadir estudiante, modificar, borrar,
  * El propio menu muestra los estudiantes que tenemos en la base de datos
- * 
+ * @package estudiantes
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

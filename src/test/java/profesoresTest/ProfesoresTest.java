@@ -1,4 +1,4 @@
-package profesores;
+package profesoresTest;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +19,18 @@ import static org.mockito.Mockito.doThrow;
 import bbdd.MyDataAccess;
 import static org.junit.Assert.assertEquals;
 import junit.framework.JUnit4TestAdapter;
-
+import profesores.Profesor;
+import profesores.clsGestionNomina;
+import profesores.frmBorrarProfesor;
+import profesores.frmProfesores;
+import profesores.frmRegistrarProfesor;
+/**Clase para realizar los test correspondientes a el modulo de Profesores.
+ *\class ProfesoresTest
+ * @package profesoresTest
+ * @brief Paquete con las clases de test correspondientes al modulo Profesores.
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class ProfesoresTest {
 	
 	private Profesor prof1;
