@@ -2,6 +2,11 @@ package usuarios;
 
 import java.io.Serializable;
 
+/**clase con los datos de los usuarios administradores que tienen autorizacion para manejar los datos de la Academia
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class usuario implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -27,6 +32,11 @@ public class usuario implements Serializable
 		this.nom_usuario= nom_usuario;
 		this.contra=contra;
 	}
+	
+	/**metodo para estructurar la visualizacion de los datos de los usuarios sacados de la BD
+	 * @return String con la informacion de lo usuarios registrados, exceptuando la contraseña
+	 */
+	@Override
 	
 	public String toString()
 	{

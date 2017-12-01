@@ -17,10 +17,14 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
-
+/**Frame en el que se recoge el nom_usuario delusuario que se desea borrar
+ * Se introduce el nom_usuario de un usuario ya existente en la BD, y lanzamos desde aqui la consulta a la BD
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class frmModificarUsuario extends JFrame implements ActionListener{
 
-	//final static Logger logger = Logger.getLogger(frmBorrarEstudiante.class);
+	final static Logger logger = Logger.getLogger(frmBorrarUsuario.class);
 	
 	private JPanel contentPane;
 	private JTextField textFieldNom_usu;
@@ -65,7 +69,11 @@ public class frmModificarUsuario extends JFrame implements ActionListener{
 		contentPane.add(btnAceptar);
 		btnAceptar.addActionListener(this);
 	}
-
+	
+	
+	/**
+	 * Se recogen los todos los campos del usuario que se desea modificar para luego visualizarlos para la modificacion
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -74,7 +82,8 @@ public class frmModificarUsuario extends JFrame implements ActionListener{
 		
 			case "Atras":
 				
-				this.dispose();				
+				this.dispose();			
+				logger.error("This is ERROR :  se ha destruido la ventana modificar usuario");
 				break;
 				
 			case "Aceptar":
@@ -93,7 +102,7 @@ public class frmModificarUsuario extends JFrame implements ActionListener{
 		//enviar la sentencia a la bbdd
 		ResultSet resultado= conexion.getQuery(modificar);
 	
-		//logger.trace("This is TRACE : Se han lanzado la query de Select Estudiante");
+		logger.error("This is ERROR : Se han lanzado la sentencia sql para obtener los datos del usuario que se desea modificar");
 		
 		try {
 			while(resultado.next()){
@@ -105,7 +114,7 @@ public class frmModificarUsuario extends JFrame implements ActionListener{
 			      
 			      usuario usuario = new usuario(nombre, apellido, nom_usu, contra);
 			      
-			      //logger.info("This is INFO : Se ha creado un objeto Usuario con los datos de BD del usuario "+nom_usu);
+			      logger.info("This is INFO : Se ha creado un objeto Usuario con los datos de BD del usuario "+nom_usu);
 			      
 			      frmModificarDatos modificardatos=new frmModificarDatos(usuario, nom);
 			      modificardatos.setVisible(true);

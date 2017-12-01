@@ -12,14 +12,22 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import org.apache.log4j.Logger;
+
+import profesores.frmRegistrarProfesor;
 import bbdd.MyDataAccess;
 
-
+/**frame en el que se recogen todos los metodos, atributos y recursos necesarios para registrar o anadir un nuevo usuario a la BD de la Academia
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 //en esta clase se recogen todos los metodos, atributos y recursos necesarios para registrar o anadir un nuevo usuario a la BD de la Academia
 
 public class frmRegistrarUsuario extends JFrame implements ActionListener{
 	
-
+	final static Logger logger = Logger.getLogger(frmRegistrarUsuario.class);
+	
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
 	private JTextField textFieldNom_usuario;
@@ -30,7 +38,10 @@ public class frmRegistrarUsuario extends JFrame implements ActionListener{
 	MyDataAccess conexion = new MyDataAccess();
     ResultSet resultado;
 	
-	
+    /**
+     * ficha para rellenar los datos del nuevo usuario, que luego seran almacenados en la BD
+     * 
+     */
 	public frmRegistrarUsuario() {
 		getContentPane().setLayout(null);
 		
@@ -119,6 +130,12 @@ public class frmRegistrarUsuario extends JFrame implements ActionListener{
 		}
 	}
 	
+	/**
+	 * Se recogen los datos introducidos por el nuevo usuario a registrar, 
+	 * impidiendo que el nombre de usuario coincida con otro ya existente. 
+	 * Tambien se verificando que la contraseña este bien escrita, piendole
+	 * al usuario que lo escriba dos veces.
+	 */
 	void recogerDatos()
 	{
 		String nombre= textFieldNombre.getText();
@@ -169,6 +186,13 @@ public class frmRegistrarUsuario extends JFrame implements ActionListener{
 		}
 	}
 		
+	/**
+	 * Se registra un nuevo usuario en la BD con los siguientes campos: 
+	 * @param nombre
+	 * @param apellido
+	 * @param nom_usuario
+	 * @param contra
+	 */
 	
 	void registrarUsuario (String nombre, String apellido, String nom_usuario, String contra)
 		{
@@ -179,13 +203,15 @@ public class frmRegistrarUsuario extends JFrame implements ActionListener{
 			
 			conexion.setQuery(registrar);
 			
-			//se envia el script SQL a la BBDD y queda registrado el nuevo profesor insertado
+			logger.error("This is ERROR : Se ha enviado la sentencia sql de registrar un usuario a la BD");
+			
+			//se envia el script SQL a la BBDD y queda registrado el nuevo usuario insertado
 		
 			
 			this.dispose();
 			
 			
-			//logger.fatal("This is FATAL : frmReistrarEstudiante se ha destruido");
+			logger.trace("This is TRACE : frmReistrarEstudiante se ha destruido");
 			
 			
 			

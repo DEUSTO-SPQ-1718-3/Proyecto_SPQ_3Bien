@@ -2,10 +2,17 @@ package profesores;
 
 import java.io.Serializable;
 
+import org.apache.log4j.Logger;
+
+/**clase de profesores con los atributos, constructores y getters&setters
+ * 
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 public class Profesor implements Serializable{
 	
+	final static Logger logger = Logger.getLogger(Profesor.class);
 	
-	//private static final long serialVersionUID = -5805334843360532846L;
 	private static final long serialVersionUID = 1L;
 	
 	private String dni;
@@ -105,7 +112,9 @@ public class Profesor implements Serializable{
 		this.estudios = estudios;
 	}	
 	
-	
+	/**metodo para la visualizacion de los profesores en la ventada de los mismos
+	 * @return String con la informacion de los profesores estructurado
+	 */
 	public String toString(){
 		
 		StringBuffer salida = new StringBuffer();
@@ -126,11 +135,15 @@ public class Profesor implements Serializable{
 		salida.append("\nEstudios : ");
 		salida.append(estudios);
 		
+		logger.info("This is INFO : Se generado la estructura de visualizacion de los datos de los profesores");
+		
 		return salida.toString();	
 		
 	}
 	
-		
+	/**metodo utilizado para realizar el ejemplo de Mockito
+	 * @return double con el salario base calculado
+	 */
 
 	public double calcularSalarioBase(String tipo) {
 		
@@ -146,7 +159,9 @@ public class Profesor implements Serializable{
 		
 	}
 
-	
+	/**metodo utilizado para realizar el ejemplo de Mockito
+	 * @return double con el salario total, somando las horas extra
+	 */
 	
 	public double calcularSalarioTotal(String tipo, double SalarioBase) {
 		
@@ -157,6 +172,10 @@ public class Profesor implements Serializable{
 		return SalarioTotal;
 		
 	}
+	
+	/**metodo utilizado para realizar el ejemplo de Mockito
+	 * @return String para informar si el pago se ha realizado o no
+	 */
 	
 	public String pagar (double SalarioTotal, String tarjeta) {
 		
