@@ -26,7 +26,8 @@ import java.awt.event.ActionEvent;
 
 /**en esta clase se recogen todos los metodos, atributos y recursos necesarios
  * para poder borrar un profesor ya existente en la BD de la Academia
- * 
+ * \class frmBorrarProfesor
+ * @package profesores
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
@@ -101,7 +102,7 @@ public class frmBorrarProfesor extends JFrame implements ActionListener{
 	 * @param dni
 	 */
 	
-	void borrarProfesor(String dni) {
+	public void borrarProfesor(String dni) {
 		// TODO Auto-generated method stub
 		
 		String borrar= "Delete from profesores where dni='"+dni+"' ";

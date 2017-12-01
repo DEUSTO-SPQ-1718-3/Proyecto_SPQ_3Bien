@@ -1,3 +1,6 @@
-FATAL - 16:21:55,180 - AWT-EventQueue-0 - estudiantes.frmRegistrarEstudiante - This is FATAL : frmReistrarEstudiante se ha destruido
-ERROR - 16:23:21,761 - AWT-EventQueue-0 - estudiantes.frmEstudiantes - This is ALL : Llamada a ventana de MODIFICADOS
-FATAL - 16:27:41,113 - AWT-EventQueue-0 - estudiantes.frmRegistrarEstudiante - This is FATAL : frmReistrarEstudiante se ha destruido
+FATAL - 20:54:45,211 - main - estudiantes.frmRegistrarEstudiante - This is FATAL : frmReistrarEstudiante se ha destruido
+FATAL - 20:56:58,594 - main - estudiantes.frmRegistrarEstudiante - This is FATAL : frmReistrarEstudiante se ha destruido
+FATAL - 20:59:55,210 - main - estudiantes.frmRegistrarEstudiante - This is FATAL : frmReistrarEstudiante se ha destruido
+FATAL - 21:01:08,839 - main - estudiantes.frmRegistrarEstudiante - This is FATAL : frmReistrarEstudiante se ha destruido
+FATAL - 21:02:33,501 - main - estudiantes.frmRegistrarEstudiante - This is FATAL : frmReistrarEstudiante se ha destruido
+FATAL - 21:03:47,439 - main - estudiantes.frmRegistrarEstudiante - This is FATAL : frmReistrarEstudiante se ha destruido

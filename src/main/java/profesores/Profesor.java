@@ -5,7 +5,9 @@ import java.io.Serializable;
 import org.apache.log4j.Logger;
 
 /**clase de profesores con los atributos, constructores y getters&setters
- * 
+ * \class Profesor
+ * @package profesores
+ * @brief Paquete que configura el modulo profesores
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

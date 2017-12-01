@@ -13,7 +13,8 @@ import org.apache.log4j.Logger;
 
 import bbdd.MyDataAccess;
 /**frame en el que se recogen todos los metodos, atributos y recursos necesarios para registrar o anadir un nuevo profesor a la BD de la Academia
- * 
+ * \class frmRegistrarProfesor
+ * @package profesores
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
@@ -169,7 +170,7 @@ public class frmRegistrarProfesor extends JFrame implements ActionListener{
 	 * @param direccion
 	 * @param estudios
 	 */
-		void registrarProfesor (String dni, String nombre, String apellido, String telefono, String email, String direccion, String estudios)
+		public void registrarProfesor (String dni, String nombre, String apellido, String telefono, String email, String direccion, String estudios)
 		{
 			// TODO Auto-generated method stub
 					

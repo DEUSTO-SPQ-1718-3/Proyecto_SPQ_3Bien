@@ -41,6 +41,8 @@ import java.util.ArrayList;
 
 /**clase que muestra todas las operaciones de profesores y visualicacion de los profesores ya registrados en la BD
  * Opciones que se recogen: Añadir, modificar,borrar y refrescar
+* \class frmProfesores
+* @package profesores
 * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
 *
 */
@@ -135,8 +137,9 @@ public class frmProfesores extends JFrame implements ActionListener{
 			
 			
 	}
-	
-
+	/**
+	 *  Saca por pantalla la lista de profesores registrados obtenidos con la consulta
+	 */
 	void completarLista() {
 		// TODO Auto-generated method stub
 		txtProfesores = new JTextArea();

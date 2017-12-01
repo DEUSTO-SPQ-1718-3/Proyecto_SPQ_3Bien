@@ -19,6 +19,8 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 /**Frame en el que se recoge el nom_usuario delusuario que se desea borrar
  * Se introduce el nom_usuario de un usuario ya existente en la BD, y lanzamos desde aqui la consulta a la BD
+ * \class frmModificarUsuario
+ * @package usuarios
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

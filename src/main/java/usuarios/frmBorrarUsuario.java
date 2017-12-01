@@ -20,9 +20,10 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-/**en esta clase se recogen todos los metodos, atributos y recursos necesarios
+/**En esta clase se recogen todos los metodos, atributos y recursos necesarios
  * para poder borrar un usuario ya existente en la BD de la Academia
- * 
+ * \class frmBorrarUsuario
+ *  @package usuarios
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
@@ -93,7 +94,7 @@ public class frmBorrarUsuario extends JFrame implements ActionListener{
 	 * Se borran de la BD los datos correspondientes al nom_usuario del usuario que se pasa por parametro
 	 * @param nom_usu
 	 */
-	void borrarUsuario(String nom_usu) {
+	public void borrarUsuario(String nom_usu) {
 		// TODO Auto-generated method stub
 		
 		String borrar= "Delete from usuarios where nom_usuario='"+nom_usu+"' ";

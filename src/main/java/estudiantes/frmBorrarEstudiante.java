@@ -19,7 +19,8 @@ import java.awt.event.ActionEvent;
 
 /**frame si con el metodo para borrar un estudiante, le pasaremos su dni por pantalla y si coincide con alguno de las bbdd lo borrara
  * sino saldra un mensaje diciendo que no existe esa fila
- * 
+ * \class frmBorrarEstudiante
+ * @package estudiantes
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
@@ -89,10 +90,10 @@ public class frmBorrarEstudiante extends JFrame implements ActionListener{
 	 * 
 	 * @param borrarEstudiante le pasamos el dni del estudiante (string)
 	 */
-	void borrarEstudiante(String borrardni) {
+	public void borrarEstudiante(String borrardni) {
 		// TODO Auto-generated method stub
 		
-		String borrar= "Delete from estudiantes where dni='"+borrardni+"' ";
+		String borrar= "Delete from estudiantes where dni='"+borrardni+"'";
 		
 		conexion.setQuery(borrar);
 		logger.info("This is INFO : Se ha lanzado Query de Delete");

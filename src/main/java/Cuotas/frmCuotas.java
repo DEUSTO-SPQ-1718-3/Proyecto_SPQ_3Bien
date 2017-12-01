@@ -79,10 +79,10 @@ public class frmCuotas extends JFrame implements ActionListener{
 		actualizar(listaCuotas);
 		sacarPendientes();
 		
-		JButton btnActualizar = new JButton("ACTUALIZAR");
+		JButton btnActualizar = new JButton("REFRESH");
 		btnActualizar.setBounds(420, 20, 100, 25);
 		btnActualizar.addActionListener(this);
-		btnActualizar.setActionCommand("Actualizar");
+		btnActualizar.setActionCommand("Refresh");
 		contentPane.add(btnActualizar);
 			
 		btnPendientes.setBounds(420, 70, 100, 25);
@@ -186,7 +186,7 @@ public class frmCuotas extends JFrame implements ActionListener{
 			
 			break;
 			
-		case "Actualizar":
+		case "Refresh":
 			
 			listaCuotas.clear();
 			

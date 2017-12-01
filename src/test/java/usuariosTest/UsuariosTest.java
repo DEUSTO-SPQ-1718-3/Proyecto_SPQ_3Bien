@@ -1,18 +1,36 @@
-package usuarios;
+package usuariosTest;
 
+import org.databene.contiperf.PerfTest;
+import org.databene.contiperf.Required;
+import org.databene.contiperf.junit.ContiPerfRule;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import bbdd.MyDataAccess;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
 import static org.junit.Assert.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import junit.framework.JUnit4TestAdapter;
-
+import usuarios.frmBorrarUsuario;
+import usuarios.frmRegistrarUsuario;
+import usuarios.frmUsuarios;
+import usuarios.usuario;
+/**Clase para realizar los test correspondientes a el modulo de Usuarios.
+ *\class UsuariosTest
+ * @package usuariosTest
+ * @brief Paquete que con las clases de test correspondientes al modulo Usuarios
+ * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
+ *
+ */
 
 public class UsuariosTest {
+	
+	@Rule public ContiPerfRule i = new ContiPerfRule();
 	
 	private usuario usuario1;
 	
@@ -34,9 +52,10 @@ public class UsuariosTest {
 		conexion = new MyDataAccess();
 	}
 	
-	@Test public void testRegistrarUsuario() {
-		
-		conexion.setQuery("Delete from profesores where dni = '222'");	
+	@Test
+	@PerfTest(invocations = 5, threads = 1)
+	@Required (max=2000, average=500)	
+	public void testRegistrarUsuario() {
 		
 		registrar_usu.registrarUsuario(usuario1.getNom_usuario(), usuario1.getContra(), usuario1.getNombre(),usuario1.getApellido());
 					
@@ -72,9 +91,10 @@ public class UsuariosTest {
 					
 	}
 	
-	@Test public void testBorrarUsuario() {
-		
-		conexion.setQuery("Delete from usuarios where nom_usuario='a_a'");	
+	@Test
+	@PerfTest(invocations = 5, threads = 1)
+	@Required (max=4000, average=2000)
+	public void testBorrarUsuario() {
 		
 		registrar_usu.registrarUsuario(usuario1.getNom_usuario(), usuario1.getContra(), usuario1.getNombre(),usuario1.getApellido());
 		
@@ -85,7 +105,7 @@ public class UsuariosTest {
 		String nombre="";
 		String apellido="";
 		
-		conexion.setQuery("Delete from usuarios where nom_usuario='a_a'");
+		borrar_usu.borrarUsuario("a_a");
 		
 		comprobar = conexion.getQuery("SELECT * from usuarios where nom_usuario='a_a'");
 				
@@ -109,9 +129,13 @@ public class UsuariosTest {
 		
 	}
 	
-	@Test public void testModificarProfesor() 
+	
+	@Test
+	@PerfTest(invocations = 5, threads = 1)
+	@Required (max=1000, average=100)
+	public void testModificarUsuario() 
 	{
-		conexion.setQuery("Delete from usuarios where nom_usuario= 'a_a' ");	
+		
 		registrar_usu.registrarUsuario(usuario1.getNom_usuario(), usuario1.getContra(), usuario1.getNombre(),usuario1.getApellido());
 		
 		ResultSet resultadoBD;
@@ -136,7 +160,6 @@ public class UsuariosTest {
 			e.printStackTrace();
 		}
 		
-		//String registrar= "update profesores set nombre='"+ nombre +"',apellido='"+ apellido +"',telefono='"+ telefono +"',email='"+ email +"',direccion='"+ direccion +"',estudios='"+ estudios +"' where nombre = '"+nomReferente+"'";
 		
 		String nom_usuarioMod="w_w";
 		String contraMod="aaa";
@@ -144,14 +167,13 @@ public class UsuariosTest {
 		String apellidoMod="Kazabon";
 		
 		
-			
-		
+				
 		conexion.setQuery("update usuarios set nom_usuario='"+ nom_usuarioMod+"',contra='"+ contraMod +"',nombre='"+ nombreMod +"',apellido='"+ apellidoMod +"' where nom_usuario = 'a_a'");
 		
 		
 		resultadoBD = conexion.getQuery("SELECT * from usuarios where nom_usuario='w_w'");
 		
-		//principal_prof.completarLista();
+		
 		try {
 			while(resultadoBD.next()) {
 				//comprobar.next();//paso porque el primero es el ID

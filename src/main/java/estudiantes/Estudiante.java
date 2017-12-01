@@ -2,7 +2,9 @@ package estudiantes;
 import java.io.Serializable;
 
 /**Clase que es un Estudiante
- * 
+ * \class Estudiante
+ * @package estudiantes
+ * @brief Paquete que configura el modulo Estudiantes
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

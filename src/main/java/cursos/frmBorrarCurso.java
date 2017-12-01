@@ -22,7 +22,8 @@ import org.apache.log4j.Logger;
 
 /**frame si con el metodo para borrar un curso, le pasaremos su ID por pantalla y si coincide con alguno de las bbdd lo borrara
  * sino saldra un mensaje diciendo que no existe esa fila
- * 
+ * \class frmBorrarCurso
+ * @package cursos
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
@@ -91,7 +92,7 @@ public class frmBorrarCurso extends JFrame implements ActionListener{
 	 * 
 	 * @param borrarID le pasamos el ID del curso, un integer
 	 */
-	void borrarCurso(int borrarID) {
+	public void borrarCurso(int borrarID) {
 		// TODO Auto-generated method stub
 		String borrar= "Delete from cursos where idC='"+borrarID+"' ";
 		//enviar la sentencia a la bbdd

@@ -12,7 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**Si el dni que hemos introducido en frmModificarEstudiante esta dado de alta, podremos modificar los datos a excepcion de su dni
- * 
+ * \class frmModificarDatos
+ * @package estudiantes
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

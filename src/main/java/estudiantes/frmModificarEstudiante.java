@@ -20,7 +20,8 @@ import java.awt.event.ActionEvent;
 
 /**Frame que sirve para que el usuario nos indique el estudiante que quiere modificar
  * Nos introduce el dni que quiera, y lanzamos desde aqui la consulta a la BBDD, si existe, nos llevara a otra ventana que podemos modificar datos
- * 
+ * \class frmModificarEstudiante
+ * @package estudiantes
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

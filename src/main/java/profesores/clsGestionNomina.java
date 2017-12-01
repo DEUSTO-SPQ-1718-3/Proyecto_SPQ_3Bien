@@ -1,7 +1,8 @@
 package profesores;
 
 /**Se recogen los métodos que nos proporcionará en un futuro un servidor externo para la gestion y el pago de las nominas a los profesores
- * 
+ * \class clsGestionNomina
+ * @package profesores
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
