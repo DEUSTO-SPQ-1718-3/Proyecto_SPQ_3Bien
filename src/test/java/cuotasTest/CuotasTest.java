@@ -252,13 +252,6 @@ public class CuotasTest {
 	}
 
 	ArrayList resultado = enviarCuota.buscarDatos(id);
-	
-	System.out.println((String) resultado.get(0));
-	System.out.println((String) resultado.get(1));
-	System.out.println((String) resultado.get(2));
-	System.out.println((int) resultado.get(3));
-	System.out.println((int) resultado.get(4));
-	System.out.println((String) resultado.get(5));
 
 	assertEquals((String) resultado.get(0), C2.getNombre());
 	assertEquals((String) resultado.get(1), C2.getApellido());

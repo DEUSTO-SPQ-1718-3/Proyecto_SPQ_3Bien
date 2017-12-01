@@ -23,7 +23,7 @@ import junit.framework.JUnit4TestAdapter;
 
 /**Clase para realizar los test correspondientes a el modulo de Estudiantes.
  *\class EstudiantesTest
- * @package cursosTest
+ * @package estudiantesTest
  * @brief Paquete con las clases de test correspondientes al modulo Estudiantes
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *

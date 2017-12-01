@@ -22,6 +22,7 @@ import javax.swing.JTextArea;
 
 /** frame que visualiza los cursos y sus asistencias 
  * ordenados por los cursos con mas alumnos a menos
+ * \class frmInformeCursos
  * @package cursos
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *

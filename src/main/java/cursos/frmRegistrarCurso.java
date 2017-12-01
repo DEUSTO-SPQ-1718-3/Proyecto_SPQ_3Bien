@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import org.apache.log4j.Logger;
 
 /**frame para dar de alta un curso en el sistema
+ * \class frmRegistrarCurso
  * @package cursos
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *

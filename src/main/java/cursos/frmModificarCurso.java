@@ -20,6 +20,7 @@ import org.apache.log4j.Logger;
 
 /**Frame que sirve para que el usuario nos indique el curso que quiere modificar
  * Nos introduce el ID que quiera, y lanzamos desde aqui la consulta a la BBDD, si existe, nos llevara a otra ventana que podemos modificar datos
+ * \class frmModificarCurso
  * @package cursos
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *

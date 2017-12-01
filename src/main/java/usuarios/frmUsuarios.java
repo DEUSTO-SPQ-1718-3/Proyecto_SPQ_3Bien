@@ -23,16 +23,21 @@ import profesores.frmProfesores;
 import profesores.frmRegistrarProfesor;
 import bbdd.MyDataAccess;
 
-/**clase que gestiona las operaciones de los usuarios administradores
+/**Clase que gestiona las operaciones de los usuarios administradores
  * Opciones que se recogen: Añadir, modificar,borrar y refrescar
  * Visualizacion de los usuarios registrados en la ventana
+ * \class frmUsuarios
+ *@package usuarios
+ *@brief Paquete que configura el modulo usuarios
 * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
 *
 */
 
 public class frmUsuarios extends JFrame implements ActionListener
 {
-	final static Logger logger = Logger.getLogger(frmUsuarios.class);
+	//final static Logger logger = Logger.getLogger(frmUsuarios.class);
+	
+	Logger logger3 = Logger.getLogger("usuarios");
 	
 	JTextArea txtUsuarios;
 	ArrayList<usuario> listaUsuarios;
@@ -182,7 +187,8 @@ public class frmUsuarios extends JFrame implements ActionListener
 			this.dispose();
 			frmUsuarios nuevo = new frmUsuarios();
 			nuevo.setVisible(true); 
-			 logger.error("This is ERROR : Se ha refrescado la pagina de usuarios");
+			 logger3.error("This is ERROR : Se ha refrescado la pagina de usuarios");
+			 logger3.info("This is ERROR : Se ha refrescado la pagina de usuarios");
 			break;
 			
 					

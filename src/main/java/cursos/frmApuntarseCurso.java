@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 
 /**clase que sirve para apuntar a un alumno a un determinado curso
  * debemos introducir el dni del alumno y el id del curso para formalizarlo
+ * \class frmApuntarseCurso
  * @package cursos
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
