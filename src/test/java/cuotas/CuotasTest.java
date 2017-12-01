@@ -22,6 +22,7 @@ import junit.framework.JUnit4TestAdapter;
 /**Clase para realizar los test correspondientes a el modulo de Cuotas.
  *\class CuotasTest
  * @package cuotas
+ * @brief Paquete que con las clase de test Correspondientes al modulo Cuotas
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */

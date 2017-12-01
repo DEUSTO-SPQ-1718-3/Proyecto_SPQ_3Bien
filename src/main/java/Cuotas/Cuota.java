@@ -4,6 +4,7 @@ import java.io.Serializable;
 /**Clase con los atributos de una cuota que guardamos en la base de datos.
  * \class Cuota
  * @package Cuotas
+ * @brief Paquete que configura el modulo Cuotas
  * @author Grupo 3 DBS SS: Procesos software y de calidad 17-18
  *
  */
