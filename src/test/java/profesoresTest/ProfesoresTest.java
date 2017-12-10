@@ -90,7 +90,7 @@ public class ProfesoresTest {
 		
 	}
 	
-	
+
 @Test public void testRegistrarProfesor() {
 		
 		//frmRegistrarProfesor ventana = new frmRegistrarProfesor();

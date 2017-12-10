@@ -13,8 +13,8 @@
 
 	
 	<appender name="file" class="org.apache.log4j.RollingFileAppender"> 
-	    <param name="append" value="false" />
-	    <param name="maxFileSize" value="10MB" />
+	    <param name="append" value="true" />
+	    <param name="maxFileSize" value="10byte" />
 	    <param name="maxBackupIndex" value="10" />
 	    <param name="file" value="rootLogger.log" />
 	    <layout class="org.apache.log4j.PatternLayout">
@@ -23,12 +23,12 @@
 	    </layout>
 	</appender>
 	
-	<logger name="Modificar" additivity="false">
+	<logger name="modificar" additivity="false">
 		<level value="ALL" />
 		<appender-ref ref="file" />
 	</logger>
 	
-	<logger name="Modificar.prof" additivity="false">
+	<logger name="modificar.prof" additivity="true">
 		<level value="ALL" />
 		<appender-ref ref="console" />
 	</logger>

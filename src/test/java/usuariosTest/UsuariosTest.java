@@ -54,7 +54,7 @@ public class UsuariosTest {
 	
 	@Test
 	@PerfTest(invocations = 5, threads = 1)
-	@Required (max=2000, average=500)	
+	@Required (max=4000, average=3000)	
 	public void testRegistrarUsuario() {
 		
 		registrar_usu.registrarUsuario(usuario1.getNom_usuario(), usuario1.getContra(), usuario1.getNombre(),usuario1.getApellido());
@@ -93,7 +93,7 @@ public class UsuariosTest {
 	
 	@Test
 	@PerfTest(invocations = 5, threads = 1)
-	@Required (max=4000, average=2000)
+	@Required (max=5000, average=3000)
 	public void testBorrarUsuario() {
 		
 		registrar_usu.registrarUsuario(usuario1.getNom_usuario(), usuario1.getContra(), usuario1.getNombre(),usuario1.getApellido());

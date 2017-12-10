@@ -55,7 +55,7 @@ public class EstudiantesTest {
 	
 	
 	@PerfTest(invocations = 5, threads = 1)
-	@Required (max=2000, average=1000)
+	@Required (max=700, average=500)
 	@Test public void testRegistrarEstudiante() {
 		
 	ventana1.registrarEstudiante(estudiante1.getDni(),estudiante1.getNombre(),estudiante1.getApellido(),estudiante1.getTelefono(),estudiante1.getEmail(),estudiante1.getColegio(),estudiante1.getDireccion(),estudiante1.getNombre_contacto(),estudiante1.getTelf_contacto());
@@ -91,7 +91,7 @@ public class EstudiantesTest {
 	
 	
 	@PerfTest(invocations = 5, threads = 1)
-	@Required (max=4000, average=1500)
+	@Required (max=10000, average=5000)
 	@Test public void testBorrarEstudiante(){
 		
 		ResultSet comprobar;
